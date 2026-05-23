@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  restaurantName: string;
+}
+
+const { title, subtitle, buttonText, restaurantName } = Astro.props;
+---
+
+<section class="bg-zinc-900 text-white min-h-[70vh] flex items-center">
+  <div class="max-w-6xl mx-auto px-6 py-20">
+    
+    <p class="text-orange-400 font-semibold mb-3">
+      {restaurantName}
+    </p>
+
+    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+      {title}
+    </h1>
+
+    <p class="text-zinc-300 text-lg max-w-2xl mb-8">
+      {subtitle}
+    </p>
+
+    <button class="bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl font-semibold">
+      {buttonText}
+    </button>
+
+  </div>
+</section>

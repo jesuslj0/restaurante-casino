@@ -1,0 +1,27 @@
+---
+const hoy = new Date()
+const año = hoy.getFullYear()
+
+const {restaurantName, location} = Astro.props
+---
+
+<footer id="footer-container" class="flex flex-col items-center justify-between sm:flex-row p-8 bg-zinc-800">
+    <div>
+        <h4>© {restaurantName} - {año}</h4>
+        <p>Todos los derechos reservados.</p>
+        <p>{location}</p>
+    </div>
+    <div class="social">
+        <ul class="flex flex-col">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">X</a></li>
+        </ul>
+    </div>
+</footer>
+
+<style>
+    * {
+        color: white;
+    }
+</style>
