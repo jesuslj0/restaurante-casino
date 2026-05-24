@@ -1,4 +1,8 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/img/logo-casino.png';
+import { Icon } from 'astro-icon/components';
+
 interface Props {
   title: string;
   subtitle: string;
@@ -9,24 +13,90 @@ interface Props {
 const { title, subtitle, buttonText, restaurantName } = Astro.props;
 ---
 
-<section class="bg-zinc-900 text-white min-h-[70vh] flex items-center">
-  <div class="max-w-6xl mx-auto px-6 py-20">
-    
-    <p class="text-orange-400 font-semibold mb-3">
-      {restaurantName}
-    </p>
+<div class="hero-background">
+  <section>
+    <div class="hero-inner">
+      <div class="logo-wrapper">
+        <Image src={logo} alt=`Logo ${restaurantName}` class="hero-logo" />
+      </div>
 
-    <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-      {title}
-    </h1>
+      <div class="hero-text">
+        <p class="text-accent font-semibold tracking-widest uppercase text-sm mb-3">
+          {restaurantName}
+        </p>
+        <h1 class="text-text text-4xl md:text-6xl font-bold leading-tight mb-4">
+          {title}
+        </h1>
+        <p class="text-text-secondary text-base opacity-80 mb-8 max-w-md">
+          {subtitle}
+        </p>
+        <button class="bg-accent hover:brightness-125 hover:cursor-pointer transition px-6 py-3 rounded-xl font-semibold inline-flex items-center gap-3">
+          {buttonText} <Icon name="lucide:utensils" />
+        </button>
+      </div>
 
-    <p class="text-zinc-300 text-lg max-w-2xl mb-8">
-      {subtitle}
-    </p>
+    </div>
+  </section>
+</div>
 
-    <button class="bg-orange-500 hover:bg-orange-600 transition px-6 py-3 rounded-xl font-semibold">
-      {buttonText}
-    </button>
 
-  </div>
-</section>
+<style>
+  .hero-background {
+    background-image: url('../assets/img/casino-entrada.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  section {
+    background-color: rgba(0, 0, 0, 0.65);
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    width: 100%;
+    max-width: 72rem;
+    padding: 2rem 3rem;
+  }
+
+  .logo-wrapper {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-logo {
+    width: 280px;
+    height: 280px;
+    object-fit: contain;
+    border-radius: 100%;
+  }
+
+  .hero-logo {
+    transition:
+      transform 0.3s ease,
+      filter 0.3s ease;
+  }
+
+  .hero-logo:hover {
+    transform: translateY(-2px);
+
+    filter:
+      drop-shadow(0 8px 20px var(--color-accent-25));
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+</style>

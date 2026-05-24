@@ -14,15 +14,27 @@ interface HeroProps {
 	heroSubtitle: string,
 }
 
+interface SocialProps {
+	facebookUsername: string,
+	instagramUsername: string, 
+	xUsername: string
+}
+
 const props = {
 	restaurantName: 'El Casino',
-	location: 'Plaza Cementerio, 2 - El Bonillo (AB)',
+	location: 'Plaza Mayor, N°5 - El Bonillo (AB)',
 }
 
 const heroProps = {
 	heroTitle: "Sabores auténticos del pueblo",
 	heroSubtitle: "Comida tradicional y ambiente familiar para disfrutar con los tuyos.",
 	buttonText: "Reservar mesa"
+}
+
+const socialProps = {
+	facebookUsername: "elcasino",
+	instagramUsername: "casinoelbonillo",
+	xUsername: "el_casino"
 }
 
 ---
@@ -39,5 +51,8 @@ const heroProps = {
 	<Footer slot="footer" 
 		restaurantName={props.restaurantName} 
 		location={props.location}
+		facebookUsername={socialProps.facebookUsername}
+		instagramUsername={socialProps.instagramUsername}
+		xUsername={socialProps.xUsername}
 	/>
 </Layout>

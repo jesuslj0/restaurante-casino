@@ -2,25 +2,20 @@
 
 ---
 
-<header id="header-container" class="bg-zinc-800">
-    <nav class="p-4">
+<header id="header-container" class="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none">
+    <nav class="pointer-events-auto px-8 py-3 bg-secondary rounded-full shadow-lg">
         <ul class="flex items-center justify-center gap-8">
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Carta</a></li>
-            <li><a href="#">Menús</a></li>
-            <li><a href="#">Ofertas</a></li>
-            <li><a href="#">Contacto</a></li>
+            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Inicio</a></li>
+            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Carta</a></li>
+            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Menús</a></li>
+            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Ofertas</a></li>
+            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Contacto</a></li>
         </ul>
     </nav>
 </header>
 
 <style>
-    li:hover {
-        text-decoration: underline;
-        cursor: pointer;
-    }
-
-    li > a {
-        color: white;
+    .logo {
+        src: url("../assets/img/logo-casino.png")
     }
 </style>

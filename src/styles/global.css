@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@theme {
+    --color-primary: rgb(65 45 21);
+    --color-secondary: rgb(31 21 12);
+
+    --color-bg: rgb(10 10 10);
+
+    --color-text: rgb(225 220 201);
+    --color-text-secondary: rgb(225 220 201 / 0.6);
+
+    --color-accent: rgb(201 169 97);
+    --color-accent-25: rgb(201 169 77 / 0.25)
+}
+

@@ -1,27 +1,30 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const hoy = new Date()
 const año = hoy.getFullYear()
 
 const {restaurantName, location} = Astro.props
+
+interface socialProps {
+    facebookUsername: string, 
+    instagramUsername: string, 
+    xUsername: string
+}
+const {facebookUsername, instagramUsername, xUsername } = Astro.props
 ---
 
-<footer id="footer-container" class="flex flex-col items-center justify-between sm:flex-row p-8 bg-zinc-800">
+<footer id="footer-container" class="flex flex-col items-center justify-between sm:flex-row xl:justify-around p-10 bg-bg text-text">
     <div>
-        <h4>© {restaurantName} - {año}</h4>
-        <p>Todos los derechos reservados.</p>
-        <p>{location}</p>
+        <h4 class="text-accent">© {año} - {restaurantName}</h4>
+        <p class="text-text-primary">{location}</p>
+        <p class="text-text-secondary">Todos los derechos reservados.</p>
     </div>
     <div class="social">
-        <ul class="flex flex-col">
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">X</a></li>
+        <ul class="flex flex-col gap-3">
+            <li><a href=`https://instagram.com/${instagramUsername}` class="flex flex-row gap-2 items-center hover:text-accent"><Icon name="simple-icons:instagram"/> @{instagramUsername}</a></li>
+            <li><a href=`https://facebook.com/${facebookUsername}` class="flex flex-row gap-2 items-center hover:text-accent"><Icon name="simple-icons:facebook"/> @{facebookUsername}</a></li>
+            <li><a href=`https://x.com/${xUsername}` class="flex flex-row gap-2 items-center hover:text-accent"><Icon name="simple-icons:x" /> @{xUsername}</a></li>
         </ul>
     </div>
 </footer>
-
-<style>
-    * {
-        color: white;
-    }
-</style>
