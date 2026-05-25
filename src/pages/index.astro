@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
 
 interface Props {
 	restaurantName: string,
@@ -28,7 +29,10 @@ const props = {
 const heroProps = {
 	heroTitle: "Sabores auténticos del pueblo",
 	heroSubtitle: "Comida tradicional y ambiente familiar para disfrutar con los tuyos.",
-	buttonText: "Reservar mesa"
+	buttonText: "Reservar mesa",
+	buttonSecondaryText: "Ver carta",
+	location: 'Plaza Mayor, N°5 - El Bonillo',
+	schedule: 'Lunes a Viernes: 9am - 11pm',
 }
 
 const socialProps = {
@@ -46,9 +50,17 @@ const socialProps = {
 		subtitle={heroProps.heroSubtitle}
 		restaurantName={props.restaurantName}
 		buttonText={heroProps.buttonText}
+		buttonSecondaryText={heroProps.buttonSecondaryText}
+		location={heroProps.location}
+		schedule={heroProps.schedule}
 	/>
 
-	<Footer slot="footer" 
+	<About slot="about"
+		restaurantName={props.restaurantName}
+		description="Un rincón de toda la vida en el corazón de El Bonillo. Cocina casera con el sabor de siempre, donde cada plato lleva el cariño y la tradición de nuestra tierra."
+	/>
+
+	<Footer slot="footer"
 		restaurantName={props.restaurantName} 
 		location={props.location}
 		facebookUsername={socialProps.facebookUsername}

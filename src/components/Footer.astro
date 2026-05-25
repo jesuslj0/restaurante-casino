@@ -14,17 +14,34 @@ interface socialProps {
 const {facebookUsername, instagramUsername, xUsername } = Astro.props
 ---
 
-<footer id="footer-container" class="flex flex-col items-center justify-between sm:flex-row xl:justify-around p-10 bg-bg text-text">
-    <div>
-        <h4 class="text-accent">© {año} - {restaurantName}</h4>
-        <p class="text-text-primary">{location}</p>
-        <p class="text-text-secondary">Todos los derechos reservados.</p>
+<footer id="footer-container" class="flex flex-col items-center gap-10 px-6 py-10 bg-bg text-text sm:flex-row sm:justify-around sm:gap-0 sm:px-10">
+    <div class="flex flex-col items-center text-center sm:items-start sm:text-left">
+        <h4 class="text-accent font-semibold text-base mb-1">© {año} - {restaurantName}</h4>
+        <p class="text-text text-sm">{location}</p>
+        <p class="text-text-secondary text-xs mt-1">Todos los derechos reservados.</p>
     </div>
-    <div class="social">
-        <ul class="flex flex-col gap-3">
-            <li><a href=`https://instagram.com/${instagramUsername}` class="flex flex-row gap-2 items-center hover:text-accent"><Icon name="simple-icons:instagram"/> @{instagramUsername}</a></li>
-            <li><a href=`https://facebook.com/${facebookUsername}` class="flex flex-row gap-2 items-center hover:text-accent"><Icon name="simple-icons:facebook"/> @{facebookUsername}</a></li>
-            <li><a href=`https://x.com/${xUsername}` class="flex flex-row gap-2 items-center hover:text-accent"><Icon name="simple-icons:x" /> @{xUsername}</a></li>
+
+    <div class="w-full sm:w-auto flex flex-col items-center gap-5">
+        <span class="inline-flex items-center gap-2"><Icon name="lucide:heart-plus" class="text-red-400"/> Síguenos en redes!</span>
+        <ul class="flex flex-row justify-center gap-6 sm:flex-col sm:gap-3">
+            <li>
+                <a href=`https://instagram.com/${instagramUsername}` class="flex flex-col items-center gap-1 text-text hover:text-accent sm:flex-row sm:gap-2">
+                    <Icon name="simple-icons:instagram" class="w-5 h-5" />
+                    <span class="text-xs sm:text-sm">@{instagramUsername}</span>
+                </a>
+            </li>
+            <li>
+                <a href=`https://facebook.com/${facebookUsername}` class="flex flex-col items-center gap-1 text-text hover:text-accent sm:flex-row sm:gap-2">
+                    <Icon name="simple-icons:facebook" class="w-5 h-5" />
+                    <span class="text-xs sm:text-sm">@{facebookUsername}</span>
+                </a>
+            </li>
+            <li>
+                <a href=`https://x.com/${xUsername}` class="flex flex-col items-center gap-1 text-text hover:text-accent sm:flex-row sm:gap-2">
+                    <Icon name="simple-icons:x" class="w-5 h-5" />
+                    <span class="text-xs sm:text-sm">@{xUsername}</span>
+                </a>
+            </li>
         </ul>
     </div>
 </footer>

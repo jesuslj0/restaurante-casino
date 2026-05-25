@@ -1,40 +1,67 @@
 ---
 import { Image } from 'astro:assets';
-import logo from '../assets/img/logo-casino.png';
 import { Icon } from 'astro-icon/components';
+import logo from "../assets/img/logo-casino.png";
+import bgImage from "../assets/img/casino-entrada.png";
 
 interface Props {
   title: string;
   subtitle: string;
   buttonText: string;
+  buttonSecondaryText: string
   restaurantName: string;
+  location: string;
+  schedule: string;
 }
 
-const { title, subtitle, buttonText, restaurantName } = Astro.props;
+const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, location, schedule } = Astro.props;
 ---
 
-<div class="hero-background">
+<div class="hero-background" style={`background-image: url(${bgImage.src})`}>
   <section>
     <div class="hero-inner">
-      <div class="logo-wrapper">
-        <Image src={logo} alt=`Logo ${restaurantName}` class="hero-logo" />
+      <div class="hero-content">
+        <div class="logo-wrapper">
+          <Image 
+            src={logo}
+            alt=`Logo ${restaurantName}` 
+            class="hero-logo" 
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+
+        <div class="hero-text">
+          <p class="text-accent font-sans-semibold tracking-widest uppercase text-sm mb-3">
+            • {restaurantName} •
+          </p>
+          <h1 class="text-text text-4xl md:text-6xl font-serif-semibold leading-tight mb-4">
+            {title}
+          </h1>
+          <p class="text-text-secondary font-sans text-base opacity-80 mb-8 max-w-md">
+            {subtitle}
+          </p>
+          <div class="hero-buttons flex gap-2 ">
+            <button class="primary-btn">
+              {buttonText} <Icon name="lucide:calendar-days" />
+            </button>
+            <button class="secondary-btn">
+              {buttonSecondaryText} <Icon name="lucide:book-open"/>
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-text">
-        <p class="text-accent font-semibold tracking-widest uppercase text-sm mb-3">
-          {restaurantName}
-        </p>
-        <h1 class="text-text text-4xl md:text-6xl font-bold leading-tight mb-4">
-          {title}
-        </h1>
-        <p class="text-text-secondary text-base opacity-80 mb-8 max-w-md">
-          {subtitle}
-        </p>
-        <button class="bg-accent hover:brightness-125 hover:cursor-pointer transition px-6 py-3 rounded-xl font-semibold inline-flex items-center gap-3">
-          {buttonText} <Icon name="lucide:utensils" />
-        </button>
+      <div class="hero-info justify-center mt-5 mb-7">
+        <div class="info-chip text-text text-sm bg-white/5 backdrop-blur-sm inline-flex items-center gap-2 py-4 px-6 rounded-xl">
+          <Icon name="lucide:map-pin" />
+          <span>{location}</span>
+        </div>
+        <div class="info-chip text-text text-sm bg-white/5 backdrop-blur-sm inline-flex items-center gap-2 py-4 px-6 rounded-xl">
+          <Icon name="lucide:clock-8" />
+          <span>{schedule}</span>
+        </div>
       </div>
-
     </div>
   </section>
 </div>
@@ -42,29 +69,42 @@ const { title, subtitle, buttonText, restaurantName } = Astro.props;
 
 <style>
   .hero-background {
-    background-image: url('../assets/img/casino-entrada.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
   section {
-    background-color: rgba(0, 0, 0, 0.65);
+    background:
+      linear-gradient(
+        to bottom, rgba(0,0,0,0.75) 0%, transparent 25%,  transparent 75%, 
+        rgba(0,0,0,0.75) 100%)
+      rgba(0, 0, 0, 0.55);
     height: 100dvh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
+
   .hero-inner {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 5rem;
     width: 100%;
     max-width: 72rem;
-    padding: 2rem 3rem;
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
   }
 
   .logo-wrapper {
@@ -75,13 +115,10 @@ const { title, subtitle, buttonText, restaurantName } = Astro.props;
   }
 
   .hero-logo {
-    width: 280px;
-    height: 280px;
+    width: 160px;
+    height: 160px;
     object-fit: contain;
     border-radius: 100%;
-  }
-
-  .hero-logo {
     transition:
       transform 0.3s ease,
       filter 0.3s ease;
@@ -89,14 +126,71 @@ const { title, subtitle, buttonText, restaurantName } = Astro.props;
 
   .hero-logo:hover {
     transform: translateY(-2px);
-
-    filter:
-      drop-shadow(0 8px 20px var(--color-accent-25));
+    filter: drop-shadow(0 8px 20px var(--color-accent-25));
   }
 
   .hero-text {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .info-chip {
+    border: 1px solid transparent;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .info-chip:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 14px var(--color-accent-25);
+  }
+
+  @media (min-width: 768px) {
+    .hero-inner {
+      gap: 6rem;
+      padding: 2rem 3rem;
+    }
+
+    .hero-content {
+      flex-direction: row;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .hero-logo {
+      width: 280px;
+      height: 280px;
+    }
+
+    .hero-text {
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .hero-buttons {
+      justify-content: flex-start;
+    }
+
+    .hero-info {
+      flex-direction: row;
+      gap: 2rem;
+    }
   }
 </style>

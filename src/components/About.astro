@@ -1,0 +1,173 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Service {
+  icon: string;
+  label: string;
+}
+
+interface Props {
+  restaurantName: string;
+  description: string;
+  services?: Service[];
+}
+
+const {
+  restaurantName,
+  description,
+  services = [
+    { icon: 'lucide:utensils',    label: 'Comida casera'   },
+    { icon: 'lucide:coffee',      label: 'Café y desayunos'},
+    { icon: 'lucide:wine',        label: 'Vinos y copas'   },
+    { icon: 'lucide:moon',        label: 'Cenas'           },
+    { icon: 'lucide:sun',         label: 'Terraza'},
+    { icon: 'lucide:wifi',        label: 'WiFi gratis'     },
+  ],
+} = Astro.props;
+---
+
+<section class="about-section">
+  <div class="about-inner">
+
+    <!-- Párrafo destacado -->
+    <div class="about-header">
+      <p class="about-eyebrow">• Sobre nosotros •</p>
+      <p class="about-description">{description}</p>
+    </div>
+
+    <!-- KPIs de servicios -->
+    <ul class="services-grid">
+      {services.map(({ icon, label }) => (
+        <li class="service-chip">
+          <Icon name={icon} class="service-icon" />
+          <span class="service-label">{label}</span>
+        </li>
+      ))}
+    </ul>
+
+  </div>    
+</section>
+
+<style>
+  .about-section {
+    position: relative;
+    background: url("../assets/img/textura-madera.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 1.5rem;
+  }
+
+  .about-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgb(10, 10, 10) 0%, rgba(10, 10, 10, 0.60) 25%);
+    backdrop-filter: saturate(0.4) brightness(0.85);
+    -webkit-backdrop-filter: saturate(0.2) brightness(0.85);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .about-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 56rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3.5rem;
+  }
+
+  .about-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .about-eyebrow {
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .about-description {
+    color: var(--color-text);
+    font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+    line-height: 1.75;
+    max-width: 44rem;
+    opacity: 0.9;
+    font-style: italic;
+  }
+
+  .services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .service-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1.25rem 1.75rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--color-text);
+    min-width: 7rem;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .service-chip:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 18px var(--color-accent-25);
+    transform: translateY(-2px);
+  }
+
+  .service-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--color-accent);
+  }
+
+  .service-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-text-secondary);
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .about-section {
+      padding: 8rem 4rem;
+    }
+
+    .service-chip {
+      flex-direction: row;
+      gap: 0.75rem;
+      padding: 1rem 1.75rem;
+      min-width: auto;
+    }
+
+    .service-label {
+      font-size: 0.875rem;
+    }
+  }
+</style>

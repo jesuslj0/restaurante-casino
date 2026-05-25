@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "./buttons.css";
+@import "./variables.css";
+@import "./fonts.css";
 
 @theme {
     --color-primary: rgb(65 45 21);
@@ -7,9 +10,22 @@
     --color-bg: rgb(10 10 10);
 
     --color-text: rgb(225 220 201);
-    --color-text-secondary: rgb(225 220 201 / 0.6);
+    --color-text-secondary: rgb(225 220 201 / 0.75);
 
     --color-accent: rgb(201 169 97);
-    --color-accent-25: rgb(201 169 77 / 0.25)
+    --color-accent-25: rgb(201 169 77 / 0.25);
+
+    --font-sans: "Manrope", system-ui, sans-serif;
+    --font-serif: "Playfair", serif;
+
+    --font-sans-semibold: "Manrope SemiBold", system-ui, sans-serif;
+    --font-serif-semibold: "Playfair SemiBold", serif;
 }
 
+html {
+    background-color: rgb(10 10 10);
+}
+
+body {
+    @apply bg-bg text-text;
+}

@@ -1,0 +1,43 @@
+@reference "tailwindcss";
+@reference "./variables.css";
+
+.primary-btn {
+    @apply inline-flex items-center justify-center gap-2;
+
+    @apply rounded-xl px-5 py-3;
+
+    @apply font-medium text-black;
+
+    @apply bg-accent;
+
+    @apply transition-all duration-300 ease-out;
+
+    @apply hover:brightness-110
+    hover:shadow-[0_0_24px_rgb(var(--color-accent)/0.35)]
+    hover:-translate-y-[1px];
+
+    @apply active:scale-[0.98];
+
+    @apply focus:outline-none focus:ring-2 focus:ring-accent/50;
+}
+
+.secondary-btn {
+    @apply inline-flex items-center justify-center gap-2;
+
+    @apply rounded-xl px-5 py-3;
+
+    @apply font-medium text-text;
+
+    @apply border border-white/15;
+
+    @apply bg-white/5 backdrop-blur-sm;
+
+    @apply transition-all duration-300 ease-out;
+
+    @apply hover:border-accent/40 hover:bg-accent/10 hover:text-white
+    hover:-translate-y-[1px];
+
+    @apply active:scale-[0.98];
+
+    @apply focus:outline-none focus:ring-2 focus:ring-accent/30;
+}
