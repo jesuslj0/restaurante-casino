@@ -1,0 +1,284 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// index = getDay() de JS (0 = domingo ... 6 = sábado)
+const schedule = [
+  { day: 'Lunes', index: 1, hours: 'Cerrado', closed: true },
+  { day: 'Martes', index: 2, hours: '9:00 – 20:00' },
+  { day: 'Miércoles', index: 3, hours: '9:00 – 20:00' },
+  { day: 'Jueves', index: 4, hours: '9:00 – 20:00' },
+  { day: 'Viernes', index: 5, hours: '9:00 – 20:00' },
+  { day: 'Sábado', index: 6, hours: '9:00 – 00:00' },
+  { day: 'Domingo', index: 0, hours: '9:00 – 00:00' },
+];
+
+const notes = [
+  { icon: 'lucide:coffee', text: 'Almuerzos y barra desde primera hora de la mañana' },
+  { icon: 'lucide:moon-star', text: 'Cenas solo los fines de semana' },
+  { icon: 'lucide:armchair', text: 'Servicio de barra y mesa, dentro y en terraza' },
+];
+---
+
+<section id="horarios" class="hours-section">
+  <div class="hours-inner">
+    <header class="hours-head reveal">
+      <p class="eyebrow">• Horarios •</p>
+      <h2 class="section-title">Siempre con la puerta abierta</h2>
+      <p class="section-lead">
+        El punto de encuentro del pueblo. Pásate a almorzar, a tomar algo o a
+        cenar el fin de semana.
+      </p>
+    </header>
+
+    <div class="hours-grid">
+      <div class="hours-card reveal">
+        <ul class="day-list">
+          {schedule.map((row) => (
+            <li class="day-row" data-day={row.index} class:list={[{ 'is-closed': row.closed }]}>
+              <span class="day-name">{row.day}</span>
+              <span class="day-line" aria-hidden="true"></span>
+              <span class="day-hours">{row.hours}</span>
+              <span class="today-pill" hidden>Hoy</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <aside class="hours-notes reveal" style="--reveal-delay:120ms">
+        <div class="status-chip" id="open-status" hidden>
+          <span class="status-dot"></span>
+          <span class="status-text"></span>
+        </div>
+        <ul class="note-list">
+          {notes.map((note) => (
+            <li class="note">
+              <span class="note-icon"><Icon name={note.icon} /></span>
+              <span>{note.text}</span>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hours-section {
+    background: linear-gradient(180deg, var(--color-bg), var(--color-secondary));
+    padding: 5rem 1.5rem;
+  }
+
+  .hours-inner {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+
+  .hours-head {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .hours-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .hours-card {
+    padding: 1.5rem 1.75rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .day-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .day-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 0.75rem;
+    border-radius: 0.75rem;
+  }
+
+  .day-row + .day-row {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .day-name {
+    color: var(--color-text);
+    font-size: 0.98rem;
+    min-width: 5.5rem;
+  }
+
+  .day-line {
+    flex: 1;
+    border-bottom: 1px dotted rgba(225, 220, 201, 0.18);
+  }
+
+  .day-hours {
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  .is-closed .day-hours {
+    color: rgba(225, 220, 201, 0.4);
+  }
+
+  .today-pill {
+    font-family: var(--font-sans-semibold);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1a120a;
+    background: var(--color-accent);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+  }
+
+  .day-row.is-today {
+    background: var(--color-accent-25);
+    border-top-color: transparent !important;
+  }
+
+  .day-row.is-today .day-name {
+    font-family: var(--font-sans-semibold);
+    color: var(--color-accent);
+  }
+
+  /* ---- Notas ---- */
+  .hours-notes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-content: center;
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(160deg, rgba(201, 169, 97, 0.1), rgba(201, 169, 97, 0.01)),
+      var(--color-secondary);
+    border: 1px solid var(--color-accent-25);
+  }
+
+  .status-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    align-self: flex-start;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.85rem;
+  }
+
+  .status-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+    background: #6b7280;
+    box-shadow: 0 0 0 4px rgba(107, 114, 128, 0.18);
+  }
+
+  .status-chip.open .status-dot {
+    background: #4ade80;
+    box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.2);
+  }
+  .status-chip.open .status-text {
+    color: #86efac;
+  }
+  .status-chip.closed .status-dot {
+    background: #f87171;
+    box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.2);
+  }
+  .status-chip.closed .status-text {
+    color: #fca5a5;
+  }
+
+  .note-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .note {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+
+  .note-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
+    border-radius: 0.65rem;
+    background: var(--color-accent-25);
+    color: var(--color-accent);
+  }
+
+  .note-icon :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  @media (min-width: 768px) {
+    .hours-section {
+      padding: 7rem 3rem;
+    }
+    .hours-grid {
+      grid-template-columns: 1.3fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Convierte "9:00 – 20:00" en minutos de apertura/cierre
+  const ranges: Record<number, [number, number] | null> = {
+    1: null, // Lunes cerrado
+    2: [540, 1200],
+    3: [540, 1200],
+    4: [540, 1200],
+    5: [540, 1200],
+    6: [540, 1440], // Sábado hasta medianoche
+    0: [540, 1440], // Domingo hasta medianoche
+  };
+
+  const now = new Date();
+  const today = now.getDay();
+  const minutes = now.getHours() * 60 + now.getMinutes();
+
+  // Resaltar el día de hoy
+  const todayRow = document.querySelector<HTMLElement>(`.day-row[data-day="${today}"]`);
+  if (todayRow) {
+    todayRow.classList.add('is-today');
+    const pill = todayRow.querySelector<HTMLElement>('.today-pill');
+    if (pill) pill.hidden = false;
+  }
+
+  // Estado abierto / cerrado
+  const chip = document.getElementById('open-status');
+  const range = ranges[today];
+  if (chip) {
+    const text = chip.querySelector('.status-text');
+    const isOpen = range !== null && minutes >= range[0] && minutes < range[1];
+    chip.classList.add(isOpen ? 'open' : 'closed');
+    if (text) text.textContent = isOpen ? 'Abierto ahora' : 'Cerrado ahora';
+    chip.hidden = false;
+  }
+</script>

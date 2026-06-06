@@ -1,0 +1,308 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  phone?: string;       // formato visible
+  phoneIntl?: string;   // formato internacional para WhatsApp / tel:
+  email?: string;
+}
+
+// NOTA: datos de contacto de ejemplo. Sustituir por los reales del negocio.
+const {
+  phone = '967 00 00 00',
+  phoneIntl = '34967000000',
+  email = 'hola@casinoelbonillo.es',
+} = Astro.props;
+
+const channels = [
+  { icon: 'lucide:phone', title: 'Llámanos', text: phone, href: `tel:+${phoneIntl}` },
+  { icon: 'simple-icons:whatsapp', title: 'WhatsApp', text: 'Escríbenos directamente', href: `https://wa.me/${phoneIntl}` },
+  { icon: 'lucide:mail', title: 'Email', text: email, href: `mailto:${email}` },
+];
+---
+
+<section id="contacto" class="contact-section">
+  <div class="contact-inner">
+    <header class="contact-head reveal">
+      <p class="eyebrow">• Contacto y reservas •</p>
+      <h2 class="section-title">¿Hacemos hueco en la mesa?</h2>
+      <p class="section-lead">
+        Reserva para tu comida o cena, pregúntanos por el menú del día o
+        simplemente ven a tomar algo. Te esperamos.
+      </p>
+    </header>
+
+    <div class="contact-grid">
+      <!-- Canales directos -->
+      <aside class="channels reveal">
+        {channels.map((ch) => (
+          <a
+            href={ch.href}
+            class="channel"
+            target={ch.href.startsWith('http') ? '_blank' : undefined}
+            rel={ch.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            <span class="channel-icon"><Icon name={ch.icon} /></span>
+            <span class="channel-text">
+              <span class="channel-title">{ch.title}</span>
+              <span class="channel-sub">{ch.text}</span>
+            </span>
+            <Icon name="lucide:arrow-up-right" class="channel-arrow" />
+          </a>
+        ))}
+      </aside>
+
+      <!-- Formulario de reserva -->
+      <form id="reserva-form" class="reserva reveal" style="--reveal-delay:120ms" data-phone={phoneIntl}>
+        <div class="field-row">
+          <div class="field">
+            <label for="r-nombre">Nombre</label>
+            <input id="r-nombre" name="nombre" type="text" required placeholder="Tu nombre" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="r-personas">Personas</label>
+            <input id="r-personas" name="personas" type="number" min="1" max="40" value="2" required />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="r-fecha">Día</label>
+            <input id="r-fecha" name="fecha" type="date" required />
+          </div>
+          <div class="field">
+            <label for="r-hora">Hora</label>
+            <input id="r-hora" name="hora" type="time" required value="14:00" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="r-mensaje">Comentario <span class="opt">(opcional)</span></label>
+          <textarea id="r-mensaje" name="mensaje" rows="3" placeholder="Alguna preferencia, alergias, trona para peque..."></textarea>
+        </div>
+
+        <button type="submit" class="primary-btn reserva-btn">
+          Enviar por WhatsApp <Icon name="simple-icons:whatsapp" />
+        </button>
+        <p class="reserva-note">Te llevará a WhatsApp con la reserva ya redactada para confirmar.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    background: var(--color-bg);
+    padding: 5rem 1.5rem 6rem;
+  }
+
+  .contact-inner {
+    max-width: 64rem;
+    margin: 0 auto;
+  }
+
+  .contact-head {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  /* ---- Canales ---- */
+  .channels {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .channel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 1.1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: var(--color-text);
+    text-decoration: none;
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .channel:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 0 18px var(--color-accent-25);
+  }
+
+  .channel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    flex-shrink: 0;
+    border-radius: 0.7rem;
+    background: var(--color-accent-25);
+    color: var(--color-accent);
+  }
+
+  .channel-icon :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .channel-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .channel-title {
+    font-family: var(--font-sans-semibold);
+    font-size: 0.95rem;
+  }
+
+  .channel-sub {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+  }
+
+  .channel-arrow {
+    color: var(--color-text-secondary);
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  /* ---- Formulario ---- */
+  .reserva {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(160deg, rgba(201, 169, 97, 0.08), rgba(201, 169, 97, 0.01)),
+      var(--color-secondary);
+    border: 1px solid var(--color-accent-25);
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .field label {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+  }
+
+  .opt {
+    opacity: 0.6;
+  }
+
+  .field input,
+  .field textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: 0.7rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .field input::placeholder,
+  .field textarea::placeholder {
+    color: rgba(225, 220, 201, 0.4);
+  }
+
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-accent-25);
+  }
+
+  /* Icono del selector de fecha/hora visible en tema oscuro */
+  .field input[type='date']::-webkit-calendar-picker-indicator,
+  .field input[type='time']::-webkit-calendar-picker-indicator {
+    filter: invert(0.8);
+    cursor: pointer;
+  }
+
+  .reserva-btn {
+    margin-top: 0.25rem;
+    width: 100%;
+  }
+
+  .reserva-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--color-text-secondary);
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .contact-section {
+      padding: 7rem 3rem 8rem;
+    }
+    .contact-grid {
+      grid-template-columns: 1fr 1.3fr;
+      align-items: start;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('reserva-form') as HTMLFormElement | null;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const phone = form.dataset.phone ?? '';
+    const data = new FormData(form);
+
+    const nombre = (data.get('nombre') as string)?.trim();
+    const personas = data.get('personas') as string;
+    const fecha = data.get('fecha') as string;
+    const hora = data.get('hora') as string;
+    const mensaje = (data.get('mensaje') as string)?.trim();
+
+    const fechaFmt = fecha
+      ? new Date(fecha + 'T00:00:00').toLocaleDateString('es-ES', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+        })
+      : '';
+
+    const lines = [
+      '¡Hola! Me gustaría reservar mesa en El Casino:',
+      `• Nombre: ${nombre}`,
+      `• Personas: ${personas}`,
+      `• Día: ${fechaFmt}`,
+      `• Hora: ${hora}`,
+    ];
+    if (mensaje) lines.push(`• Comentario: ${mensaje}`);
+
+    const text = encodeURIComponent(lines.join('\n'));
+    window.open(`https://wa.me/${phone}?text=${text}`, '_blank', 'noopener');
+  });
+</script>

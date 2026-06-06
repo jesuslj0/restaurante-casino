@@ -24,8 +24,75 @@
 
 html {
     background-color: rgb(10 10 10);
+    scroll-behavior: smooth;
 }
 
 body {
     @apply bg-bg text-text;
+    font-family: var(--font-sans);
+}
+
+/* Offset para el header fijo al navegar por anclas */
+:where(section[id], div[id="inicio"]) {
+    scroll-margin-top: 6rem;
+}
+
+/* ---------- Utilidades de sección compartidas ---------- */
+.eyebrow {
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-family: var(--font-serif-semibold);
+    color: var(--color-text);
+    font-size: clamp(2rem, 1.4rem + 2.8vw, 3.25rem);
+    line-height: 1.1;
+    margin: 0.75rem 0 0;
+}
+
+.section-lead {
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+    line-height: 1.7;
+    max-width: 40rem;
+    margin: 1rem auto 0;
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

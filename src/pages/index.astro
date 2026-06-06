@@ -4,48 +4,37 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import About from '../components/About.astro';
-
-interface Props {
-	restaurantName: string,
-	location: string,
-}
-
-interface HeroProps {
-	heroTitle: string,
-	heroSubtitle: string,
-}
-
-interface SocialProps {
-	facebookUsername: string,
-	instagramUsername: string, 
-	xUsername: string
-}
+import Menu from '../components/Menu.astro';
+import Hours from '../components/Hours.astro';
+import Gallery from '../components/Gallery.astro';
+import Location from '../components/Location.astro';
+import Contact from '../components/Contact.astro';
 
 const props = {
 	restaurantName: 'El Casino',
-	location: 'Plaza Mayor, N°5 - El Bonillo (AB)',
-}
+	location: 'Plaza Mayor, Nº5 - El Bonillo (AB)',
+};
 
 const heroProps = {
-	heroTitle: "Sabores auténticos del pueblo",
-	heroSubtitle: "Comida tradicional y ambiente familiar para disfrutar con los tuyos.",
-	buttonText: "Reservar mesa",
-	buttonSecondaryText: "Ver carta",
-	location: 'Plaza Mayor, N°5 - El Bonillo',
-	schedule: 'Lunes a Viernes: 9am - 11pm',
-}
+	heroTitle: 'Sabores auténticos del pueblo',
+	heroSubtitle: 'Comida tradicional y ambiente familiar para disfrutar con los tuyos.',
+	buttonText: 'Reservar mesa',
+	buttonSecondaryText: 'Ver carta',
+	location: 'Plaza Mayor, Nº5 - El Bonillo',
+	schedule: 'Mar a Vie: 9:00 - 20:00',
+};
 
 const socialProps = {
-	facebookUsername: "elcasino",
-	instagramUsername: "casinoelbonillo",
-	xUsername: "el_casino"
-}
-
+	facebookUsername: 'elcasino',
+	instagramUsername: 'casinoelbonillo',
+	xUsername: 'el_casino',
+};
 ---
 
-<Layout title={props.restaurantName}>
-	<Header slot="header"/>
-	<Hero slot="hero"
+<Layout title="El Casino · Bar y restaurante en la Plaza Mayor de El Bonillo">
+	<Header slot="header" />
+
+	<Hero
 		title={heroProps.heroTitle}
 		subtitle={heroProps.heroSubtitle}
 		restaurantName={props.restaurantName}
@@ -55,13 +44,24 @@ const socialProps = {
 		schedule={heroProps.schedule}
 	/>
 
-	<About slot="about"
+	<About
 		restaurantName={props.restaurantName}
 		description="Un rincón de toda la vida en el corazón de El Bonillo. Cocina casera con el sabor de siempre, donde cada plato lleva el cariño y la tradición de nuestra tierra."
 	/>
 
-	<Footer slot="footer"
-		restaurantName={props.restaurantName} 
+	<Menu />
+
+	<Hours />
+
+	<Gallery />
+
+	<Location />
+
+	<Contact />
+
+	<Footer
+		slot="footer"
+		restaurantName={props.restaurantName}
 		location={props.location}
 		facebookUsername={socialProps.facebookUsername}
 		instagramUsername={socialProps.instagramUsername}

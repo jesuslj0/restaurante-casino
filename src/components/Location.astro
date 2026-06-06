@@ -1,0 +1,168 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  address?: string;
+}
+
+const { address = 'Plaza Mayor, Nº5 · 02610 El Bonillo (Albacete)' } = Astro.props;
+
+const mapQuery = encodeURIComponent('Plaza Mayor, El Bonillo, Albacete, España');
+const embedSrc = `https://www.google.com/maps?q=${mapQuery}&hl=es&z=17&output=embed`;
+const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${mapQuery}`;
+
+const facts = [
+  { icon: 'lucide:map-pin', title: 'Dirección', text: address },
+  { icon: 'lucide:landmark', title: 'En pleno centro', text: 'A pie de la Plaza Mayor, junto al ayuntamiento' },
+  { icon: 'lucide:car', title: 'Cómo llegar', text: 'Fácil aparcamiento en los alrededores de la plaza' },
+];
+---
+
+<section id="ubicacion" class="loc-section">
+  <div class="loc-inner">
+    <header class="loc-head reveal">
+      <p class="eyebrow">• Dónde estamos •</p>
+      <h2 class="section-title">En el corazón de El Bonillo</h2>
+      <p class="section-lead">
+        Nos encontrarás en la Plaza Mayor, el lugar de siempre para quedar en el
+        pueblo.
+      </p>
+    </header>
+
+    <div class="loc-grid">
+      <div class="map-wrap reveal">
+        <iframe
+          src={embedSrc}
+          title="Mapa de la ubicación de El Casino en la Plaza Mayor de El Bonillo"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <aside class="loc-info reveal" style="--reveal-delay:120ms">
+        <ul class="fact-list">
+          {facts.map((fact) => (
+            <li class="fact">
+              <span class="fact-icon"><Icon name={fact.icon} /></span>
+              <div>
+                <p class="fact-title">{fact.title}</p>
+                <p class="fact-text">{fact.text}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+        <a href={directionsUrl} target="_blank" rel="noopener noreferrer" class="primary-btn">
+          Cómo llegar <Icon name="lucide:navigation" />
+        </a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .loc-section {
+    background: linear-gradient(180deg, var(--color-secondary), var(--color-bg));
+    padding: 5rem 1.5rem;
+  }
+
+  .loc-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .loc-head {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .loc-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .map-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-height: 22rem;
+    box-shadow: 0 20px 50px -30px rgba(0, 0, 0, 0.9);
+  }
+
+  .map-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.3) contrast(1.05);
+  }
+
+  .loc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .fact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  .fact {
+    display: flex;
+    gap: 0.9rem;
+    align-items: flex-start;
+  }
+
+  .fact-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    flex-shrink: 0;
+    border-radius: 0.7rem;
+    background: var(--color-accent-25);
+    color: var(--color-accent);
+  }
+
+  .fact-icon :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .fact-title {
+    color: var(--color-text);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.95rem;
+    margin: 0 0 0.15rem;
+  }
+
+  .fact-text {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .loc-section {
+      padding: 7rem 3rem;
+    }
+    .loc-grid {
+      grid-template-columns: 1.5fr 1fr;
+      align-items: stretch;
+    }
+  }
+</style>

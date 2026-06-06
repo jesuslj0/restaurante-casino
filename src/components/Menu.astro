@@ -1,0 +1,338 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Dish {
+  name: string;
+  desc?: string;
+  price: string;
+}
+
+interface Category {
+  icon: string;
+  title: string;
+  dishes: Dish[];
+}
+
+const menuDelDia = {
+  price: '13,50 €',
+  days: 'De lunes a viernes · mediodía',
+  includes: [
+    'Primero a elegir',
+    'Segundo a elegir',
+    'Postre casero o café',
+    'Pan y bebida incluidos',
+  ],
+};
+
+const categories: Category[] = [
+  {
+    icon: 'lucide:wheat',
+    title: 'Para compartir',
+    dishes: [
+      { name: 'Migas manchegas', desc: 'Con torreznos y uvas', price: '9,50 €' },
+      { name: 'Atascaburras', desc: 'Bacalao, patata y nuez', price: '8,00 €' },
+      { name: 'Tabla de quesos de la tierra', price: '12,00 €' },
+    ],
+  },
+  {
+    icon: 'lucide:soup',
+    title: 'Almuerzos y cucharas',
+    dishes: [
+      { name: 'Gachas manchegas', desc: 'Con su tropezón', price: '7,50 €' },
+      { name: 'Gazpacho manchego', desc: 'Galiano de caza', price: '11,00 €' },
+      { name: 'Pisto con huevo de corral', price: '8,50 €' },
+    ],
+  },
+  {
+    icon: 'lucide:beef',
+    title: 'De la brasa',
+    dishes: [
+      { name: 'Cordero segureño asado', desc: 'A fuego lento', price: '16,50 €' },
+      { name: 'Entraña de ternera', desc: 'Con patatas a lo pobre', price: '15,00 €' },
+      { name: 'Secreto ibérico', price: '14,00 €' },
+    ],
+  },
+  {
+    icon: 'lucide:cake-slice',
+    title: 'Postres caseros',
+    dishes: [
+      { name: 'Arroz con leche', desc: 'De la abuela', price: '4,50 €' },
+      { name: 'Flores manchegas con miel', price: '4,00 €' },
+      { name: 'Bizcocho borracho', price: '4,50 €' },
+    ],
+  },
+];
+---
+
+<section id="carta" class="menu-section">
+  <div class="menu-inner">
+    <header class="menu-head reveal">
+      <p class="eyebrow">• La carta •</p>
+      <h2 class="section-title">Cocina manchega de siempre</h2>
+      <p class="section-lead">
+        Producto de la tierra, recetas de toda la vida y el cariño del trato de
+        pueblo. Esto es solo una muestra: pregunta por las sugerencias del día.
+      </p>
+    </header>
+
+    <div class="menu-grid">
+      <!-- Menú del día destacado -->
+      <article class="dia-card reveal">
+        <div class="dia-tag">
+          <Icon name="lucide:utensils-crossed" />
+          <span>Menú del día</span>
+        </div>
+        <p class="dia-price">{menuDelDia.price}</p>
+        <p class="dia-days">{menuDelDia.days}</p>
+        <ul class="dia-list">
+          {menuDelDia.includes.map((item) => (
+            <li>
+              <Icon name="lucide:check" class="dia-check" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a href="#contacto" class="primary-btn dia-btn">
+          Reservar mesa <Icon name="lucide:arrow-right" />
+        </a>
+      </article>
+
+      <!-- Categorías de la carta -->
+      <div class="cat-grid">
+        {categories.map((cat, i) => (
+          <article class="cat-card reveal" style={`--reveal-delay:${i * 90}ms`}>
+            <div class="cat-head">
+              <span class="cat-icon"><Icon name={cat.icon} /></span>
+              <h3 class="cat-title">{cat.title}</h3>
+            </div>
+            <ul class="dish-list">
+              {cat.dishes.map((dish) => (
+                <li class="dish">
+                  <div class="dish-text">
+                    <span class="dish-name">{dish.name}</span>
+                    {dish.desc && <span class="dish-desc">{dish.desc}</span>}
+                  </div>
+                  <span class="dish-dots" aria-hidden="true"></span>
+                  <span class="dish-price">{dish.price}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .menu-section {
+    background: var(--color-bg);
+    padding: 5rem 1.5rem;
+  }
+
+  .menu-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .menu-head {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .menu-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  /* ---- Menú del día ---- */
+  .dia-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(160deg, rgba(201, 169, 97, 0.14), rgba(201, 169, 97, 0.02)),
+      var(--color-secondary);
+    border: 1px solid var(--color-accent-25);
+    box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.8);
+  }
+
+  .dia-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: #1a120a;
+    font-family: var(--font-sans-semibold);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .dia-price {
+    font-family: var(--font-serif-semibold);
+    font-size: 2.75rem;
+    line-height: 1;
+    color: var(--color-text);
+    margin: 1.25rem 0 0.25rem;
+  }
+
+  .dia-days {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .dia-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .dia-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+
+  .dia-check {
+    color: var(--color-accent);
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .dia-btn {
+    align-self: flex-start;
+  }
+
+  /* ---- Categorías ---- */
+  .cat-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .cat-card {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition:
+      border-color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .cat-card:hover {
+    border-color: var(--color-accent-25);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.9);
+  }
+
+  .cat-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .cat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    background: var(--color-accent-25);
+    color: var(--color-accent);
+  }
+
+  .cat-icon :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .cat-title {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .dish-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .dish {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+
+  .dish-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dish-name {
+    color: var(--color-text);
+    font-size: 0.98rem;
+  }
+
+  .dish-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  .dish-dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(225, 220, 201, 0.25);
+    transform: translateY(-3px);
+  }
+
+  .dish-price {
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 768px) {
+    .menu-section {
+      padding: 7rem 3rem;
+    }
+    .cat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .menu-grid {
+      grid-template-columns: 20rem 1fr;
+      align-items: start;
+    }
+    .dia-card {
+      position: sticky;
+      top: 6.5rem;
+    }
+  }
+</style>

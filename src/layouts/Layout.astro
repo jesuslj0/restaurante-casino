@@ -2,26 +2,49 @@
 import '../styles/global.css';
 import '../styles/buttons.css';
 
-const { title } = Astro.props
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description ?? 'El Casino de El Bonillo — bar y restaurante en la Plaza Mayor. Almuerzos, menú del día y cenas de fin de semana con sabor tradicional.'} />
+		<meta name="theme-color" content="#0a0a0a" />
 		<title>{title}</title>
 	</head>
 	<body class="min-h-screen flex flex-col w-full">
-		<slot name="header"/>
+		<slot name="header" />
 		<main class="flex-1">
-			<slot name="hero"/>
-			<slot name="about"/>
+			<slot />
 		</main>
-		<slot name="footer"/>
+		<slot name="footer" />
+
+		<script>
+			const els = document.querySelectorAll<HTMLElement>('.reveal');
+			const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			if (reduce || !('IntersectionObserver' in window)) {
+				els.forEach((el) => el.classList.add('is-visible'));
+			} else {
+				const io = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add('is-visible');
+								io.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+				);
+				els.forEach((el) => io.observe(el));
+			}
+		</script>
 	</body>
 </html>
 

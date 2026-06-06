@@ -1,35 +1,48 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+const links = [
+    { label: 'Inicio', href: '#inicio' },
+    { label: 'Carta', href: '#carta' },
+    { label: 'Horarios', href: '#horarios' },
+    { label: 'Galería', href: '#galeria' },
+    { label: 'Ubicación', href: '#ubicacion' },
+    { label: 'Contacto', href: '#contacto' },
+];
 ---
 
-<header id="header-container" class="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none">
+<header id="header-container" class="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
     <!-- Menú desktop -->
-    <nav class="hidden md:flex pointer-events-auto px-8 py-3 bg-secondary rounded-full shadow-lg">
-        <ul class="flex items-center justify-center gap-8">
-            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Inicio</a></li>
-            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Carta</a></li>
-            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Menús</a></li>
-            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Reservas</a></li>
-            <li><a href="#" class="text-text hover:text-accent hover:text-shadow-md">Contacto</a></li>
+    <nav class="hidden md:flex pointer-events-auto px-7 py-3 bg-secondary/90 backdrop-blur-md rounded-full shadow-lg ring-1 ring-white/5">
+        <ul class="flex items-center justify-center gap-7">
+            {links.map((link) => (
+                <li>
+                    <a href={link.href} class="text-sm text-text/90 hover:text-accent transition-colors duration-200">
+                        {link.label}
+                    </a>
+                </li>
+            ))}
         </ul>
     </nav>
 
     <!-- Menú móvil -->
-    <div class="mobile-menu md:hidden pointer-events-auto absolute right-4">
+    <div class="mobile-menu md:hidden pointer-events-auto absolute right-4 flex flex-col items-end">
         <!-- Botón hamburguesa -->
-        <button id="menu-toggle" aria-label="Abrir menú" class="flex items-center justify-center w-11 h-11 bg-secondary rounded-full shadow-lg text-text">
+        <button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav" class="flex items-center justify-center w-11 h-11 bg-secondary/90 backdrop-blur-md rounded-full shadow-lg ring-1 ring-white/5 text-text">
             <Icon name="lucide:menu" id="icon-open" class="w-5 h-5" />
             <Icon name="lucide:x" id="icon-close" class="w-5 h-5 hidden" />
         </button>
 
         <!-- Panel desplegable -->
-        <nav id="mobile-nav" class="hidden mt-2 bg-secondary rounded-2xl shadow-lg px-6 py-4">
-            <ul class="flex flex-col gap-4">
-                <li><a href="#" class="text-text hover:text-accent block py-1">Inicio</a></li>
-                <li><a href="#" class="text-text hover:text-accent block py-1">Carta</a></li>
-                <li><a href="#" class="text-text hover:text-accent block py-1">Menús</a></li>
-                <li><a href="#" class="text-text hover:text-accent block py-1">Reservas</a></li>
-                <li><a href="#" class="text-text hover:text-accent block py-1">Contacto</a></li>
+        <nav id="mobile-nav" class="hidden mt-2 bg-secondary/95 backdrop-blur-md rounded-2xl shadow-lg ring-1 ring-white/5 px-6 py-4 min-w-[11rem]">
+            <ul class="flex flex-col gap-1">
+                {links.map((link) => (
+                    <li>
+                        <a href={link.href} class="mobile-link text-text/90 hover:text-accent block py-2 transition-colors">
+                            {link.label}
+                        </a>
+                    </li>
+                ))}
             </ul>
         </nav>
     </div>
@@ -41,10 +54,20 @@ import { Icon } from 'astro-icon/components';
     const iconOpen = document.getElementById('icon-open');
     const iconClose = document.getElementById('icon-close');
 
+    const setOpen = (open: boolean) => {
+        nav?.classList.toggle('hidden', !open);
+        iconOpen?.classList.toggle('hidden', open);
+        iconClose?.classList.toggle('hidden', !open);
+        toggle?.setAttribute('aria-expanded', String(open));
+    };
+
     toggle?.addEventListener('click', () => {
         const isOpen = !nav?.classList.contains('hidden');
-        nav?.classList.toggle('hidden', isOpen);
-        iconOpen?.classList.toggle('hidden', !isOpen);
-        iconClose?.classList.toggle('hidden', isOpen);
+        setOpen(!isOpen);
+    });
+
+    // Cerrar al pulsar un enlace
+    nav?.querySelectorAll('.mobile-link').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
     });
 </script>

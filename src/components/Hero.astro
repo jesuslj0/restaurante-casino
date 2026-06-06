@@ -17,7 +17,7 @@ interface Props {
 const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, location, schedule } = Astro.props;
 ---
 
-<div class="hero-background" style={`background-image: url(${bgImage.src})`}>
+<div id="inicio" class="hero-background" style={`background-image: url(${bgImage.src})`}>
   <section>
     <div class="hero-inner">
       <div class="hero-content">
@@ -42,12 +42,12 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
             {subtitle}
           </p>
           <div class="hero-buttons flex gap-2 ">
-            <button class="primary-btn">
+            <a href="#contacto" class="primary-btn">
               {buttonText} <Icon name="lucide:calendar-days" />
-            </button>
-            <button class="secondary-btn">
+            </a>
+            <a href="#carta" class="secondary-btn">
               {buttonSecondaryText} <Icon name="lucide:book-open"/>
-            </button>
+            </a>
           </div>
         </div>
       </div>

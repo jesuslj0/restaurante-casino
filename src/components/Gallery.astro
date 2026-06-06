@@ -1,0 +1,161 @@
+---
+import { Image } from 'astro:assets';
+import entrada from '../assets/img/casino-entrada.png';
+import madera from '../assets/img/textura-madera.jpg';
+
+// NOTA: imágenes de muestra. Sustituir por fotos reales del local (fachada,
+// interior, platos, terraza...) manteniendo el array `tiles`.
+const tiles = [
+  { src: entrada, caption: 'Nuestra fachada en la Plaza Mayor', pos: 'center', size: 'lg' },
+  { src: madera, caption: 'Rincones con encanto', pos: 'center', size: 'sm' },
+  { src: entrada, caption: 'Ambiente de pueblo', pos: 'top', size: 'sm' },
+  { src: madera, caption: 'La barra de siempre', pos: 'bottom', size: 'sm' },
+  { src: entrada, caption: 'Para disfrutar con los tuyos', pos: 'left', size: 'wide' },
+];
+---
+
+<section id="galeria" class="gallery-section">
+  <div class="gallery-inner">
+    <header class="gallery-head reveal">
+      <p class="eyebrow">• Galería •</p>
+      <h2 class="section-title">Un paseo por El Casino</h2>
+      <p class="section-lead">
+        Tradición, buena mesa y el calor de siempre en el corazón de El Bonillo.
+      </p>
+    </header>
+
+    <div class="bento reveal">
+      {tiles.map((tile) => (
+        <figure class:list={['tile', `tile--${tile.size}`]}>
+          <Image
+            src={tile.src}
+            alt={tile.caption}
+            class="tile-img"
+            style={`object-position:${tile.pos}`}
+            loading="lazy"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <figcaption class="tile-caption">{tile.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-section {
+    background: var(--color-bg);
+    padding: 5rem 1.5rem;
+  }
+
+  .gallery-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .gallery-head {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .bento {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tile {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    min-height: 14rem;
+    cursor: pointer;
+  }
+
+  .tile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, transparent 55%);
+    opacity: 0.85;
+    transition: opacity 0.4s ease;
+  }
+
+  .tile-caption {
+    position: absolute;
+    left: 1.1rem;
+    bottom: 1rem;
+    right: 1.1rem;
+    z-index: 1;
+    color: var(--color-text);
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    transform: translateY(0.4rem);
+    opacity: 0;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+  }
+
+  .tile:hover .tile-img,
+  .tile:focus-within .tile-img {
+    transform: scale(1.06);
+  }
+
+  .tile:hover::after,
+  .tile:focus-within::after {
+    opacity: 1;
+  }
+
+  .tile:hover .tile-caption,
+  .tile:focus-within .tile-caption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* En dispositivos táctiles (sin hover) mostramos la leyenda siempre */
+  @media (hover: none) {
+    .tile-caption {
+      opacity: 1;
+      transform: none;
+    }
+    .tile::after {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .gallery-section {
+      padding: 7rem 3rem;
+    }
+    .bento {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 13rem;
+    }
+    .tile {
+      min-height: 0;
+    }
+    .tile--lg {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .tile--sm {
+      grid-column: span 2;
+    }
+    .tile--wide {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+</style>

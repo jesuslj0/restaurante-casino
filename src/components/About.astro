@@ -30,13 +30,13 @@ const {
   <div class="about-inner">
 
     <!-- Párrafo destacado -->
-    <div class="about-header">
+    <div class="about-header reveal">
       <p class="about-eyebrow">• Sobre nosotros •</p>
       <p class="about-description">{description}</p>
     </div>
 
     <!-- KPIs de servicios -->
-    <ul class="services-grid">
+    <ul class="services-grid reveal" style="--reveal-delay:120ms">
       {services.map(({ icon, label }) => (
         <li class="service-chip">
           <Icon name={icon} class="service-icon" />
