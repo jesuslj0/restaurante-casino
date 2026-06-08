@@ -11,7 +11,7 @@ const reviews = [
     rating: 5,
   },
   {
-    text: 'Menú del día con producto de la tierra y a un precio inmejorable. Las gachas manchegas, de diez.',
+    text: 'Menú del día con buen producto y a un precio inmejorable. El arroz meloso, de diez.',
     author: 'Antonio R.',
     origin: 'Google',
     rating: 5,
@@ -22,10 +22,53 @@ const reviews = [
     origin: 'Facebook',
     rating: 5,
   },
+  {
+    text: 'Paramos de camino a la sierra y menudo descubrimiento. Las migas con uva y panceta, espectaculares. Repetiremos seguro.',
+    author: 'José Luis P.',
+    origin: 'Google',
+    rating: 5,
+  },
+  {
+    text: 'Trato familiar y cocina honrada. El arroz con leche me recordó al de mi abuela. Una joya en la Plaza Mayor.',
+    author: 'Carmen S.',
+    origin: 'Google',
+    rating: 5,
+  },
+  {
+    text: 'Llevo años viniendo a almorzar. Buen producto, raciones generosas y un precio justo. No falla nunca.',
+    author: 'Paco D.',
+    origin: 'Google',
+    rating: 5,
+  },
+  {
+    text: 'Cenamos en la terraza un sábado y de lujo. El secreto ibérico a la brasa estaba increíble y el vino de la casa, redondo.',
+    author: 'Marta V.',
+    origin: 'Facebook',
+    rating: 5,
+  },
+  {
+    text: 'El sitio de toda la vida en la plaza. Personal encantador y ese punto casero que ya cuesta encontrar.',
+    author: 'Andrés H.',
+    origin: 'Google',
+    rating: 4,
+  },
+  {
+    text: 'Comida casera de verdad. El bacalao estaba de matrícula y el postre, riquísimo. Volveremos sin duda.',
+    author: 'Rosa M.',
+    origin: 'Google',
+    rating: 5,
+  },
 ];
 
 const ratingAvg = '4,8';
 const ratingCount = '120+';
+
+// Tres columnas con velocidades distintas. La 2ª y 3ª aparecen en pantallas grandes.
+const columns = [
+  { items: reviews.slice(0, 3), dur: 34, cls: '' },
+  { items: reviews.slice(3, 6), dur: 42, cls: 'col-md' },
+  { items: reviews.slice(6, 9), dur: 38, cls: 'col-lg' },
+];
 ---
 
 <section id="resenas" class="rev-section">
@@ -43,21 +86,32 @@ const ratingCount = '120+';
       </div>
     </header>
 
-    <div class="rev-grid">
-      {reviews.map((rev, i) => (
-        <figure class="rev-card reveal" style={`--reveal-delay:${i * 100}ms`}>
-          <span class="rev-quote" aria-hidden="true"><Icon name="lucide:quote" /></span>
-          <span class="rev-card-stars" aria-label={`${rev.rating} de 5 estrellas`}>
-            {Array.from({ length: rev.rating }).map(() => (
-              <Icon name="lucide:star" class="rev-star" />
-            ))}
-          </span>
-          <blockquote class="rev-text">{rev.text}</blockquote>
-          <figcaption class="rev-author">
-            <span class="rev-name">{rev.author}</span>
-            <span class="rev-origin">{rev.origin}</span>
-          </figcaption>
-        </figure>
+    <div class="rev-cols reveal" style="--reveal-delay:120ms">
+      {columns.map((col) => (
+        <div class:list={['rev-col', col.cls]}>
+          <div class="rev-col-track" style={`--dur:${col.dur}s`}>
+            {[...col.items, ...col.items].map((rev, idx) => {
+              const dup = idx >= col.items.length;
+              return (
+                <figure class="rev-card" aria-hidden={dup ? 'true' : undefined} data-dup={dup ? '' : undefined}>
+                  <span class="rev-card-stars" aria-label={`${rev.rating} de 5 estrellas`}>
+                    {Array.from({ length: rev.rating }).map(() => (
+                      <Icon name="lucide:star" class="rev-star" />
+                    ))}
+                  </span>
+                  <blockquote class="rev-text">{rev.text}</blockquote>
+                  <figcaption class="rev-author">
+                    <span class="rev-avatar" aria-hidden="true">{rev.author.charAt(0)}</span>
+                    <span class="rev-author-meta">
+                      <span class="rev-name">{rev.author}</span>
+                      <span class="rev-origin">{rev.origin}</span>
+                    </span>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        </div>
       ))}
     </div>
   </div>
@@ -66,7 +120,7 @@ const ratingCount = '120+';
 <style>
   .rev-section {
     background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-bg) 35%, var(--color-bg) 100%);
-    padding: 5rem 1.5rem;
+    padding: 4rem 1.5rem;
   }
 
   .rev-inner {
@@ -76,7 +130,7 @@ const ratingCount = '120+';
 
   .rev-head {
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
   }
 
   .rev-score {
@@ -112,10 +166,46 @@ const ratingCount = '120+';
     font-family: var(--font-sans-semibold);
   }
 
-  .rev-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  /* ---------- Columnas con scroll infinito ---------- */
+  .rev-cols {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    max-height: 24rem;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+  }
+
+  .rev-col {
+    width: 100%;
+    max-width: 22rem;
+  }
+
+  /* La 2ª columna aparece en tablet, la 3ª en escritorio. */
+  .col-md,
+  .col-lg {
+    display: none;
+  }
+
+  .rev-col-track {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: 1.25rem; /* iguala al gap para que el bucle sea continuo */
+    animation: rev-scroll var(--dur, 34s) linear infinite;
+    will-change: transform;
+  }
+
+  /* Pausa al interactuar con la sección. */
+  .rev-cols:hover .rev-col-track,
+  .rev-cols:focus-within .rev-col-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes rev-scroll {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
   }
 
   .rev-card {
@@ -123,32 +213,11 @@ const ratingCount = '120+';
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 2rem 1.75rem 1.75rem;
+    padding: 1.75rem;
     border-radius: 1.5rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
-    transition:
-      border-color 0.3s ease,
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-  }
-
-  .rev-card:hover {
-    border-color: var(--color-accent-25);
-    transform: translateY(-3px);
-    box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.9);
-  }
-
-  .rev-quote {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.5rem;
-    color: var(--color-accent-25);
-  }
-
-  .rev-quote :global(svg) {
-    width: 2rem;
-    height: 2rem;
+    box-shadow: 0 18px 40px -30px rgba(0, 0, 0, 0.9);
   }
 
   .rev-card-stars {
@@ -159,18 +228,38 @@ const ratingCount = '120+';
   .rev-text {
     color: var(--color-text);
     font-family: var(--font-serif);
-    font-size: 1.05rem;
+    font-size: 1.02rem;
     line-height: 1.6;
     margin: 0;
-    flex: 1;
   }
 
   .rev-author {
     display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .rev-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 999px;
+    flex-shrink: 0;
+    background: var(--color-accent-25);
+    color: var(--color-accent);
+    font-family: var(--font-serif-semibold);
+    font-size: 1.05rem;
+  }
+
+  .rev-author-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
   }
 
   .rev-name {
@@ -186,10 +275,34 @@ const ratingCount = '120+';
 
   @media (min-width: 768px) {
     .rev-section {
-      padding: 7rem 3rem;
+      padding: 5.5rem 3rem;
     }
-    .rev-grid {
-      grid-template-columns: repeat(3, 1fr);
+    .col-md {
+      display: block;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .col-lg {
+      display: block;
+    }
+  }
+
+  /* Sin animación: lista estática y legible, sin duplicados ni recorte. */
+  @media (prefers-reduced-motion: reduce) {
+    .rev-cols {
+      max-height: none;
+      overflow: visible;
+      -webkit-mask-image: none;
+      mask-image: none;
+      flex-wrap: wrap;
+    }
+    .rev-col-track {
+      animation: none;
+      padding-bottom: 0;
+    }
+    .rev-card[data-dup] {
+      display: none;
     }
   }
 </style>

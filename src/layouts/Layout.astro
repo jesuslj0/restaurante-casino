@@ -11,8 +11,8 @@ const restaurantSchema = {
 	'@type': 'Restaurant',
 	name: 'El Casino',
 	description:
-		'Bar y restaurante en la Plaza Mayor de El Bonillo. Cocina manchega tradicional: almuerzos, menú del día y cenas de fin de semana.',
-	servesCuisine: ['Manchega', 'Española tradicional'],
+		'Bar y restaurante en la Plaza Mayor de El Bonillo. Cocina casera y de mercado: almuerzos, menú del día y cenas de fin de semana.',
+	servesCuisine: ['Española', 'Mediterránea', 'Casera'],
 	priceRange: '€€',
 	address: {
 		'@type': 'PostalAddress',
@@ -47,7 +47,7 @@ const restaurantSchema = {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description ?? 'El Casino de El Bonillo — bar y restaurante en la Plaza Mayor. Almuerzos, menú del día y cenas de fin de semana con sabor tradicional.'} />
+		<meta name="description" content={description ?? 'El Casino de El Bonillo — bar y restaurante en la Plaza Mayor. Almuerzos, menú del día y cenas de fin de semana con cocina casera para todos los gustos.'} />
 		<meta name="theme-color" content="#0a0a0a" />
 		<title>{title}</title>
 		<script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} is:inline />

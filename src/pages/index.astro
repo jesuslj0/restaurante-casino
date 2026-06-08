@@ -12,6 +12,7 @@ import Reviews from '../components/Reviews.astro';
 import Location from '../components/Location.astro';
 import Contact from '../components/Contact.astro';
 import FinalCta from '../components/FinalCta.astro';
+import ReviewPrompt from '../components/ReviewPrompt.astro';
 
 const props = {
 	restaurantName: 'El Casino',
@@ -19,8 +20,8 @@ const props = {
 };
 
 const heroProps = {
-	heroTitle: 'Sabores auténticos del pueblo',
-	heroSubtitle: 'Comida tradicional y ambiente familiar para disfrutar con los tuyos.',
+	heroTitle: 'Buena mesa en la Plaza Mayor',
+	heroSubtitle: 'Cocina casera y de mercado en un ambiente familiar para disfrutar con los tuyos.',
 	buttonText: 'Reservar mesa',
 	buttonSecondaryText: 'Ver carta',
 	location: 'Plaza Mayor, Nº5 - El Bonillo',
@@ -51,7 +52,7 @@ const socialProps = {
 
 	<About
 		restaurantName={props.restaurantName}
-		description="Un rincón de toda la vida en el corazón de El Bonillo. Cocina casera con el sabor de siempre, donde cada plato lleva el cariño y la tradición de nuestra tierra."
+		description="Un rincón de toda la vida en el corazón de El Bonillo. Cocina casera y variada, hecha al momento y con buen producto, para todos los gustos."
 	/>
 
 	<Gallery />
@@ -67,6 +68,8 @@ const socialProps = {
 	<Contact />
 
 	<FinalCta />
+
+	<ReviewPrompt />
 
 	<Footer
 		slot="footer"

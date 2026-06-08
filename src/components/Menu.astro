@@ -2,15 +2,10 @@
 import { Icon } from 'astro-icon/components';
 
 interface Dish {
+  tag: string;
   name: string;
   desc?: string;
   price: string;
-}
-
-interface Category {
-  icon: string;
-  title: string;
-  dishes: Dish[];
 }
 
 const menuDelDia = {
@@ -24,54 +19,26 @@ const menuDelDia = {
   ],
 };
 
-const categories: Category[] = [
-  {
-    icon: 'lucide:wheat',
-    title: 'Para compartir',
-    dishes: [
-      { name: 'Migas manchegas', desc: 'Con torreznos y uvas', price: '9,50 €' },
-      { name: 'Atascaburras', desc: 'Bacalao, patata y nuez', price: '8,00 €' },
-      { name: 'Tabla de quesos de la tierra', price: '12,00 €' },
-    ],
-  },
-  {
-    icon: 'lucide:soup',
-    title: 'Almuerzos y cucharas',
-    dishes: [
-      { name: 'Gachas manchegas', desc: 'Con su tropezón', price: '7,50 €' },
-      { name: 'Gazpacho manchego', desc: 'Galiano de caza', price: '11,00 €' },
-      { name: 'Pisto con huevo de corral', price: '8,50 €' },
-    ],
-  },
-  {
-    icon: 'lucide:beef',
-    title: 'De la brasa',
-    dishes: [
-      { name: 'Cordero segureño asado', desc: 'A fuego lento', price: '16,50 €' },
-      { name: 'Entraña de ternera', desc: 'Con patatas a lo pobre', price: '15,00 €' },
-      { name: 'Secreto ibérico', price: '14,00 €' },
-    ],
-  },
-  {
-    icon: 'lucide:cake-slice',
-    title: 'Postres caseros',
-    dishes: [
-      { name: 'Arroz con leche', desc: 'De la abuela', price: '4,50 €' },
-      { name: 'Flores manchegas con miel', price: '4,00 €' },
-      { name: 'Bizcocho borracho', price: '4,50 €' },
-    ],
-  },
+// Selección variada: un poco de todo, no solo recetario tradicional.
+const destacados: Dish[] = [
+  { tag: 'A la brasa', name: 'Entrecot de ternera', desc: 'Con guarnición a elegir', price: '15,00 €' },
+  { tag: 'Del mar', name: 'Bacalao confitado', desc: 'Sobre pisto de verduras', price: '13,50 €' },
+  { tag: 'Arroces', name: 'Arroz meloso del día', desc: 'Pregunta por el de hoy', price: '14,00 €' },
+  { tag: 'Para compartir', name: 'Tabla de ibéricos y quesos', price: '12,00 €' },
+  { tag: 'De siempre', name: 'Migas con uva y panceta', desc: 'Un clásico de la casa', price: '9,50 €' },
+  { tag: 'Dulce', name: 'Postres caseros', desc: 'Tarta del día, arroz con leche…', price: '4,50 €' },
 ];
 ---
 
 <section id="carta" class="menu-section">
   <div class="menu-inner">
     <header class="menu-head reveal">
-      <p class="eyebrow">• La carta •</p>
-      <h2 class="section-title">Cocina manchega de siempre</h2>
+      <p class="eyebrow">• Destacados de la carta •</p>
+      <h2 class="section-title">Nuestros platos más pedidos</h2>
       <p class="section-lead">
-        Producto de la tierra, recetas de toda la vida y el cariño del trato de
-        pueblo. Esto es solo una muestra: pregunta por las sugerencias del día.
+        Una pequeña selección de los platos que más nos piden. Cocina de mercado
+        para todos los gustos, con un poco de todo: carnes a la brasa, pescados,
+        arroces y los caseros de siempre. Pregunta por las sugerencias del día.
       </p>
     </header>
 
@@ -97,29 +64,26 @@ const categories: Category[] = [
         </a>
       </article>
 
-      <!-- Categorías de la carta -->
-      <div class="cat-grid">
-        {categories.map((cat, i) => (
-          <article class="cat-card reveal" style={`--reveal-delay:${i * 90}ms`}>
-            <div class="cat-head">
-              <span class="cat-icon"><Icon name={cat.icon} /></span>
-              <h3 class="cat-title">{cat.title}</h3>
+      <!-- Platos destacados -->
+      <div class="dest-grid">
+        {destacados.map((dish, i) => (
+          <article class="dest-card reveal" style={`--reveal-delay:${i * 70}ms`}>
+            <span class="dest-tag">{dish.tag}</span>
+            <div class="dest-body">
+              <h3 class="dest-name">{dish.name}</h3>
+              {dish.desc && <p class="dest-desc">{dish.desc}</p>}
             </div>
-            <ul class="dish-list">
-              {cat.dishes.map((dish) => (
-                <li class="dish">
-                  <div class="dish-text">
-                    <span class="dish-name">{dish.name}</span>
-                    {dish.desc && <span class="dish-desc">{dish.desc}</span>}
-                  </div>
-                  <span class="dish-dots" aria-hidden="true"></span>
-                  <span class="dish-price">{dish.price}</span>
-                </li>
-              ))}
-            </ul>
+            <span class="dest-price">{dish.price}</span>
           </article>
         ))}
       </div>
+    </div>
+
+    <!-- Enlace a la carta completa -->
+    <div class="menu-cta reveal">
+      <a href="/carta" class="secondary-btn">
+        Ver carta completa <Icon name="lucide:arrow-right" />
+      </a>
     </div>
   </div>
 </section>
@@ -217,15 +181,18 @@ const categories: Category[] = [
     align-self: flex-start;
   }
 
-  /* ---- Categorías ---- */
-  .cat-grid {
+  /* ---- Platos destacados ---- */
+  .dest-grid {
     display: grid;
     gap: 1.5rem;
   }
 
-  .cat-card {
-    padding: 1.75rem;
-    border-radius: 1.5rem;
+  .dest-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
     transition:
@@ -234,94 +201,64 @@ const categories: Category[] = [
       box-shadow 0.3s ease;
   }
 
-  .cat-card:hover {
+  .dest-card:hover {
     border-color: var(--color-accent-25);
     transform: translateY(-3px);
     box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.9);
   }
 
-  .cat-head {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.25rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .cat-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 0.75rem;
-    background: var(--color-accent-25);
+  .dest-tag {
+    align-self: flex-start;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--font-sans-semibold);
     color: var(--color-accent);
+    background: var(--color-accent-25);
   }
 
-  .cat-icon :global(svg) {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .cat-title {
-    font-family: var(--font-serif-semibold);
-    font-size: 1.25rem;
-    color: var(--color-text);
-    margin: 0;
-  }
-
-  .dish-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
-  }
-
-  .dish {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-  }
-
-  .dish-text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .dish-name {
-    color: var(--color-text);
-    font-size: 0.98rem;
-  }
-
-  .dish-desc {
-    color: var(--color-text-secondary);
-    font-size: 0.8rem;
-    font-style: italic;
-  }
-
-  .dish-dots {
+  .dest-body {
     flex: 1;
-    border-bottom: 1px dotted rgba(225, 220, 201, 0.25);
-    transform: translateY(-3px);
   }
 
-  .dish-price {
+  .dest-name {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .dest-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0.35rem 0 0;
+  }
+
+  .dest-price {
     color: var(--color-accent);
     font-family: var(--font-sans-semibold);
-    font-size: 0.95rem;
-    white-space: nowrap;
+    font-size: 1rem;
+  }
+
+  /* ---- CTA ---- */
+  .menu-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .dest-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (min-width: 768px) {
     .menu-section {
       padding: 7rem 3rem;
-    }
-    .cat-grid {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 

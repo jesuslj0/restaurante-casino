@@ -37,9 +37,9 @@ const almuerzos: Dish[] = [
   { name: 'Tostada de jamón', desc: 'Con tomate natural y AOVE', price: '3,50 €' },
   { name: 'Tostada de lomo de orza', price: '4,00 €' },
   { name: 'Huevos fritos con torreznos', desc: 'Y patatas de la casa', price: '5,50 €' },
-  { name: 'Migas manchegas', desc: 'Con uva, panceta y chorizo', price: '6,50 €' },
+  { name: 'Migas con uva, panceta y chorizo', price: '6,50 €' },
   { name: 'Pincho de tortilla de patata', price: '2,20 €' },
-  { name: 'Zurra del Casino', desc: 'Nuestra pringá de toda la vida', price: '3,80 €' },
+  { name: 'Zurra del Casino', desc: 'Nuestra pringá de la casa', price: '3,80 €' },
 ];
 
 const menuDelDia = {
@@ -54,8 +54,8 @@ const menuDelDia = {
 };
 
 const menuPrimeros: Dish[] = [
-  { name: 'Gachas manchegas', desc: 'Con su tropezón', price: '' },
-  { name: 'Gazpacho manchego', desc: 'Galiano de caza', price: '' },
+  { name: 'Gachas con su tropezón', price: '' },
+  { name: 'Crema de temporada', price: '' },
   { name: 'Ensalada de la huerta', price: '' },
   { name: 'Pisto con huevo de corral', price: '' },
 ];
@@ -68,17 +68,17 @@ const menuSegundos: Dish[] = [
 ];
 
 const cenas: Dish[] = [
-  { name: 'Cordero segureño asado', desc: 'A fuego lento', price: '16,50 €' },
+  { name: 'Cordero asado al horno', desc: 'A fuego lento', price: '16,50 €' },
   { name: 'Entraña de ternera', desc: 'Con patatas a lo pobre', price: '15,00 €' },
   { name: 'Secreto ibérico a la brasa', price: '14,00 €' },
-  { name: 'Bacalao confitado', desc: 'Sobre pisto manchego', price: '13,50 €' },
+  { name: 'Bacalao confitado', desc: 'Sobre pisto de verduras', price: '13,50 €' },
   { name: 'Revuelto de setas y gulas', price: '9,50 €' },
-  { name: 'Tabla de quesos de la tierra', desc: 'Para compartir', price: '12,00 €' },
+  { name: 'Tabla de quesos', desc: 'Para compartir', price: '12,00 €' },
 ];
 
 const tapas: Dish[] = [
   { name: 'Aceitunas aliñadas', price: '2,50 €' },
-  { name: 'Queso manchego curado', price: '4,50 €' },
+  { name: 'Queso curado', price: '4,50 €' },
   { name: 'Croquetas caseras (ud.)', price: '1,80 €' },
   { name: 'Atascaburras', price: '4,00 €' },
   { name: 'Morcilla de matanza', price: '3,50 €' },
@@ -110,7 +110,7 @@ const trio = [
 ];
 ---
 
-<Layout title="Carta · El Casino · Bar y restaurante en El Bonillo" description="La carta de El Casino: almuerzos manchegos, menú del día, cenas a la brasa, tapas, bebidas y vinos de la tierra.">
+<Layout title="Carta · El Casino · Bar y restaurante en El Bonillo" description="La carta de El Casino: almuerzos, menú del día, cenas a la brasa, tapas, bebidas y vinos. Cocina casera y de mercado para todos los gustos.">
   <Header slot="header" />
 
   <!-- Hero de la carta -->
@@ -121,9 +121,9 @@ const trio = [
       <p class="eyebrow">• El Casino · El Bonillo •</p>
       <h1 class="carta-title">Nuestra carta</h1>
       <p class="section-lead">
-        Cocina manchega de siempre: producto de la tierra, recetas de toda la
-        vida y el cariño del trato de pueblo. Los precios pueden variar según
-        temporada; pregunta por las sugerencias del día.
+        Cocina casera y de mercado, con un poco de todo: carnes a la brasa,
+        pescados, arroces y los caseros de siempre. Los precios pueden variar
+        según temporada; pregunta por las sugerencias del día.
       </p>
     </div>
   </section>

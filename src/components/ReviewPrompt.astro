@@ -1,0 +1,272 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  /** Enlace "Escribir reseña" de tu ficha de Google. Sustituir el placeholder. */
+  reviewUrl?: string;
+  /** Teléfono en formato internacional para WhatsApp (sin + ni espacios). */
+  phoneIntl?: string;
+  /** Segundos antes de abrirse automáticamente. */
+  delay?: number;
+}
+
+const {
+  reviewUrl = 'https://share.google/HfWUpLWgXOON5Uhc2',
+  phoneIntl = '34967000000',
+  delay = 30,
+} = Astro.props;
+
+const waText = encodeURIComponent(
+  '¡Hola! He visitado El Casino y me gustaría comentaros algo para que podáis mejorar:'
+);
+const whatsappUrl = `https://wa.me/${phoneIntl}?text=${waText}`;
+---
+
+<aside
+  id="review-prompt"
+  class="rp"
+  data-delay={delay}
+  data-review-url={reviewUrl}
+  hidden
+>
+  <div class="rp-panel" role="dialog" aria-labelledby="rp-title" tabindex="-1">
+    <button type="button" class="rp-close" aria-label="Cerrar">
+      <Icon name="lucide:x" />
+    </button>
+
+    <!-- Paso 1: pregunta -->
+    <div class="rp-step" data-step="ask">
+      <span class="rp-emoji" aria-hidden="true">🍽️</span>
+      <h3 id="rp-title" class="rp-title">¿Qué te ha parecido El Casino?</h3>
+      <p class="rp-text">Tu opinión nos ayuda muchísimo a seguir mejorando.</p>
+      <div class="rp-actions">
+        <button type="button" class="rp-btn rp-btn-good" data-sentiment="good">
+          <span aria-hidden="true">👍</span> Me encantó
+        </button>
+        <button type="button" class="rp-btn rp-btn-bad" data-sentiment="bad">
+          <span aria-hidden="true">👎</span> Mejorable
+        </button>
+      </div>
+    </div>
+
+    <!-- Paso 2a: positivo -> Google -->
+    <div class="rp-step" data-step="good" hidden>
+      <span class="rp-emoji" aria-hidden="true">⭐</span>
+      <h3 class="rp-title">¡Cuánto nos alegra!</h3>
+      <p class="rp-text">¿Nos dejas una reseña en Google? Es solo un momento y nos ayuda un montón.</p>
+      <a class="primary-btn rp-cta" data-dismiss href={reviewUrl} target="_blank" rel="noopener noreferrer">
+        Dejar reseña <Icon name="lucide:star" />
+      </a>
+    </div>
+
+    <!-- Paso 2b: negativo -> WhatsApp privado -->
+    <div class="rp-step" data-step="bad" hidden>
+      <span class="rp-emoji" aria-hidden="true">🙏</span>
+      <h3 class="rp-title">Gracias por avisar</h3>
+      <p class="rp-text">Cuéntanos qué podemos mejorar y lo solucionamos. Te leemos en privado por WhatsApp.</p>
+      <a class="primary-btn rp-cta" data-dismiss href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+        Escribir por WhatsApp <Icon name="simple-icons:whatsapp" />
+      </a>
+    </div>
+  </div>
+</aside>
+
+<style>
+  .rp {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 60;
+    width: min(22rem, calc(100vw - 2rem));
+  }
+
+  .rp-panel {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    background:
+      linear-gradient(160deg, rgba(201, 169, 97, 0.12), rgba(201, 169, 97, 0.02)),
+      rgba(31, 21, 12, 0.92);
+    border: 1px solid var(--color-accent-25);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
+    outline: none;
+
+    /* Estado de entrada */
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    transition:
+      opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .rp.is-open .rp-panel {
+    opacity: 1;
+    transform: none;
+  }
+
+  .rp-close {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .rp-close:hover {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .rp-close :global(svg) { width: 1rem; height: 1rem; }
+
+  .rp-emoji {
+    font-size: 1.75rem;
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  .rp-title {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin: 0 0 0.4rem;
+    padding-right: 1.75rem;
+  }
+
+  .rp-text {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 1.25rem;
+  }
+
+  .rp-actions {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .rp-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem 0.5rem;
+    border-radius: 0.85rem;
+    font-size: 0.9rem;
+    font-family: var(--font-sans-semibold);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--color-text);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+  }
+  .rp-btn:hover {
+    border-color: var(--color-accent);
+    background: rgba(201, 169, 97, 0.12);
+    transform: translateY(-1px);
+  }
+  .rp-btn:active { transform: scale(0.97); }
+  .rp-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  .rp-cta { width: 100%; }
+
+  @media (max-width: 639px) {
+    .rp {
+      left: 1rem;
+      right: 1rem;
+      bottom: 6.75rem; /* deja hueco al navbar inferior en móvil */
+      width: auto;
+    }
+  }
+</style>
+
+<script>
+  const root = document.getElementById('review-prompt');
+  if (root) {
+    const KEY = 'rp-dismissed';
+    const MAX_AGE = 1000 * 60 * 60 * 24 * 30; // 30 días
+    const delay = Number(root.dataset.delay ?? '30') * 1000;
+
+    const stored = Number(localStorage.getItem(KEY) ?? '0');
+    const alreadyDismissed = stored > 0 && Date.now() - stored < MAX_AGE;
+
+    if (!alreadyDismissed) {
+      const panel = root.querySelector<HTMLElement>('.rp-panel');
+      const closeBtn = root.querySelector<HTMLButtonElement>('.rp-close');
+      const steps = root.querySelectorAll<HTMLElement>('.rp-step');
+      let engaged = false; // si ya llegó a Contacto, no molestamos
+      let timer: number;
+
+      const showStep = (name: string) => {
+        steps.forEach((s) => (s.hidden = s.dataset.step !== name));
+      };
+
+      const open = () => {
+        if (engaged) return;
+        root.hidden = false;
+        // fuerza reflow para que la transición de entrada se aplique
+        requestAnimationFrame(() => root.classList.add('is-open'));
+      };
+
+      const dismiss = () => {
+        root.classList.remove('is-open');
+        localStorage.setItem(KEY, String(Date.now()));
+        window.clearTimeout(timer);
+        document.removeEventListener('keydown', onKey);
+        const hide = () => (root.hidden = true);
+        // espera al fin de la animación si la hay
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        reduce ? hide() : window.setTimeout(hide, 400);
+      };
+
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') dismiss();
+      };
+
+      timer = window.setTimeout(open, delay);
+      document.addEventListener('keydown', onKey);
+
+      closeBtn?.addEventListener('click', dismiss);
+
+      // Elegir sentimiento -> mostrar paso correspondiente
+      root.querySelectorAll<HTMLButtonElement>('[data-sentiment]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          showStep(btn.dataset.sentiment === 'good' ? 'good' : 'bad');
+        });
+      });
+
+      // Al pulsar un CTA (Google / WhatsApp), no volver a mostrarlo
+      root.querySelectorAll<HTMLElement>('[data-dismiss]').forEach((el) => {
+        el.addEventListener('click', () => {
+          localStorage.setItem(KEY, String(Date.now()));
+        });
+      });
+
+      // Si el usuario ya ha visto la sección de contacto, no abrir
+      const contact = document.getElementById('contacto');
+      if (contact && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              engaged = true;
+              window.clearTimeout(timer);
+              io.disconnect();
+            }
+          });
+        });
+        io.observe(contact);
+      }
+    }
+  }
+</script>
