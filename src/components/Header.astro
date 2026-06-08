@@ -1,75 +1,172 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+const path = Astro.url.pathname;
+const isHome = path === '/' || path === '';
+const onCarta = path.startsWith('/carta');
+
 const links = [
-    { label: 'Inicio', href: '#inicio' },
-    { label: 'Especialidades', href: '#especialidades' },
-    { label: 'Carta', href: '#carta' },
-    { label: 'Galería', href: '#galeria' },
-    { label: 'Reseñas', href: '#resenas' },
-    { label: 'Horarios', href: '#horarios' },
-    { label: 'Ubicación', href: '#ubicacion' },
-    { label: 'Contacto', href: '#contacto' },
+    { label: 'Inicio', spy: 'inicio', icon: 'lucide:home' },
+    { label: 'Especialidades', spy: 'especialidades', icon: 'lucide:utensils-crossed' },
+    { label: 'Carta', spy: 'carta', page: '/carta', icon: 'lucide:book-open' },
+    { label: 'Galería', spy: 'galeria', icon: 'lucide:image' },
+    { label: 'Reseñas', spy: 'resenas', icon: 'lucide:star' },
+    { label: 'Horarios', spy: 'horarios', icon: 'lucide:clock' },
+    { label: 'Ubicación', spy: 'ubicacion', icon: 'lucide:map-pin' },
+    { label: 'Contacto', spy: 'contacto', icon: 'lucide:phone' },
 ];
+
+// Las anclas funcionan en cualquier página: dentro del home son #id,
+// fuera (p.ej. /carta) saltan al home con /#id. "Carta" es página propia.
+const hrefFor = (l: typeof links[number]) =>
+    l.page ?? (isHome ? `#${l.spy}` : `/#${l.spy}`);
+const activeSpy = onCarta ? 'carta' : 'inicio';
 ---
 
-<header id="header-container" class="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
-    <!-- Menú desktop -->
-    <nav class="hidden md:flex pointer-events-auto px-6 py-3 bg-secondary/90 backdrop-blur-md rounded-full shadow-lg ring-1 ring-white/5">
-        <ul class="flex items-center justify-center gap-5 lg:gap-7">
-            {links.map((link) => (
-                <li>
-                    <a href={link.href} class="text-sm text-text/90 hover:text-accent transition-colors duration-200">
-                        {link.label}
-                    </a>
-                </li>
-            ))}
-        </ul>
+<header
+    id="tube-navbar"
+    class="fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:mb-0 sm:pt-6 pointer-events-none px-4"
+>
+    <nav class="tube-nav relative pointer-events-auto flex items-center gap-1 sm:gap-2 bg-secondary/80 border border-white/10 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+        <!-- Lámpara deslizante (efecto tubelight) -->
+        <span id="tube-lamp" class="tube-lamp" aria-hidden="true">
+            <span class="tube-lamp-bar">
+                <span class="tube-glow tube-glow-1"></span>
+                <span class="tube-glow tube-glow-2"></span>
+                <span class="tube-glow tube-glow-3"></span>
+            </span>
+        </span>
+
+        {links.map((link) => (
+            <a
+                href={hrefFor(link)}
+                data-tube-link
+                data-spy={link.spy}
+                class:list={['tube-link', { 'is-active': link.spy === activeSpy }]}
+            >
+                <span class="hidden md:inline">{link.label}</span>
+                <span class="md:hidden flex items-center justify-center">
+                    <Icon name={link.icon} class="w-[18px] h-[18px]" />
+                </span>
+            </a>
+        ))}
     </nav>
-
-    <!-- Menú móvil -->
-    <div class="mobile-menu md:hidden pointer-events-auto absolute right-4 flex flex-col items-end">
-        <!-- Botón hamburguesa -->
-        <button id="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-nav" class="flex items-center justify-center w-11 h-11 bg-secondary/90 backdrop-blur-md rounded-full shadow-lg ring-1 ring-white/5 text-text">
-            <Icon name="lucide:menu" id="icon-open" class="w-5 h-5" />
-            <Icon name="lucide:x" id="icon-close" class="w-5 h-5 hidden" />
-        </button>
-
-        <!-- Panel desplegable -->
-        <nav id="mobile-nav" class="hidden mt-2 bg-secondary/95 backdrop-blur-md rounded-2xl shadow-lg ring-1 ring-white/5 px-6 py-4 min-w-[11rem]">
-            <ul class="flex flex-col gap-1">
-                {links.map((link) => (
-                    <li>
-                        <a href={link.href} class="mobile-link text-text/90 hover:text-accent block py-2 transition-colors">
-                            {link.label}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
-    </div>
 </header>
 
-<script>
-    const toggle = document.getElementById('menu-toggle');
-    const nav = document.getElementById('mobile-nav');
-    const iconOpen = document.getElementById('icon-open');
-    const iconClose = document.getElementById('icon-close');
+<style>
+    .tube-link {
+        position: relative;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        color: rgb(225 220 201 / 0.8);
+        transition: color 0.2s ease;
+        z-index: 1;
+        white-space: nowrap;
+    }
+    @media (min-width: 768px) {
+        .tube-link { padding: 0.5rem 1.25rem; }
+    }
+    .tube-link:hover,
+    .tube-link.is-active {
+        color: var(--color-accent);
+    }
 
-    const setOpen = (open: boolean) => {
-        nav?.classList.toggle('hidden', !open);
-        iconOpen?.classList.toggle('hidden', open);
-        iconClose?.classList.toggle('hidden', !open);
-        toggle?.setAttribute('aria-expanded', String(open));
+    /* Lámpara: pastilla + barra superior con glow */
+    .tube-lamp {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        background: rgb(201 169 97 / 0.08);
+        border-radius: 9999px;
+        z-index: 0;
+        opacity: 0;
+        transform: translateX(0);
+        transition:
+            transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+            width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+            opacity 0.2s ease;
+        pointer-events: none;
+    }
+    .tube-lamp.ready { opacity: 1; }
+
+    .tube-lamp-bar {
+        position: absolute;
+        top: -0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2rem;
+        height: 0.25rem;
+        background: var(--color-accent);
+        border-top-left-radius: 9999px;
+        border-top-right-radius: 9999px;
+    }
+    .tube-glow {
+        position: absolute;
+        background: rgb(201 169 97 / 0.25);
+        border-radius: 9999px;
+    }
+    .tube-glow-1 { width: 3rem; height: 1.5rem; filter: blur(12px); top: -0.5rem; left: -0.5rem; }
+    .tube-glow-2 { width: 2rem; height: 1.5rem; filter: blur(12px); top: -0.25rem; }
+    .tube-glow-3 { width: 1rem; height: 1rem; filter: blur(4px); top: 0; left: 0.5rem; }
+</style>
+
+<script>
+    const links = Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('[data-tube-link]'),
+    );
+    const lamp = document.getElementById('tube-lamp');
+    const nav = document.querySelector<HTMLElement>('.tube-nav');
+
+    const moveLamp = (el: HTMLElement) => {
+        if (!lamp) return;
+        lamp.style.width = `${el.offsetWidth}px`;
+        lamp.style.transform = `translateX(${el.offsetLeft}px)`;
+        lamp.classList.add('ready');
     };
 
-    toggle?.addEventListener('click', () => {
-        const isOpen = !nav?.classList.contains('hidden');
-        setOpen(!isOpen);
+    const setActive = (el: HTMLElement) => {
+        links.forEach((l) => l.classList.toggle('is-active', l === el));
+        moveLamp(el);
+    };
+
+    // Posición inicial
+    const initial = links.find((l) => l.classList.contains('is-active')) ?? links[0];
+    if (initial) requestAnimationFrame(() => moveLamp(initial));
+
+    links.forEach((link) => {
+        link.addEventListener('click', () => setActive(link));
     });
 
-    // Cerrar al pulsar un enlace
-    nav?.querySelectorAll('.mobile-link').forEach((link) => {
-        link.addEventListener('click', () => setOpen(false));
+    // Scrollspy: marca activa la sección visible (solo donde existan las secciones)
+    const byTarget = new Map<string, HTMLElement>();
+    links.forEach((l) => {
+        const id = l.dataset.spy;
+        if (id) byTarget.set(id, l);
+    });
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const link = byTarget.get(entry.target.id);
+                    if (link) setActive(link);
+                }
+            });
+        },
+        { rootMargin: '-45% 0px -45% 0px', threshold: 0 },
+    );
+    byTarget.forEach((_, id) => {
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
+    });
+
+    // Recolocar la lámpara al redimensionar
+    window.addEventListener('resize', () => {
+        const active = links.find((l) => l.classList.contains('is-active'));
+        if (active) moveLamp(active);
     });
 </script>

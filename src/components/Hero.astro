@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import logo from "../assets/img/logo-casino.png";
-import bgImage from "../assets/img/casino-entrada.png";
+import bgImage from "../assets/img/Herocasino.png";
 
 interface Props {
   title: string;
@@ -45,7 +45,7 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
             <a href="#contacto" class="primary-btn">
               {buttonText} <Icon name="lucide:calendar-days" />
             </a>
-            <a href="#carta" class="secondary-btn">
+            <a href="/carta" class="secondary-btn">
               {buttonSecondaryText} <Icon name="lucide:book-open"/>
             </a>
           </div>
@@ -77,8 +77,8 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
   section {
     background:
       linear-gradient(
-        to bottom, rgba(0,0,0,0.75) 0%, transparent 25%,  transparent 75%, 
-        rgba(0,0,0,0.75) 100%)
+        to bottom, rgba(0,0,0,0.75) 0%, transparent 25%,  transparent 60%,
+        rgba(10,10,10,0.85) 88%, var(--color-bg) 100%)
       rgba(0, 0, 0, 0.55);
     height: 100dvh;
     width: 100%;

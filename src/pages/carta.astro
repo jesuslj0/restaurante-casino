@@ -1,0 +1,621 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import bgImage from '../assets/img/Herocasino.png';
+
+const props = {
+  restaurantName: 'El Casino',
+  location: 'Plaza Mayor, Nº5 - El Bonillo (AB)',
+};
+
+const socialProps = {
+  facebookUsername: 'elcasino',
+  instagramUsername: 'casinoelbonillo',
+  xUsername: 'el_casino',
+};
+
+interface Dish {
+  name: string;
+  desc?: string;
+  price: string;
+}
+
+// Navegación rápida entre secciones de la carta.
+const categories = [
+  { id: 'almuerzos', label: 'Almuerzos' },
+  { id: 'menu', label: 'Menú' },
+  { id: 'cenas', label: 'Cenas' },
+  { id: 'tapas', label: 'Tapas' },
+  { id: 'bebidas', label: 'Bebidas' },
+  { id: 'vinos', label: 'Vinos' },
+];
+
+const almuerzos: Dish[] = [
+  { name: 'Tostada de jamón', desc: 'Con tomate natural y AOVE', price: '3,50 €' },
+  { name: 'Tostada de lomo de orza', price: '4,00 €' },
+  { name: 'Huevos fritos con torreznos', desc: 'Y patatas de la casa', price: '5,50 €' },
+  { name: 'Migas manchegas', desc: 'Con uva, panceta y chorizo', price: '6,50 €' },
+  { name: 'Pincho de tortilla de patata', price: '2,20 €' },
+  { name: 'Zurra del Casino', desc: 'Nuestra pringá de toda la vida', price: '3,80 €' },
+];
+
+const menuDelDia = {
+  price: '13,50 €',
+  days: 'De lunes a viernes · mediodía',
+  includes: [
+    'Primero a elegir',
+    'Segundo a elegir',
+    'Postre casero o café',
+    'Pan y bebida incluidos',
+  ],
+};
+
+const menuPrimeros: Dish[] = [
+  { name: 'Gachas manchegas', desc: 'Con su tropezón', price: '' },
+  { name: 'Gazpacho manchego', desc: 'Galiano de caza', price: '' },
+  { name: 'Ensalada de la huerta', price: '' },
+  { name: 'Pisto con huevo de corral', price: '' },
+];
+
+const menuSegundos: Dish[] = [
+  { name: 'Carrillada al vino tinto', price: '' },
+  { name: 'Bacalao con tomate', price: '' },
+  { name: 'Pollo de corral en pepitoria', price: '' },
+  { name: 'Fritura de pescado del día', price: '' },
+];
+
+const cenas: Dish[] = [
+  { name: 'Cordero segureño asado', desc: 'A fuego lento', price: '16,50 €' },
+  { name: 'Entraña de ternera', desc: 'Con patatas a lo pobre', price: '15,00 €' },
+  { name: 'Secreto ibérico a la brasa', price: '14,00 €' },
+  { name: 'Bacalao confitado', desc: 'Sobre pisto manchego', price: '13,50 €' },
+  { name: 'Revuelto de setas y gulas', price: '9,50 €' },
+  { name: 'Tabla de quesos de la tierra', desc: 'Para compartir', price: '12,00 €' },
+];
+
+const tapas: Dish[] = [
+  { name: 'Aceitunas aliñadas', price: '2,50 €' },
+  { name: 'Queso manchego curado', price: '4,50 €' },
+  { name: 'Croquetas caseras (ud.)', price: '1,80 €' },
+  { name: 'Atascaburras', price: '4,00 €' },
+  { name: 'Morcilla de matanza', price: '3,50 €' },
+  { name: 'Patatas bravas', price: '4,00 €' },
+];
+
+const bebidas: Dish[] = [
+  { name: 'Caña de cerveza', price: '1,50 €' },
+  { name: 'Doble', price: '2,50 €' },
+  { name: 'Refrescos', price: '2,00 €' },
+  { name: 'Agua mineral', price: '1,50 €' },
+  { name: 'Zumo natural', price: '2,80 €' },
+  { name: 'Café o infusión', price: '1,40 €' },
+];
+
+const vinos: Dish[] = [
+  { name: 'Copa tinto D.O. La Mancha', price: '2,20 €' },
+  { name: 'Copa blanco verdejo', price: '2,40 €' },
+  { name: 'Botella crianza Valdepeñas', price: '14,00 €' },
+  { name: 'Botella verdejo Rueda', price: '13,00 €' },
+  { name: 'Tinto de verano', price: '2,50 €' },
+  { name: 'Sangría (jarra)', price: '9,00 €' },
+];
+
+const trio = [
+  { id: 'tapas', icon: 'lucide:utensils', title: 'Tapas', items: tapas },
+  { id: 'bebidas', icon: 'lucide:cup-soda', title: 'Bebidas', items: bebidas },
+  { id: 'vinos', icon: 'lucide:wine', title: 'Vinos', items: vinos },
+];
+---
+
+<Layout title="Carta · El Casino · Bar y restaurante en El Bonillo" description="La carta de El Casino: almuerzos manchegos, menú del día, cenas a la brasa, tapas, bebidas y vinos de la tierra.">
+  <Header slot="header" />
+
+  <!-- Hero de la carta -->
+  <section class="carta-hero">
+    <Image src={bgImage} alt="Interior de El Casino" class="carta-hero-bg" widths={[768, 1280, 1920]} sizes="100vw" />
+    <div class="carta-hero-overlay"></div>
+    <div class="carta-hero-inner reveal">
+      <p class="eyebrow">• El Casino · El Bonillo •</p>
+      <h1 class="carta-title">Nuestra carta</h1>
+      <p class="section-lead">
+        Cocina manchega de siempre: producto de la tierra, recetas de toda la
+        vida y el cariño del trato de pueblo. Los precios pueden variar según
+        temporada; pregunta por las sugerencias del día.
+      </p>
+    </div>
+  </section>
+
+  <!-- Navegación de categorías (sticky) -->
+  <nav class="cat-nav" aria-label="Secciones de la carta">
+    <ul>
+      {categories.map((c) => (
+        <li><a href={`#${c.id}`}>{c.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Almuerzos -->
+  <section id="almuerzos" class="menu-block block-dark">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">01</span>
+        <div>
+          <p class="eyebrow">Para empezar el día</p>
+          <h2 class="section-title">Almuerzos</h2>
+        </div>
+      </header>
+      <ul class="dish-list two-col reveal">
+        {almuerzos.map((dish) => (
+          <li class="dish">
+            <div class="dish-text">
+              <span class="dish-name">{dish.name}</span>
+              {dish.desc && <span class="dish-desc">{dish.desc}</span>}
+            </div>
+            <span class="dish-dots" aria-hidden="true"></span>
+            <span class="dish-price">{dish.price}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Menú del día -->
+  <section id="menu" class="menu-block block-warm">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">02</span>
+        <div>
+          <p class="eyebrow">El clásico del mediodía</p>
+          <h2 class="section-title">Menú del día</h2>
+        </div>
+      </header>
+
+      <div class="menu-layout">
+        <article class="dia-card reveal">
+          <div class="dia-tag">
+            <Icon name="lucide:utensils-crossed" />
+            <span>Menú del día</span>
+          </div>
+          <p class="dia-price">{menuDelDia.price}</p>
+          <p class="dia-days">{menuDelDia.days}</p>
+          <ul class="dia-list">
+            {menuDelDia.includes.map((item) => (
+              <li>
+                <Icon name="lucide:check" class="dia-check" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/#contacto" class="primary-btn dia-btn">
+            Reservar mesa <Icon name="lucide:arrow-right" />
+          </a>
+        </article>
+
+        <div class="menu-choices reveal" style="--reveal-delay:120ms">
+          <div class="choice-col">
+            <h3 class="choice-title">Primeros</h3>
+            <ul class="dish-list">
+              {menuPrimeros.map((dish) => (
+                <li class="dish">
+                  <div class="dish-text">
+                    <span class="dish-name">{dish.name}</span>
+                    {dish.desc && <span class="dish-desc">{dish.desc}</span>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="choice-col">
+            <h3 class="choice-title">Segundos</h3>
+            <ul class="dish-list">
+              {menuSegundos.map((dish) => (
+                <li class="dish">
+                  <div class="dish-text">
+                    <span class="dish-name">{dish.name}</span>
+                    {dish.desc && <span class="dish-desc">{dish.desc}</span>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cenas -->
+  <section id="cenas" class="menu-block block-dark">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">03</span>
+        <div>
+          <p class="eyebrow">Noches a la brasa</p>
+          <h2 class="section-title">Cenas</h2>
+        </div>
+      </header>
+      <ul class="dish-list two-col reveal">
+        {cenas.map((dish) => (
+          <li class="dish">
+            <div class="dish-text">
+              <span class="dish-name">{dish.name}</span>
+              {dish.desc && <span class="dish-desc">{dish.desc}</span>}
+            </div>
+            <span class="dish-dots" aria-hidden="true"></span>
+            <span class="dish-price">{dish.price}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Tapas / Bebidas / Vinos -->
+  <section class="menu-block block-warm">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">04</span>
+        <div>
+          <p class="eyebrow">Para acompañar</p>
+          <h2 class="section-title">Tapas, bebidas y vinos</h2>
+        </div>
+      </header>
+
+      <div class="trio-grid">
+        {trio.map((col, i) => (
+          <article id={col.id} class="trio-card reveal" style={`--reveal-delay:${i * 90}ms`}>
+            <div class="trio-head">
+              <span class="trio-icon"><Icon name={col.icon} /></span>
+              <h3 class="trio-title">{col.title}</h3>
+            </div>
+            <ul class="dish-list">
+              {col.items.map((dish) => (
+                <li class="dish">
+                  <div class="dish-text">
+                    <span class="dish-name">{dish.name}</span>
+                  </div>
+                  <span class="dish-dots" aria-hidden="true"></span>
+                  <span class="dish-price">{dish.price}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <!-- CTA final -->
+      <div class="carta-cta reveal">
+        <p class="carta-cta-text">¿Te has quedado con hambre?</p>
+        <div class="carta-cta-actions">
+          <a href="/#contacto" class="primary-btn">
+            Reservar mesa <Icon name="lucide:calendar-days" />
+          </a>
+          <a href="/" class="secondary-btn">
+            <Icon name="lucide:arrow-left" /> Volver al inicio
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer
+    slot="footer"
+    restaurantName={props.restaurantName}
+    location={props.location}
+    facebookUsername={socialProps.facebookUsername}
+    instagramUsername={socialProps.instagramUsername}
+    xUsername={socialProps.xUsername}
+  />
+</Layout>
+
+<style>
+  /* ---------- Hero ---------- */
+  .carta-hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 46vh;
+    padding: 9rem 1.5rem 3rem;
+    overflow: hidden;
+  }
+  .carta-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .carta-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.7) 0%,
+      rgba(10, 10, 10, 0.55) 40%,
+      var(--color-secondary) 100%
+    );
+  }
+  .carta-hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 56rem;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+  .carta-title {
+    font-family: var(--font-serif-semibold);
+    color: var(--color-text);
+    font-size: clamp(2.5rem, 1.6rem + 4vw, 4.5rem);
+    line-height: 1.05;
+    margin: 0.5rem 0 0;
+  }
+  .carta-hero-inner .section-lead {
+    margin-inline: auto;
+  }
+
+  /* ---------- Nav de categorías (sticky) ---------- */
+  .cat-nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(31, 21, 12, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .cat-nav ul {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    max-width: 72rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    justify-content: flex-start;
+  }
+  .cat-nav ul::-webkit-scrollbar { display: none; }
+  .cat-nav a {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    border: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .cat-nav a:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent-25);
+    background: rgba(201, 169, 97, 0.08);
+  }
+
+  /* ---------- Bloques de carta ---------- */
+  .menu-block {
+    padding: 4.5rem 1.5rem;
+    scroll-margin-top: 8rem;
+  }
+  .block-dark {
+    background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-bg) 30%, var(--color-bg) 100%);
+  }
+  .block-warm {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-secondary) 30%, var(--color-secondary) 100%);
+  }
+  .block-inner {
+    max-width: 60rem;
+    margin: 0 auto;
+  }
+
+  .block-head {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .block-num {
+    font-family: var(--font-serif-semibold);
+    font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+    line-height: 1;
+    color: rgb(201 169 97 / 0.3);
+    -webkit-text-stroke: 1px rgb(201 169 97 / 0.55);
+  }
+
+  /* ---------- Listas de platos ---------- */
+  .dish-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem 3rem;
+  }
+  .dish {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .dish-text { display: flex; flex-direction: column; }
+  .dish-name { color: var(--color-text); font-size: 1rem; }
+  .dish-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .dish-dots {
+    flex: 1;
+    border-bottom: 1px dotted rgba(225, 220, 201, 0.25);
+    transform: translateY(-3px);
+  }
+  .dish-price {
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  /* ---------- Menú del día ---------- */
+  .menu-layout {
+    display: grid;
+    gap: 2rem;
+  }
+  .dia-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    background:
+      linear-gradient(160deg, rgba(201, 169, 97, 0.14), rgba(201, 169, 97, 0.02)),
+      var(--color-secondary);
+    border: 1px solid var(--color-accent-25);
+    box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.8);
+  }
+  .dia-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: #1a120a;
+    font-family: var(--font-sans-semibold);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .dia-price {
+    font-family: var(--font-serif-semibold);
+    font-size: 2.75rem;
+    line-height: 1;
+    color: var(--color-text);
+    margin: 1.25rem 0 0.25rem;
+  }
+  .dia-days {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .dia-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+  .dia-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--color-text);
+    font-size: 0.95rem;
+  }
+  .dia-check { color: var(--color-accent); width: 1.1rem; height: 1.1rem; flex-shrink: 0; }
+  .dia-btn { align-self: flex-start; }
+
+  .menu-choices {
+    display: grid;
+    gap: 2rem;
+  }
+  .choice-title {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.15rem;
+    color: var(--color-accent);
+    margin: 0 0 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* ---------- Trío: Tapas / Bebidas / Vinos ---------- */
+  .trio-grid {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .trio-card {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-margin-top: 9rem;
+  }
+  .trio-card:hover {
+    border-color: var(--color-accent-25);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.9);
+  }
+  .trio-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .trio-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    background: var(--color-accent-25);
+    color: var(--color-accent);
+  }
+  .trio-icon :global(svg) { width: 1.25rem; height: 1.25rem; }
+  .trio-title {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  /* ---------- CTA final ---------- */
+  .carta-cta {
+    margin-top: 3.5rem;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .carta-cta-text {
+    font-family: var(--font-serif-semibold);
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+    color: var(--color-text);
+    margin: 0 0 1.5rem;
+  }
+  .carta-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  /* En sm+ el navbar flotante vive arriba: bajamos la barra sticky para no solaparla. */
+  @media (min-width: 640px) {
+    .cat-nav { top: 4.5rem; }
+    .cat-nav ul { justify-content: center; }
+  }
+
+  @media (min-width: 768px) {
+    .menu-block { padding: 6rem 3rem; }
+    .two-col { grid-template-columns: 1fr 1fr; }
+    .menu-choices { grid-template-columns: 1fr 1fr; }
+    .trio-grid { grid-template-columns: repeat(3, 1fr); }
+    .menu-layout {
+      grid-template-columns: 22rem 1fr;
+      align-items: start;
+    }
+  }
+</style>

@@ -17,11 +17,12 @@ const {
   description,
   services = [
     { icon: 'lucide:utensils',    label: 'Comida casera'   },
-    { icon: 'lucide:coffee',      label: 'Café y desayunos'},
+    { icon: 'lucide:coffee',      label: 'Café'            },
+    { icon: 'lucide:soup',        label: 'Almuerzos'       },
+    { icon: 'lucide:book-open',   label: 'Menú'            },
     { icon: 'lucide:wine',        label: 'Vinos y copas'   },
     { icon: 'lucide:moon',        label: 'Cenas'           },
-    { icon: 'lucide:sun',         label: 'Terraza'},
-    { icon: 'lucide:wifi',        label: 'WiFi gratis'     },
+    { icon: 'lucide:sun',         label: 'Terraza'         },
   ],
 } = Astro.props;
 ---
@@ -51,21 +52,8 @@ const {
 <style>
   .about-section {
     position: relative;
-    background: url("../assets/img/textura-madera.jpg");
-    background-size: cover;
-    background-position: center;
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-secondary) 35%, var(--color-secondary) 100%);
     padding: 5rem 1.5rem;
-  }
-
-  .about-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgb(10, 10, 10) 0%, rgba(10, 10, 10, 0.60) 25%);
-    backdrop-filter: saturate(0.4) brightness(0.85);
-    -webkit-backdrop-filter: saturate(0.2) brightness(0.85);
-    pointer-events: none;
-    z-index: 0;
   }
 
   .about-inner {
