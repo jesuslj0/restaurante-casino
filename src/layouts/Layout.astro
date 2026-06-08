@@ -3,6 +3,40 @@ import '../styles/global.css';
 import '../styles/buttons.css';
 
 const { title, description } = Astro.props;
+
+// Datos estructurados para SEO local (schema.org Restaurant).
+// Solo datos verificables: dirección y horarios reales del local.
+const restaurantSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Restaurant',
+	name: 'El Casino',
+	description:
+		'Bar y restaurante en la Plaza Mayor de El Bonillo. Cocina manchega tradicional: almuerzos, menú del día y cenas de fin de semana.',
+	servesCuisine: ['Manchega', 'Española tradicional'],
+	priceRange: '€€',
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: 'Plaza Mayor, 5',
+		addressLocality: 'El Bonillo',
+		addressRegion: 'Albacete',
+		postalCode: '02610',
+		addressCountry: 'ES',
+	},
+	openingHoursSpecification: [
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+			opens: '09:00',
+			closes: '20:00',
+		},
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Saturday', 'Sunday'],
+			opens: '09:00',
+			closes: '23:59',
+		},
+	],
+};
 ---
 
 <!doctype html>
@@ -16,6 +50,7 @@ const { title, description } = Astro.props;
 		<meta name="description" content={description ?? 'El Casino de El Bonillo — bar y restaurante en la Plaza Mayor. Almuerzos, menú del día y cenas de fin de semana con sabor tradicional.'} />
 		<meta name="theme-color" content="#0a0a0a" />
 		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(restaurantSchema)} is:inline />
 	</head>
 	<body class="min-h-screen flex flex-col w-full">
 		<slot name="header" />

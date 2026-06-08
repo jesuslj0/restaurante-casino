@@ -1,0 +1,89 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  phone?: string;      // formato visible
+  phoneIntl?: string;  // formato internacional para WhatsApp / tel:
+}
+
+// NOTA: mismos datos de ejemplo que en Contacto. Sustituir por los reales del negocio.
+const { phone = '967 00 00 00', phoneIntl = '34967000000' } = Astro.props;
+
+const waText = encodeURIComponent('¡Hola! Me gustaría reservar mesa en El Casino.');
+const waHref = `https://wa.me/${phoneIntl}?text=${waText}`;
+---
+
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <p class="eyebrow">• Reserva tu mesa •</p>
+    <h2 class="cta-title">Te guardamos sitio en El Casino</h2>
+    <p class="cta-lead">
+      Escríbenos por WhatsApp y reserva en menos de un minuto. Comidas, cenas de
+      fin de semana o simplemente venir a tomar algo: aquí siempre hay hueco.
+    </p>
+
+    <div class="cta-buttons">
+      <a href={waHref} target="_blank" rel="noopener noreferrer" class="primary-btn cta-wa">
+        Reservar por WhatsApp <Icon name="simple-icons:whatsapp" />
+      </a>
+      <a href={`tel:+${phoneIntl}`} class="secondary-btn">
+        Llamar al {phone} <Icon name="lucide:phone" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background: var(--color-bg);
+    padding: 1rem 1.5rem 6rem;
+  }
+
+  .cta-inner {
+    position: relative;
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+    padding: 4rem 1.75rem;
+    border-radius: 2rem;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 120% at 50% 0%, rgba(201, 169, 97, 0.18), transparent 60%),
+      var(--color-secondary);
+    border: 1px solid var(--color-accent-25);
+    box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.95);
+  }
+
+  .cta-title {
+    font-family: var(--font-serif-semibold);
+    color: var(--color-text);
+    font-size: clamp(2rem, 1.4rem + 3vw, 3.25rem);
+    line-height: 1.1;
+    margin: 0.75rem 0 0;
+  }
+
+  .cta-lead {
+    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+    line-height: 1.7;
+    max-width: 38rem;
+    margin: 1.25rem auto 0;
+  }
+
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 2.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .cta-section {
+      padding: 2rem 3rem 8rem;
+    }
+    .cta-inner {
+      padding: 5rem 3rem;
+    }
+  }
+</style>

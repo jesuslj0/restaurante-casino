@@ -3,12 +3,15 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import Specialities from '../components/Specialities.astro';
 import About from '../components/About.astro';
 import Menu from '../components/Menu.astro';
 import Hours from '../components/Hours.astro';
 import Gallery from '../components/Gallery.astro';
+import Reviews from '../components/Reviews.astro';
 import Location from '../components/Location.astro';
 import Contact from '../components/Contact.astro';
+import FinalCta from '../components/FinalCta.astro';
 
 const props = {
 	restaurantName: 'El Casino',
@@ -44,20 +47,26 @@ const socialProps = {
 		schedule={heroProps.schedule}
 	/>
 
+	<Specialities />
+
 	<About
 		restaurantName={props.restaurantName}
 		description="Un rincón de toda la vida en el corazón de El Bonillo. Cocina casera con el sabor de siempre, donde cada plato lleva el cariño y la tradición de nuestra tierra."
 	/>
 
+	<Gallery />
+
 	<Menu />
 
-	<Hours />
+	<Reviews />
 
-	<Gallery />
+	<Hours />
 
 	<Location />
 
 	<Contact />
+
+	<FinalCta />
 
 	<Footer
 		slot="footer"

@@ -3,9 +3,11 @@ import { Icon } from 'astro-icon/components';
 
 const links = [
     { label: 'Inicio', href: '#inicio' },
+    { label: 'Especialidades', href: '#especialidades' },
     { label: 'Carta', href: '#carta' },
-    { label: 'Horarios', href: '#horarios' },
     { label: 'Galería', href: '#galeria' },
+    { label: 'Reseñas', href: '#resenas' },
+    { label: 'Horarios', href: '#horarios' },
     { label: 'Ubicación', href: '#ubicacion' },
     { label: 'Contacto', href: '#contacto' },
 ];
@@ -13,8 +15,8 @@ const links = [
 
 <header id="header-container" class="fixed top-4 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
     <!-- Menú desktop -->
-    <nav class="hidden md:flex pointer-events-auto px-7 py-3 bg-secondary/90 backdrop-blur-md rounded-full shadow-lg ring-1 ring-white/5">
-        <ul class="flex items-center justify-center gap-7">
+    <nav class="hidden md:flex pointer-events-auto px-6 py-3 bg-secondary/90 backdrop-blur-md rounded-full shadow-lg ring-1 ring-white/5">
+        <ul class="flex items-center justify-center gap-5 lg:gap-7">
             {links.map((link) => (
                 <li>
                     <a href={link.href} class="text-sm text-text/90 hover:text-accent transition-colors duration-200">

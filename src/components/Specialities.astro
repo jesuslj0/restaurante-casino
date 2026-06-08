@@ -1,0 +1,186 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import brasa from '../assets/img/plato-brasa.png';
+import carne from '../assets/img/plato-carne.png';
+import cuchara from '../assets/img/plato-cuchara.png';
+
+// Especialidades destacadas: fotos reales del local enlazadas a platos de la carta.
+const specialities = [
+  {
+    src: brasa,
+    tag: 'De la brasa',
+    name: 'Brochetas a la brasa',
+    desc: 'A fuego lento, con su punto de sal y un toque de limón. El sabor de la lumbre de toda la vida.',
+  },
+  {
+    src: carne,
+    tag: 'De la tierra',
+    name: 'Secreto ibérico',
+    desc: 'Jugoso por dentro, dorado por fuera. Carne de cerdo ibérico a la plancha como Dios manda.',
+  },
+  {
+    src: cuchara,
+    tag: 'Para compartir',
+    name: 'Atascaburras',
+    desc: 'Bacalao, patata y nuez, majados en mortero. Una receta manchega de cuchara y memoria.',
+  },
+];
+---
+
+<section id="especialidades" class="spec-section">
+  <div class="spec-inner">
+    <header class="spec-head reveal">
+      <p class="eyebrow">• Las especialidades •</p>
+      <h2 class="section-title">Lo que no te puedes perder</h2>
+      <p class="section-lead">
+        Los platos por los que vuelve la gente del pueblo. Producto de la tierra,
+        brasa y recetas que llevan generaciones en la cocina.
+      </p>
+    </header>
+
+    <div class="spec-grid">
+      {specialities.map((dish, i) => (
+        <article class="spec-card reveal" style={`--reveal-delay:${i * 110}ms`}>
+          <div class="spec-media">
+            <Image
+              src={dish.src}
+              alt={dish.name}
+              class="spec-img"
+              loading="lazy"
+              widths={[400, 800, 1000]}
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <span class="spec-tag">{dish.tag}</span>
+          </div>
+          <div class="spec-body">
+            <h3 class="spec-name">{dish.name}</h3>
+            <p class="spec-desc">{dish.desc}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="spec-cta reveal" style="--reveal-delay:160ms">
+      <a href="#carta" class="secondary-btn">
+        Ver la carta completa <Icon name="lucide:arrow-right" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .spec-section {
+    background: var(--color-bg);
+    padding: 5rem 1.5rem;
+  }
+
+  .spec-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .spec-head {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .spec-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition:
+      border-color 0.35s ease,
+      transform 0.35s ease,
+      box-shadow 0.35s ease;
+  }
+
+  .spec-card:hover {
+    border-color: var(--color-accent-25);
+    transform: translateY(-4px);
+    box-shadow: 0 26px 60px -32px rgba(0, 0, 0, 0.95);
+  }
+
+  .spec-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .spec-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .spec-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.55) 0%, transparent 45%);
+    pointer-events: none;
+  }
+
+  .spec-card:hover .spec-img {
+    transform: scale(1.06);
+  }
+
+  .spec-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: #1a120a;
+    font-family: var(--font-sans-semibold);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .spec-body {
+    padding: 1.5rem 1.5rem 1.75rem;
+  }
+
+  .spec-name {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.4rem;
+    color: var(--color-text);
+    margin: 0 0 0.6rem;
+  }
+
+  .spec-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .spec-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .spec-section {
+      padding: 7rem 3rem;
+    }
+    .spec-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

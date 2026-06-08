@@ -2,15 +2,18 @@
 import { Image } from 'astro:assets';
 import entrada from '../assets/img/casino-entrada.png';
 import madera from '../assets/img/textura-madera.jpg';
+import brasa from '../assets/img/plato-brasa.png';
+import carne from '../assets/img/plato-carne.png';
+import cuchara from '../assets/img/plato-cuchara.png';
 
-// NOTA: imágenes de muestra. Sustituir por fotos reales del local (fachada,
-// interior, platos, terraza...) manteniendo el array `tiles`.
+// NOTA: imágenes de muestra (fachada/textura). Sustituir por más fotos reales del
+// local (interior, terraza, barra...) manteniendo el array `tiles`.
 const tiles = [
   { src: entrada, caption: 'Nuestra fachada en la Plaza Mayor', pos: 'center', size: 'lg' },
-  { src: madera, caption: 'Rincones con encanto', pos: 'center', size: 'sm' },
-  { src: entrada, caption: 'Ambiente de pueblo', pos: 'top', size: 'sm' },
-  { src: madera, caption: 'La barra de siempre', pos: 'bottom', size: 'sm' },
-  { src: entrada, caption: 'Para disfrutar con los tuyos', pos: 'left', size: 'wide' },
+  { src: brasa, caption: 'A la brasa, como siempre', pos: 'center', size: 'sm' },
+  { src: carne, caption: 'Producto de la tierra', pos: 'center', size: 'sm' },
+  { src: cuchara, caption: 'Cocina de cuchara', pos: 'center', size: 'sm' },
+  { src: madera, caption: 'Para disfrutar con los tuyos', pos: 'center', size: 'wide' },
 ];
 ---
 
