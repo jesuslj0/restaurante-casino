@@ -1,19 +1,12 @@
 ---
 import { Image } from 'astro:assets';
 import entrada from '../assets/img/casino-entrada.png';
-import madera from '../assets/img/textura-madera.jpg';
-import brasa from '../assets/img/plato-brasa.png';
-import carne from '../assets/img/plato-carne.png';
-import cuchara from '../assets/img/plato-cuchara.png';
 
-// NOTA: imágenes de muestra (fachada/textura). Sustituir por más fotos reales del
-// local (interior, terraza, barra...) manteniendo el array `tiles`.
-const tiles = [
-  { src: entrada, caption: 'Nuestra fachada en la Plaza Mayor', pos: 'center', size: 'lg' },
-  { src: brasa, caption: 'A la brasa, como siempre', pos: 'center', size: 'sm' },
-  { src: carne, caption: 'Buen producto, al punto', pos: 'center', size: 'sm' },
-  { src: cuchara, caption: 'Cocina de cuchara', pos: 'center', size: 'sm' },
-  { src: madera, caption: 'Para disfrutar con los tuyos', pos: 'center', size: 'wide' },
+const salonTiles = [
+  { src: '/images/20260609_123711.jpg', caption: 'El salón', pos: 'center', size: 'sm' },
+  { src: '/images/20260609_123728.jpg', caption: 'Mesas preparadas para ti', pos: 'center', size: 'sm' },
+  { src: '/images/20260609_123932.jpg', caption: 'La barra, siempre lista', pos: 'center top', size: 'sm' },
+  { src: '/images/20260609_123936.jpg', caption: 'Nuestro equipo al pie del cañón', pos: 'center top', size: 'wide' },
 ];
 ---
 
@@ -28,16 +21,26 @@ const tiles = [
     </header>
 
     <div class="bento reveal">
-      {tiles.map((tile) => (
+      <figure class="tile tile--lg">
+        <Image
+          src={entrada}
+          alt="Nuestra fachada en la Plaza Mayor"
+          class="tile-img"
+          style="object-position:center"
+          loading="lazy"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
+        <figcaption class="tile-caption">Nuestra fachada en la Plaza Mayor</figcaption>
+      </figure>
+      {salonTiles.map((tile) => (
         <figure class:list={['tile', `tile--${tile.size}`]}>
-          <Image
+          <img
             src={tile.src}
             alt={tile.caption}
             class="tile-img"
             style={`object-position:${tile.pos}`}
             loading="lazy"
-            widths={[400, 800, 1200]}
-            sizes="(max-width: 768px) 100vw, 50vw"
           />
           <figcaption class="tile-caption">{tile.caption}</figcaption>
         </figure>
@@ -48,7 +51,7 @@ const tiles = [
 
 <style>
   .gallery-section {
-    background: linear-gradient(180deg, var(--color-secondary) 0%, var(--color-bg) 35%, var(--color-bg) 100%);
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-secondary) 35%, var(--color-secondary) 100%);
     padding: 5rem 1.5rem;
   }
 
