@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="75" viewBox="0 0 120 75">
+  <g fill="none" stroke-width="1">
+    <!-- Sombra: misma onda desplazada 1.2px, negra y tenue -->
+    <g stroke="#000000" stroke-opacity="0.12" transform="translate(0 1.2)">
+      <path d="M0 12.5 C 20 4 40 4 60 12.5 S 100 21 120 12.5"/>
+      <path d="M0 37.5 C 20 29 40 29 60 37.5 S 100 46 120 37.5"/>
+      <path d="M0 62.5 C 20 54 40 54 60 62.5 S 100 71 120 62.5"/>
+    </g>
+    <!-- Línea: clara y muy sutil -->
+    <g stroke="#ffffff" stroke-opacity="0.06">
+      <path d="M0 12.5 C 20 4 40 4 60 12.5 S 100 21 120 12.5"/>
+      <path d="M0 37.5 C 20 29 40 29 60 37.5 S 100 46 120 37.5"/>
+      <path d="M0 62.5 C 20 54 40 54 60 62.5 S 100 71 120 62.5"/>
+    </g>
+  </g>
+</svg>

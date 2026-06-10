@@ -1,47 +1,245 @@
 ---
-import { Icon } from "astro-icon/components";
+import { Icon } from 'astro-icon/components';
 
-const hoy = new Date()
-const año = hoy.getFullYear()
+const { restaurantName, location } = Astro.props;
+const { facebookUsername, instagramUsername, xUsername } = Astro.props;
 
-const {restaurantName, location} = Astro.props
+const year = new Date().getFullYear();
 
-interface socialProps {
-    facebookUsername: string, 
-    instagramUsername: string, 
-    xUsername: string
-}
-const {facebookUsername, instagramUsername, xUsername } = Astro.props
+const sections = [
+  {
+    label: 'Navegación',
+    links: [
+      { title: 'Inicio', href: '/#inicio' },
+      { title: 'Especialidades', href: '/#especialidades' },
+      { title: 'Galería', href: '/#galeria' },
+      { title: 'Carta', href: '/carta' },
+    ],
+  },
+  {
+    label: 'El Casino',
+    links: [
+      { title: 'Reseñas', href: '/#resenas' },
+      { title: 'Horarios', href: '/#horarios' },
+      { title: 'Ubicación', href: '/#ubicacion' },
+      { title: 'Contacto', href: '/#contacto' },
+    ],
+  },
+];
+
+const social = [
+  { title: 'Instagram', href: `https://instagram.com/${instagramUsername}`, icon: 'simple-icons:instagram', handle: `@${instagramUsername}` },
+];
 ---
 
-<footer id="footer-container" class="flex flex-col items-center gap-10 px-6 py-10 bg-bg text-text sm:flex-row sm:justify-around sm:gap-0 sm:px-10">
-    <div class="flex flex-col items-center text-center sm:items-start sm:text-left">
-        <h4 class="text-accent font-semibold text-base mb-1">© {año} - {restaurantName}</h4>
-        <p class="text-text text-sm">{location}</p>
-        <p class="text-text-secondary text-xs mt-1">Todos los derechos reservados.</p>
-    </div>
+<footer class="ft">
+  <span class="ft-line" aria-hidden="true"></span>
 
-    <div class="w-full sm:w-auto flex flex-col items-center gap-5">
-        <span class="inline-flex items-center gap-2"><Icon name="lucide:heart-plus" class="text-red-400"/> Síguenos en redes!</span>
-        <ul class="flex flex-row justify-center gap-6 sm:flex-col sm:gap-3">
-            <li>
-                <a href=`https://instagram.com/${instagramUsername}` class="flex flex-col items-center gap-1 text-text hover:text-accent sm:flex-row sm:gap-2">
-                    <Icon name="simple-icons:instagram" class="w-5 h-5" />
-                    <span class="text-xs sm:text-sm">@{instagramUsername}</span>
+  <div class="ft-inner">
+    <div class="ft-grid">
+      <!-- Marca -->
+      <div class="ft-brand ft-anim">
+        <p class="eyebrow">• Bar · Restaurante •</p>
+        <h2 class="ft-name">{restaurantName}</h2>
+        <p class="ft-loc">{location}</p>
+        <p class="ft-rights">© {year} · Todos los derechos reservados.</p>
+      </div>
+
+      <!-- Columnas -->
+      <div class="ft-cols">
+        {sections.map((section, i) => (
+          <nav class="ft-col ft-anim" style={`--d:${(i + 1) * 90}ms`} aria-label={section.label}>
+            <h3 class="ft-h">{section.label}</h3>
+            <ul class="ft-list">
+              {section.links.map((link) => (
+                <li><a href={link.href}>{link.title}</a></li>
+              ))}
+            </ul>
+          </nav>
+        ))}
+
+        <div class="ft-col ft-anim" style="--d:270ms">
+          <h3 class="ft-h">Síguenos</h3>
+          <ul class="ft-list">
+            {social.map((s) => (
+              <li>
+                <a href={s.href} target="_blank" rel="noopener noreferrer">
+                  <Icon name={s.icon} class="ft-ico" />
+                  {s.handle}
                 </a>
-            </li>
-            <li>
-                <a href=`https://facebook.com/${facebookUsername}` class="flex flex-col items-center gap-1 text-text hover:text-accent sm:flex-row sm:gap-2">
-                    <Icon name="simple-icons:facebook" class="w-5 h-5" />
-                    <span class="text-xs sm:text-sm">@{facebookUsername}</span>
-                </a>
-            </li>
-            <li>
-                <a href=`https://x.com/${xUsername}` class="flex flex-col items-center gap-1 text-text hover:text-accent sm:flex-row sm:gap-2">
-                    <Icon name="simple-icons:x" class="w-5 h-5" />
-                    <span class="text-xs sm:text-sm">@{xUsername}</span>
-                </a>
-            </li>
-        </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
+  </div>
 </footer>
+
+<style>
+  .ft {
+    position: relative;
+    width: 100%;
+    padding: 3.75rem 1.5rem 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    /* Glow dorado arriba sobre base sólida (sin que se cuele el fondo de la carta) */
+    background:
+      radial-gradient(42% 130px at 50% 0%, rgba(201, 169, 97, 0.12), transparent),
+      var(--color-bg);
+    overflow: hidden;
+  }
+
+  /* Línea difuminada centrada en el borde superior */
+  .ft-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 33%;
+    max-width: 22rem;
+    height: 1px;
+    transform: translate(-50%, -50%);
+    background: rgba(201, 169, 97, 0.55);
+    filter: blur(1px);
+    border-radius: 999px;
+  }
+
+  .ft-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .ft-grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .ft-name {
+    font-family: var(--font-serif-semibold);
+    color: var(--color-text);
+    font-size: 1.6rem;
+    line-height: 1.1;
+    margin: 0.5rem 0 0;
+  }
+
+  .ft-loc {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    margin: 0.75rem 0 0;
+  }
+
+  .ft-rights {
+    color: var(--color-text-secondary);
+    font-size: 0.78rem;
+    margin: 0.4rem 0 0;
+  }
+
+  .ft-cols {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .ft-h {
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .ft-list {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .ft-list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .ft-list a:hover {
+    color: var(--color-accent);
+  }
+
+  .ft-ico {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /* Aparición progresiva. Solo se oculta si hay JS (.js); sin JS o con
+     reduce-motion el contenido se ve siempre. El observer propio del footer
+     no usa margen inferior negativo, así que dispara con fiabilidad. */
+  .ft.js .ft-anim {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(4px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0ms);
+  }
+  .ft.js.is-in .ft-anim {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  /* En móvil el navbar flotante vive abajo (+ desvanecido inferior):
+     dejamos hueco para que el footer se vea entero por encima de él. */
+  @media (max-width: 639px) {
+    .ft {
+      padding-bottom: 7.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ft-cols {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ft {
+      padding: 4.5rem 3rem 3.25rem;
+    }
+    .ft-grid {
+      grid-template-columns: 1fr 1.6fr;
+      gap: 3rem;
+    }
+  }
+</style>
+
+<script>
+  const ft = document.querySelector('.ft');
+  if (ft) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Con JS y sin reduce-motion: ocultamos y revelamos al entrar en pantalla.
+    if (!reduce && 'IntersectionObserver' in window) {
+      ft.classList.add('js');
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              ft.classList.add('is-in');
+              io.disconnect();
+            }
+          });
+        },
+        { threshold: 0.1 } // sin rootMargin negativo: dispara fiable al llegar abajo
+      );
+      io.observe(ft);
+    }
+  }
+</script>
