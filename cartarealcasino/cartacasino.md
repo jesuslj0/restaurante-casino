@@ -78,7 +78,111 @@ Vegetal (Lechuga,Tomate,Atún,Huevo cocido, Espárrago y Anchoas) — 6,00 €
 
 PLATOS COMBINADOS (2 HUEVOS FRITOS Y PATATAS INCLUIDOS)
 
+Panceta — 10,00 €
+Chorizo,Güeña y Lomo de Orza — 15,00 €
+Mero a la plancha — 15,00 €
+Secreto — 14,00 €
+Pechuga — 10,00 €
+Calamares — 10,00 €
+Lomo — 10,00 €
+Jamón — 10,00 €
+Bacon — 8,00 €
+Alas fritas — 9,00 €
 
 TOSTAS
 
+Queso Manchego — 8,00 €
+Magreta — 4,00 €
+Sobrasada — 4,00 €
+Sobrasada y Queso — 5,00 €
+Atún - 4,00 €
+Anchoas — 5,00 €
+Salmón — 6,00 €
+Salmón y Aguacate — 7,00 €
+Jamón — 5,00 €
+Bacon — 4,00 €
+Lomo — 5,00 €
 
+BOCADILLOS (E: ENTERO / M: MEDIO / MT: MONTADO) (Ingrediente extra +1,00 €)
+
+Jamón — E: 7,00 € / M: 6,00 € / MT: 5,00 €
+Lomo — E: 8,00 € / M: 7,00 € / MT: 6,00 €
+Bacon — E: 6,50 € / M: 5,50 € / MT: 4,50 €
+Magreta — E: 7,00 € / M: 6,00 € / MT: 5,00 €
+Panceta — E: 8,00 € / M: 7,00 € / MT: 6,00 €
+Salchichas — E: 7,00 € / M: 6,00 € / MT: 5,00 €
+Chorizo Casero — E: 8,00 € / M: 7,00 € / MT: 6,00 €
+Güeña Casera — E: 7,00 € / M: 6,00 € / MT: 5,00 €
+Tortilla Francesa — E: 6,00 € / M: 5,00 € / MT: 4,00 €
+Morcilla Casera — E: 8,00 € / M: 7,00 € / MT: 6,00 €
+Arenques — E: 8,00 € / M: 7,00 € / MT: 6,00 €
+Calamares — E: 7,00 € / M: 6,00 € / MT: 5,00 €
+Queso Manchego — E: 8,00 € / M: 7,00 € / MT: 6,00 €
+Salmón Ahumado — E: 8,00 € / M: 7,00 € / MT: 6,00 €
+Boquerones — E: 6,00 € / M: 5,00 € / MT: 4,00 €
+Pincho Moruno - E: 6,00 € / M: 5,00 € / MT: 4,00 €
+
+POSTRES
+
+Tiramisú Casero — 6,00 €
+Flan de Queso Casero — 5,00 €
+Tarta 3 Chocolates — 6,00 €
+Tarta de Galleta "Lotus" — 6,00 €
+Tarta Cremosa de Queso — 6,00 €
+Torrija con Helado — 6,00 €
+Coulant de Chocolate Negro — 5,00 €
+Coulant de Chocolate Blanco — 5,00 €
+Coulant de Queso Manchego — 6,00 €
+Tarta Helada "Contesa" — 4,00 €
+Tarta al Whisky "XL" — 6,00 €
+Fruta de Temporada — S/M
+Bola de Helado de Vainilla — 2,00 €/ud
+Bola de Helado de Turrón de Jijona — 3,00 €/ud
+
+CARTA DE VINOS
+Tintos
+-Finca La Sabina - Tempranillo - 19,00
+-Finca La Sabina - Syrah - 13,00
+-Finca La Sabina - Cabernet Sauvignon - 13,00
+-Finca La Sabina - Marlot Crianza - 13,00
+-Villano Black - Tempranillo, Ribera del Duero - 12,00
+-Palomo Cazador - Tinto Fino, Ribera del Duero - 13,00
+-La Doncella - Tempranillo - 12,00
+-Ramón Bilbao - Tempranillo, Rioja - 13,00
+-El Beso de las Uvas - 25% Merlot,25% Tempranillo,25% Cabernet,25% Syrah - 19,00
+-Agraces - Tempranillo, Tierra de Castilla - 9,00
+-Pepe Yllera - Tempranillo 87%, Cabernet Sauvignon 12% y Merlot 1% - 12,00
+
+Blancos
+-Agraces - Verdejo, DD. La Mancha - 9,00
+-La Doncella - Chardonnay - 12,00
+-El Beso de las Uvas - Chardonnay, Rueda - 17,00
+-Palomo Cojo - Verdejo, Rueda - 14,00
+-Palomo Cojo - Semidulce Verdejo, Rueda - 12,00
+
+Bebidas Frías (Todos 2,50 menos los que marque yo)
+REFRESCOS
+Coca cola
+Coca cola Zero
+Coca Cola Zero Zero
+Fanta Naranja
+Fanta Limón
+Aquarius (Limón-Naranja) 2,80
+FuzeTea (Limón-Maracuyá)2,80
+Royal Bliss Tónica
+Royal Bliss Berries
+Monster Energy
+Agua pequeña - 1,00
+Agua Grande - 2,00
+
+CERVEZAS
+Heineken 1/4 - 2,20
+Tercio:
+Amstel 2,50
+Amstel Radler 2,50 
+El Águila 2,20
+1870 2.50 
+El Alcázar 2.50 
+Caña - 2.50
+Jarra 1/2L - 3.50
+Tinto de Verano/Kalimotxo - 3.50

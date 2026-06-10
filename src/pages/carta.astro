@@ -2,9 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import DishList from '../components/DishList.astro';
+import type { DishItem } from '../components/DishList.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import bgImage from '../assets/img/Herocasino.png';
+import logoCasino from '../assets/img/logo-casino.png';
 
 const props = {
   restaurantName: 'El Casino',
@@ -17,100 +20,239 @@ const socialProps = {
   xUsername: 'el_casino',
 };
 
-interface Dish {
-  name: string;
-  desc?: string;
-  price: string;
-}
-
 // Navegación rápida entre secciones de la carta.
 const categories = [
-  { id: 'almuerzos', label: 'Almuerzos' },
-  { id: 'menu', label: 'Menú' },
-  { id: 'cenas', label: 'Cenas' },
-  { id: 'tapas', label: 'Tapas' },
-  { id: 'bebidas', label: 'Bebidas' },
+  { id: 'picar', label: 'Para picar' },
+  { id: 'carne', label: 'Carne' },
+  { id: 'pescado', label: 'Pescado' },
+  { id: 'ibericos', label: 'Ibéricos' },
+  { id: 'hamburguesas', label: 'Hamburguesas' },
+  { id: 'bocadilleria', label: 'Bocadillería' },
+  { id: 'combinados', label: 'Combinados' },
+  { id: 'postres', label: 'Postres' },
   { id: 'vinos', label: 'Vinos' },
+  { id: 'bebidas', label: 'Bebidas' },
 ];
 
-const almuerzos: Dish[] = [
-  { name: 'Tostada de jamón', desc: 'Con tomate natural y AOVE', price: '3,50 €' },
-  { name: 'Tostada de lomo de orza', price: '4,00 €' },
-  { name: 'Huevos fritos con torreznos', desc: 'Y patatas de la casa', price: '5,50 €' },
-  { name: 'Migas con uva, panceta y chorizo', price: '6,50 €' },
-  { name: 'Pincho de tortilla de patata', price: '2,20 €' },
-  { name: 'Zurra del Casino', desc: 'Nuestra pringá de la casa', price: '3,80 €' },
+/* ---------- PARA PICAR ---------- */
+const picar: DishItem[] = [
+  { name: 'Queso frito tierno', desc: 'Con mermelada de fresa', price: '10,00 €' },
+  { name: 'Rulo de cabra "Moluengo" frito', desc: 'Con salsa de melocotón y bayas', price: '12,00 €' },
+  { name: 'Plato de jamón', price: '10,00 €' },
+  { name: 'Plato de queso manchego', price: '15,00 €' },
+  { name: 'Plato de jamón y queso manchego', price: '15,00 €' },
+  { name: 'Patatas bravas', price: '7,00 €' },
+  { name: 'Sesos al ajillo', price: '10,00 €' },
+  {
+    name: 'Sesos rebozados',
+    variants: [
+      { label: 'Media', price: '8,00 €' },
+      { label: 'Ración', price: '12,00 €' },
+    ],
+  },
+  { name: 'Huevos rotos con jamón', price: '12,00 €' },
+  {
+    name: 'Croquetas variadas',
+    desc: 'Gamba · Boletus · Jamón ibérico · Bacalao · Estofado de toro',
+    price: '2,50 €/ud',
+  },
+  { name: 'Verduras a la plancha', price: '10,00 €' },
+  {
+    name: 'Ensalada Casino',
+    desc: 'Lechuga, tomate cherry, queso fresco, bacon, cebolla caramelizada, aguacate y frutos secos',
+    price: '15,00 €',
+  },
+  { name: 'Tomate con ventresca', price: '15,00 €' },
+  { name: 'Tomate raf con anchoas de Santoña', price: '18,00 €' },
 ];
 
-const menuDelDia = {
-  price: '13,50 €',
-  days: 'De lunes a viernes · mediodía',
-  includes: [
-    'Primero a elegir',
-    'Segundo a elegir',
-    'Postre casero o café',
-    'Pan y bebida incluidos',
-  ],
-};
-
-const menuPrimeros: Dish[] = [
-  { name: 'Gachas con su tropezón', price: '' },
-  { name: 'Crema de temporada', price: '' },
-  { name: 'Ensalada de la huerta', price: '' },
-  { name: 'Pisto con huevo de corral', price: '' },
+/* ---------- TAPAS DE CARNE ---------- */
+const carne: DishItem[] = [
+  { name: 'Solomillo a la pimienta', price: '12,00 €' },
+  { name: 'Landres fritas', price: '12,00 €' },
+  { name: 'Oreja a la plancha', price: '9,00 €' },
+  { name: 'Carne de boda', price: '14,00 €' },
+  { name: 'Alas de pollo', price: '2,00 €/ud' },
+  { name: 'Magra con tomate', price: '10,00 €' },
+  { name: 'Pincho moruno de pollo', price: '2,50 €/ud' },
+  { name: 'Codillo frito', price: '10,00 €' },
+  { name: 'Secreto a la plancha', price: '14,00 €' },
+  { name: 'Mini hamburguesa de vaca', desc: 'Con sobrasada y queso curado', price: '4,00 €' },
 ];
 
-const menuSegundos: Dish[] = [
-  { name: 'Carrillada al vino tinto', price: '' },
-  { name: 'Bacalao con tomate', price: '' },
-  { name: 'Pollo de corral en pepitoria', price: '' },
-  { name: 'Fritura de pescado del día', price: '' },
+/* ---------- TAPAS DE PESCADO ---------- */
+const pescado: DishItem[] = [
+  { name: 'Sepia a la plancha', price: '15,00 €' },
+  { name: 'Chipirón a la plancha', price: '12,00 €' },
+  {
+    name: 'Chipirón a la andaluza',
+    variants: [
+      { label: 'Media', price: '7,00 €' },
+      { label: 'Ración', price: '12,00 €' },
+    ],
+  },
+  { name: 'Gambón al ajillo', price: '11,00 €' },
+  {
+    name: 'Gambón rebozado',
+    variants: [
+      { label: 'Media', price: '7,00 €' },
+      { label: 'Ración', price: '12,00 €' },
+    ],
+  },
+  { name: 'Boquerón frito', price: '10,00 €' },
+  { name: 'Mero a la plancha', price: '12,00 €' },
+  { name: 'Bacalao rebozado', price: '12,00 €' },
+  { name: 'Almejas a la marinera', price: '10,00 €' },
+  { name: 'Gamba blanca de Huelva', price: '18,50 €' },
+  { name: 'Boquerón en vinagre', price: '6,00 €' },
+  { name: 'Salmonete de Santa Pola', price: 'S/M' },
+  { name: 'Bacaladilla de Santa Pola', price: 'S/M' },
 ];
 
-const cenas: Dish[] = [
-  { name: 'Cordero asado al horno', desc: 'A fuego lento', price: '16,50 €' },
-  { name: 'Entraña de ternera', desc: 'Con patatas a lo pobre', price: '15,00 €' },
-  { name: 'Secreto ibérico a la brasa', price: '14,00 €' },
-  { name: 'Bacalao confitado', desc: 'Sobre pisto de verduras', price: '13,50 €' },
-  { name: 'Revuelto de setas y gulas', price: '9,50 €' },
-  { name: 'Tabla de quesos', desc: 'Para compartir', price: '12,00 €' },
+/* ---------- IBÉRICOS DE HUELVA ---------- */
+const ibericos: DishItem[] = [
+  { name: 'Plato de jamón', price: '16,00 €' },
+  { name: 'Plato de lomo', price: '16,00 €' },
+  { name: 'Plato de chorizo', price: '10,00 €' },
 ];
 
-const tapas: Dish[] = [
-  { name: 'Aceitunas aliñadas', price: '2,50 €' },
-  { name: 'Queso curado', price: '4,50 €' },
-  { name: 'Croquetas caseras (ud.)', price: '1,80 €' },
-  { name: 'Atascaburras', price: '4,00 €' },
-  { name: 'Morcilla de matanza', price: '3,50 €' },
-  { name: 'Patatas bravas', price: '4,00 €' },
+/* ---------- HAMBURGUESAS ---------- */
+const hamburguesas = [
+  { name: 'Normal', desc: 'Carne de cerdo, lechuga, tomate y queso', price: '6,00 €' },
+  { name: 'Completa', desc: 'Carne de cerdo, lechuga, tomate, queso, bacon y huevo frito', price: '7,50 €' },
+  { name: 'Angus', desc: 'Carne angus, lechuga, tomate y queso', price: '9,00 €' },
+  { name: 'Angus completa', desc: 'Angus, lechuga, tomate, queso, bacon y huevo frito', price: '11,00 €' },
+  { name: 'Crispy', desc: 'Pollo crujiente, lechuga, tomate y queso', price: '7,00 €' },
+  { name: 'Crispy completa', desc: 'Pollo, lechuga, tomate, queso, bacon y huevo frito', price: '9,00 €' },
 ];
 
-const bebidas: Dish[] = [
-  { name: 'Caña de cerveza', price: '1,50 €' },
-  { name: 'Doble', price: '2,50 €' },
-  { name: 'Refrescos', price: '2,00 €' },
-  { name: 'Agua mineral', price: '1,50 €' },
-  { name: 'Zumo natural', price: '2,80 €' },
-  { name: 'Café o infusión', price: '1,40 €' },
+/* ---------- BOCADILLOS (E / M / MT) ---------- */
+const bocadillos = [
+  { name: 'Jamón', e: '7,00', m: '6,00', mt: '5,00' },
+  { name: 'Lomo', e: '8,00', m: '7,00', mt: '6,00' },
+  { name: 'Bacon', e: '6,50', m: '5,50', mt: '4,50' },
+  { name: 'Magreta', e: '7,00', m: '6,00', mt: '5,00' },
+  { name: 'Panceta', e: '8,00', m: '7,00', mt: '6,00' },
+  { name: 'Salchichas', e: '7,00', m: '6,00', mt: '5,00' },
+  { name: 'Chorizo casero', e: '8,00', m: '7,00', mt: '6,00' },
+  { name: 'Güeña casera', e: '7,00', m: '6,00', mt: '5,00' },
+  { name: 'Tortilla francesa', e: '6,00', m: '5,00', mt: '4,00' },
+  { name: 'Morcilla casera', e: '8,00', m: '7,00', mt: '6,00' },
+  { name: 'Arenques', e: '8,00', m: '7,00', mt: '6,00' },
+  { name: 'Calamares', e: '7,00', m: '6,00', mt: '5,00' },
+  { name: 'Queso manchego', e: '8,00', m: '7,00', mt: '6,00' },
+  { name: 'Salmón ahumado', e: '8,00', m: '7,00', mt: '6,00' },
+  { name: 'Boquerones', e: '6,00', m: '5,00', mt: '4,00' },
+  { name: 'Pincho moruno', e: '6,00', m: '5,00', mt: '4,00' },
 ];
 
-const vinos: Dish[] = [
-  { name: 'Copa tinto D.O. La Mancha', price: '2,20 €' },
-  { name: 'Copa blanco verdejo', price: '2,40 €' },
-  { name: 'Botella crianza Valdepeñas', price: '14,00 €' },
-  { name: 'Botella verdejo Rueda', price: '13,00 €' },
-  { name: 'Tinto de verano', price: '2,50 €' },
-  { name: 'Sangría (jarra)', price: '9,00 €' },
+/* ---------- TOSTAS ---------- */
+const tostas: DishItem[] = [
+  { name: 'Queso manchego', price: '8,00 €' },
+  { name: 'Magreta', price: '4,00 €' },
+  { name: 'Sobrasada', price: '4,00 €' },
+  { name: 'Sobrasada y queso', price: '5,00 €' },
+  { name: 'Atún', price: '4,00 €' },
+  { name: 'Anchoas', price: '5,00 €' },
+  { name: 'Salmón', price: '6,00 €' },
+  { name: 'Salmón y aguacate', price: '7,00 €' },
+  { name: 'Jamón', price: '5,00 €' },
+  { name: 'Bacon', price: '4,00 €' },
+  { name: 'Lomo', price: '5,00 €' },
 ];
 
-const trio = [
-  { id: 'tapas', icon: 'lucide:utensils', title: 'Tapas', items: tapas },
-  { id: 'bebidas', icon: 'lucide:cup-soda', title: 'Bebidas', items: bebidas },
-  { id: 'vinos', icon: 'lucide:wine', title: 'Vinos', items: vinos },
+/* ---------- SÁNDWICHES ---------- */
+const sandwiches: DishItem[] = [
+  { name: 'Mixto', desc: 'Jamón york y queso', price: '4,00 €' },
+  { name: 'Serrano', desc: 'Jamón serrano y queso', price: '5,00 €' },
+  { name: 'Vegetal', desc: 'Lechuga, tomate, atún, huevo cocido, espárrago y anchoas', price: '6,00 €' },
+];
+
+/* ---------- PLATOS COMBINADOS ---------- */
+const combinados: DishItem[] = [
+  { name: 'Chorizo, güeña y lomo de orza', price: '15,00 €' },
+  { name: 'Mero a la plancha', price: '15,00 €' },
+  { name: 'Secreto', price: '14,00 €' },
+  { name: 'Panceta', price: '10,00 €' },
+  { name: 'Pechuga', price: '10,00 €' },
+  { name: 'Calamares', price: '10,00 €' },
+  { name: 'Lomo', price: '10,00 €' },
+  { name: 'Jamón', price: '10,00 €' },
+  { name: 'Alas fritas', price: '9,00 €' },
+  { name: 'Bacon', price: '8,00 €' },
+];
+
+/* ---------- POSTRES ---------- */
+const postres: DishItem[] = [
+  { name: 'Tiramisú casero', price: '6,00 €' },
+  { name: 'Flan de queso casero', price: '5,00 €' },
+  { name: 'Tarta 3 chocolates', price: '6,00 €' },
+  { name: 'Tarta de galleta "Lotus"', price: '6,00 €' },
+  { name: 'Tarta cremosa de queso', price: '6,00 €' },
+  { name: 'Torrija con helado', price: '6,00 €' },
+  { name: 'Coulant de chocolate negro', price: '5,00 €' },
+  { name: 'Coulant de chocolate blanco', price: '5,00 €' },
+  { name: 'Coulant de queso manchego', price: '6,00 €' },
+  { name: 'Tarta helada "Contesa"', price: '4,00 €' },
+  { name: 'Tarta al whisky "XL"', price: '6,00 €' },
+  { name: 'Fruta de temporada', price: 'S/M' },
+  { name: 'Bola de helado de vainilla', price: '2,00 €/ud' },
+  { name: 'Bola de helado de turrón de Jijona', price: '3,00 €/ud' },
+];
+
+/* ---------- VINOS ---------- */
+const tintos: DishItem[] = [
+  { name: 'Finca La Sabina', desc: 'Tempranillo', price: '19,00 €' },
+  { name: 'Finca La Sabina', desc: 'Syrah', price: '13,00 €' },
+  { name: 'Finca La Sabina', desc: 'Cabernet Sauvignon', price: '13,00 €' },
+  { name: 'Finca La Sabina', desc: 'Merlot Crianza', price: '13,00 €' },
+  { name: 'Villano Black', desc: 'Tempranillo · Ribera del Duero', price: '12,00 €' },
+  { name: 'Palomo Cazador', desc: 'Tinto Fino · Ribera del Duero', price: '13,00 €' },
+  { name: 'La Doncella', desc: 'Tempranillo', price: '12,00 €' },
+  { name: 'Ramón Bilbao', desc: 'Tempranillo · Rioja', price: '13,00 €' },
+  { name: 'El Beso de las Uvas', desc: 'Merlot, Tempranillo, Cabernet y Syrah', price: '19,00 €' },
+  { name: 'Agraces', desc: 'Tempranillo · Tierra de Castilla', price: '9,00 €' },
+  { name: 'Pepe Yllera', desc: 'Tempranillo, Cabernet Sauvignon y Merlot', price: '12,00 €' },
+];
+
+const blancos: DishItem[] = [
+  { name: 'Agraces', desc: 'Verdejo · D.O. La Mancha', price: '9,00 €' },
+  { name: 'La Doncella', desc: 'Chardonnay', price: '12,00 €' },
+  { name: 'El Beso de las Uvas', desc: 'Chardonnay · Rueda', price: '17,00 €' },
+  { name: 'Palomo Cojo', desc: 'Verdejo · Rueda', price: '14,00 €' },
+  { name: 'Palomo Cojo', desc: 'Verdejo semidulce · Rueda', price: '12,00 €' },
+];
+
+/* ---------- BEBIDAS ---------- */
+const refrescos: DishItem[] = [
+  { name: 'Coca-Cola', price: '2,50 €' },
+  { name: 'Coca-Cola Zero', price: '2,50 €' },
+  { name: 'Coca-Cola Zero Zero', price: '2,50 €' },
+  { name: 'Fanta Naranja', price: '2,50 €' },
+  { name: 'Fanta Limón', price: '2,50 €' },
+  { name: 'Aquarius', desc: 'Limón / Naranja', price: '2,80 €' },
+  { name: 'FuzeTea', desc: 'Limón / Maracuyá', price: '2,80 €' },
+  { name: 'Royal Bliss Tónica', price: '2,50 €' },
+  { name: 'Royal Bliss Berries', price: '2,50 €' },
+  { name: 'Monster Energy', price: '2,50 €' },
+  { name: 'Agua pequeña', price: '1,00 €' },
+  { name: 'Agua grande', price: '2,00 €' },
+];
+
+const cervezas: DishItem[] = [
+  { name: 'Heineken 1/4', price: '2,20 €' },
+  { name: 'Amstel', desc: 'Tercio', price: '2,50 €' },
+  { name: 'Amstel Radler', desc: 'Tercio', price: '2,50 €' },
+  { name: 'El Águila', desc: 'Tercio', price: '2,20 €' },
+  { name: '1870', desc: 'Tercio', price: '2,50 €' },
+  { name: 'El Alcázar', desc: 'Tercio', price: '2,50 €' },
+  { name: 'Caña', price: '2,50 €' },
+  { name: 'Jarra 1/2 L', price: '3,50 €' },
+  { name: 'Tinto de verano / Kalimotxo', price: '3,50 €' },
 ];
 ---
 
-<Layout title="Carta · El Casino · Bar y restaurante en El Bonillo" description="La carta de El Casino: almuerzos, menú del día, cenas a la brasa, tapas, bebidas y vinos. Cocina casera y de mercado para todos los gustos.">
+<Layout title="Carta · El Casino · Bar y restaurante en El Bonillo" description="La carta de El Casino: para picar, tapas de carne y pescado, ibéricos de Huelva, hamburguesas, bocadillería, platos combinados, postres caseros, vinos y bebidas.">
   <Header slot="header" />
 
   <!-- Hero de la carta -->
@@ -118,12 +260,14 @@ const trio = [
     <Image src={bgImage} alt="Interior de El Casino" class="carta-hero-bg" widths={[768, 1280, 1920]} sizes="100vw" />
     <div class="carta-hero-overlay"></div>
     <div class="carta-hero-inner reveal">
-      <p class="eyebrow">• El Casino · El Bonillo •</p>
+      <Image src={logoCasino} alt="El Casino · El Bonillo" class="carta-logo" widths={[180, 240]} sizes="180px" />
+      <p class="eyebrow">• Bar · Restaurante · El Bonillo •</p>
       <h1 class="carta-title">Nuestra carta</h1>
       <p class="section-lead">
-        Cocina casera y de mercado, con un poco de todo: carnes a la brasa,
-        pescados, arroces y los caseros de siempre. Los precios pueden variar
-        según temporada; pregunta por las sugerencias del día.
+        Cocina casera y de mercado, con un poco de todo: tapas de carne y pescado,
+        ibéricos de Huelva, hamburguesas, bocadillería y postres caseros. Los
+        productos de temporada (S/M) varían según mercado; pregunta por las
+        sugerencias del día.
       </p>
     </div>
   </section>
@@ -137,151 +281,249 @@ const trio = [
     </ul>
   </nav>
 
-  <!-- Almuerzos -->
-  <section id="almuerzos" class="menu-block block-dark">
+  <!-- 01 · Para picar -->
+  <section id="picar" class="menu-block block-dark">
     <div class="block-inner">
       <header class="block-head reveal">
         <span class="block-num">01</span>
         <div>
-          <p class="eyebrow">Para empezar el día</p>
-          <h2 class="section-title">Almuerzos</h2>
+          <p class="eyebrow">Para compartir</p>
+          <h2 class="section-title">Para picar</h2>
         </div>
       </header>
-      <ul class="dish-list two-col reveal">
-        {almuerzos.map((dish) => (
-          <li class="dish">
-            <div class="dish-text">
-              <span class="dish-name">{dish.name}</span>
-              {dish.desc && <span class="dish-desc">{dish.desc}</span>}
-            </div>
-            <span class="dish-dots" aria-hidden="true"></span>
-            <span class="dish-price">{dish.price}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- Menú del día -->
-  <section id="menu" class="menu-block block-warm">
-    <div class="block-inner">
-      <header class="block-head reveal">
-        <span class="block-num">02</span>
-        <div>
-          <p class="eyebrow">El clásico del mediodía</p>
-          <h2 class="section-title">Menú del día</h2>
-        </div>
-      </header>
-
-      <div class="menu-layout">
-        <article class="dia-card reveal">
-          <div class="dia-tag">
-            <Icon name="lucide:utensils-crossed" />
-            <span>Menú del día</span>
-          </div>
-          <p class="dia-price">{menuDelDia.price}</p>
-          <p class="dia-days">{menuDelDia.days}</p>
-          <ul class="dia-list">
-            {menuDelDia.includes.map((item) => (
-              <li>
-                <Icon name="lucide:check" class="dia-check" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-          <a href="/#contacto" class="primary-btn dia-btn">
-            Reservar mesa <Icon name="lucide:arrow-right" />
-          </a>
-        </article>
-
-        <div class="menu-choices reveal" style="--reveal-delay:120ms">
-          <div class="choice-col">
-            <h3 class="choice-title">Primeros</h3>
-            <ul class="dish-list">
-              {menuPrimeros.map((dish) => (
-                <li class="dish">
-                  <div class="dish-text">
-                    <span class="dish-name">{dish.name}</span>
-                    {dish.desc && <span class="dish-desc">{dish.desc}</span>}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="choice-col">
-            <h3 class="choice-title">Segundos</h3>
-            <ul class="dish-list">
-              {menuSegundos.map((dish) => (
-                <li class="dish">
-                  <div class="dish-text">
-                    <span class="dish-name">{dish.name}</span>
-                    {dish.desc && <span class="dish-desc">{dish.desc}</span>}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+      <div class="reveal">
+        <DishList items={picar} cols={2} />
       </div>
     </div>
   </section>
 
-  <!-- Cenas -->
-  <section id="cenas" class="menu-block block-dark">
+  <!-- 02 · Tapas de carne -->
+  <section id="carne" class="menu-block block-warm">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">02</span>
+        <div>
+          <p class="eyebrow">De la brasa y la plancha</p>
+          <h2 class="section-title">Tapas de carne</h2>
+        </div>
+      </header>
+      <div class="reveal">
+        <DishList items={carne} cols={2} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · Tapas de pescado -->
+  <section id="pescado" class="menu-block block-dark">
     <div class="block-inner">
       <header class="block-head reveal">
         <span class="block-num">03</span>
         <div>
-          <p class="eyebrow">Noches a la brasa</p>
-          <h2 class="section-title">Cenas</h2>
+          <p class="eyebrow">Del mar a la mesa</p>
+          <h2 class="section-title">Tapas de pescado</h2>
         </div>
       </header>
-      <ul class="dish-list two-col reveal">
-        {cenas.map((dish) => (
-          <li class="dish">
-            <div class="dish-text">
-              <span class="dish-name">{dish.name}</span>
-              {dish.desc && <span class="dish-desc">{dish.desc}</span>}
-            </div>
-            <span class="dish-dots" aria-hidden="true"></span>
-            <span class="dish-price">{dish.price}</span>
-          </li>
-        ))}
-      </ul>
+      <div class="reveal">
+        <DishList items={pescado} cols={2} />
+      </div>
     </div>
   </section>
 
-  <!-- Tapas / Bebidas / Vinos -->
-  <section class="menu-block block-warm">
+  <!-- 04 · Ibéricos de Huelva (destacado) -->
+  <section id="ibericos" class="menu-block block-warm">
     <div class="block-inner">
       <header class="block-head reveal">
         <span class="block-num">04</span>
         <div>
-          <p class="eyebrow">Para acompañar</p>
-          <h2 class="section-title">Tapas, bebidas y vinos</h2>
+          <p class="eyebrow">Denominación de origen</p>
+          <h2 class="section-title">Ibéricos de Huelva</h2>
+        </div>
+      </header>
+      <div class="iberico-card reveal">
+        <div class="iberico-badge">
+          <Icon name="lucide:award" />
+          <span>Selección de bellota</span>
+        </div>
+        <DishList items={ibericos} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Hamburguesas -->
+  <section id="hamburguesas" class="menu-block block-dark">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">05</span>
+        <div>
+          <p class="eyebrow">Recién hechas</p>
+          <h2 class="section-title">Hamburguesas</h2>
+        </div>
+      </header>
+      <div class="burger-grid">
+        {hamburguesas.map((b, i) => (
+          <article class="burger-card reveal" style={`--reveal-delay:${i * 70}ms`}>
+            <div class="burger-icon"><Icon name="lucide:beef" /></div>
+            <div class="burger-body">
+              <h3 class="burger-name">{b.name}</h3>
+              <p class="burger-desc">{b.desc}</p>
+            </div>
+            <span class="burger-price">{b.price}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 · Bocadillería: bocadillos, tostas y sándwiches -->
+  <section id="bocadilleria" class="menu-block block-warm">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">06</span>
+        <div>
+          <p class="eyebrow">Pan de la casa</p>
+          <h2 class="section-title">Bocadillería</h2>
         </div>
       </header>
 
-      <div class="trio-grid">
-        {trio.map((col, i) => (
-          <article id={col.id} class="trio-card reveal" style={`--reveal-delay:${i * 90}ms`}>
-            <div class="trio-head">
-              <span class="trio-icon"><Icon name={col.icon} /></span>
-              <h3 class="trio-title">{col.title}</h3>
-            </div>
-            <ul class="dish-list">
-              {col.items.map((dish) => (
-                <li class="dish">
-                  <div class="dish-text">
-                    <span class="dish-name">{dish.name}</span>
-                  </div>
-                  <span class="dish-dots" aria-hidden="true"></span>
-                  <span class="dish-price">{dish.price}</span>
-                </li>
+      <!-- Bocadillos con tres tamaños -->
+      <div class="boc-panel reveal">
+        <div class="boc-panel-head">
+          <h3 class="sub-title"><Icon name="lucide:sandwich" /> Bocadillos</h3>
+          <p class="boc-legend">
+            <span><b>E</b> Entero</span>
+            <span><b>M</b> Medio</span>
+            <span><b>MT</b> Montado</span>
+          </p>
+        </div>
+        <p class="boc-note">Ingrediente extra +1,00 €</p>
+        <div class="boc-table-wrap">
+          <table class="boc-table">
+            <thead>
+              <tr>
+                <th scope="col">Bocadillo</th>
+                <th scope="col">Entero</th>
+                <th scope="col">Medio</th>
+                <th scope="col">Montado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {bocadillos.map((b) => (
+                <tr>
+                  <th scope="row">{b.name}</th>
+                  <td><span class="boc-ab">E</span>{b.e} €</td>
+                  <td><span class="boc-ab">M</span>{b.m} €</td>
+                  <td><span class="boc-ab">MT</span>{b.mt} €</td>
+                </tr>
               ))}
-            </ul>
-          </article>
-        ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tostas y sándwiches -->
+      <div class="duo-grid">
+        <article class="duo-card reveal">
+          <h3 class="sub-title"><Icon name="lucide:croissant" /> Tostas</h3>
+          <DishList items={tostas} />
+        </article>
+        <article class="duo-card reveal" style="--reveal-delay:90ms">
+          <h3 class="sub-title"><Icon name="lucide:sandwich" /> Sándwiches</h3>
+          <p class="sub-note">Ingrediente extra +1,00 €</p>
+          <DishList items={sandwiches} />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 · Platos combinados -->
+  <section id="combinados" class="menu-block block-dark">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">07</span>
+        <div>
+          <p class="eyebrow">Plato completo</p>
+          <h2 class="section-title">Platos combinados</h2>
+        </div>
+      </header>
+      <p class="block-note reveal">
+        <Icon name="lucide:egg-fried" /> Todos incluyen 2 huevos fritos y patatas
+      </p>
+      <div class="reveal">
+        <DishList items={combinados} cols={2} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 · Postres -->
+  <section id="postres" class="menu-block block-warm">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">08</span>
+        <div>
+          <p class="eyebrow">El final dulce</p>
+          <h2 class="section-title">Postres</h2>
+        </div>
+      </header>
+      <div class="reveal">
+        <DishList items={postres} cols={2} />
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · Vinos -->
+  <section id="vinos" class="menu-block block-dark">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">09</span>
+        <div>
+          <p class="eyebrow">Carta de vinos</p>
+          <h2 class="section-title">Vinos</h2>
+        </div>
+      </header>
+      <div class="wine-grid">
+        <article class="wine-card reveal">
+          <div class="wine-head wine-red">
+            <span class="wine-icon"><Icon name="lucide:wine" /></span>
+            <h3 class="wine-title">Tintos</h3>
+          </div>
+          <DishList items={tintos} />
+        </article>
+        <article class="wine-card reveal" style="--reveal-delay:90ms">
+          <div class="wine-head wine-white">
+            <span class="wine-icon"><Icon name="lucide:wine" /></span>
+            <h3 class="wine-title">Blancos</h3>
+          </div>
+          <DishList items={blancos} />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · Bebidas -->
+  <section id="bebidas" class="menu-block block-warm">
+    <div class="block-inner">
+      <header class="block-head reveal">
+        <span class="block-num">10</span>
+        <div>
+          <p class="eyebrow">Para refrescar</p>
+          <h2 class="section-title">Bebidas</h2>
+        </div>
+      </header>
+      <div class="drink-grid">
+        <article class="drink-card reveal">
+          <div class="drink-head">
+            <span class="drink-icon"><Icon name="lucide:cup-soda" /></span>
+            <h3 class="wine-title">Refrescos</h3>
+          </div>
+          <DishList items={refrescos} />
+        </article>
+        <article class="drink-card reveal" style="--reveal-delay:90ms">
+          <div class="drink-head">
+            <span class="drink-icon"><Icon name="lucide:beer" /></span>
+            <h3 class="wine-title">Cervezas</h3>
+          </div>
+          <DishList items={cervezas} />
+        </article>
       </div>
 
       <!-- CTA final -->
@@ -315,7 +557,7 @@ const trio = [
     position: relative;
     display: flex;
     align-items: flex-end;
-    min-height: 46vh;
+    min-height: 50vh;
     padding: 9rem 1.5rem 3rem;
     overflow: hidden;
   }
@@ -331,8 +573,8 @@ const trio = [
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(10, 10, 10, 0.7) 0%,
-      rgba(10, 10, 10, 0.55) 40%,
+      rgba(10, 10, 10, 0.72) 0%,
+      rgba(10, 10, 10, 0.58) 40%,
       var(--color-secondary) 100%
     );
   }
@@ -343,6 +585,13 @@ const trio = [
     margin: 0 auto;
     width: 100%;
     text-align: center;
+  }
+  .carta-logo {
+    width: 9rem;
+    height: auto;
+    margin: 0 auto 1.25rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 16px 40px -22px rgba(0, 0, 0, 0.9);
   }
   .carta-title {
     font-family: var(--font-serif-semibold);
@@ -408,7 +657,6 @@ const trio = [
     max-width: 60rem;
     margin: 0 auto;
   }
-
   .block-head {
     display: flex;
     align-items: center;
@@ -423,53 +671,43 @@ const trio = [
     -webkit-text-stroke: 1px rgb(201 169 97 / 0.55);
   }
 
-  /* ---------- Listas de platos ---------- */
-  .dish-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem 3rem;
-  }
-  .dish {
-    display: flex;
-    align-items: baseline;
+  /* Nota de bloque (p. ej. combinados) */
+  .block-note {
+    display: inline-flex;
+    align-items: center;
     gap: 0.5rem;
+    margin: -1rem 0 2rem;
+    padding: 0.55rem 1rem;
+    border-radius: 999px;
+    background: var(--color-accent-25);
+    color: var(--color-text);
+    font-size: 0.85rem;
   }
-  .dish-text { display: flex; flex-direction: column; }
-  .dish-name { color: var(--color-text); font-size: 1rem; }
-  .dish-desc {
+  .block-note :global(svg) { width: 1.05rem; height: 1.05rem; color: var(--color-accent); }
+
+  /* Subtítulos dentro de bloques */
+  .sub-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-serif-semibold);
+    font-size: 1.25rem;
+    color: var(--color-text);
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .sub-title :global(svg) { width: 1.25rem; height: 1.25rem; color: var(--color-accent); }
+  .sub-note {
+    margin: -0.5rem 0 1rem;
     color: var(--color-text-secondary);
     font-size: 0.8rem;
     font-style: italic;
   }
-  .dish-dots {
-    flex: 1;
-    border-bottom: 1px dotted rgba(225, 220, 201, 0.25);
-    transform: translateY(-3px);
-  }
-  .dish-price {
-    color: var(--color-accent);
-    font-family: var(--font-sans-semibold);
-    font-size: 0.95rem;
-    white-space: nowrap;
-  }
 
-  /* ---------- Menú del día ---------- */
-  .menu-layout {
-    display: grid;
-    gap: 2rem;
-  }
-  .dia-card {
+  /* ---------- Ibéricos (destacado) ---------- */
+  .iberico-card {
     position: relative;
-    display: flex;
-    flex-direction: column;
     padding: 2rem;
     border-radius: 1.5rem;
     background:
@@ -478,11 +716,11 @@ const trio = [
     border: 1px solid var(--color-accent-25);
     box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.8);
   }
-  .dia-tag {
+  .iberico-badge {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    align-self: flex-start;
+    margin-bottom: 1.5rem;
     padding: 0.4rem 0.85rem;
     border-radius: 999px;
     background: var(--color-accent);
@@ -492,77 +730,173 @@ const trio = [
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-  .dia-price {
-    font-family: var(--font-serif-semibold);
-    font-size: 2.75rem;
-    line-height: 1;
-    color: var(--color-text);
-    margin: 1.25rem 0 0.25rem;
+  .iberico-badge :global(svg) { width: 1rem; height: 1rem; }
+
+  /* ---------- Hamburguesas ---------- */
+  .burger-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
   }
-  .dia-days {
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
-  .dia-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    flex: 1;
-  }
-  .dia-list li {
+  .burger-card {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    color: var(--color-text);
-    font-size: 0.95rem;
-  }
-  .dia-check { color: var(--color-accent); width: 1.1rem; height: 1.1rem; flex-shrink: 0; }
-  .dia-btn { align-self: flex-start; }
-
-  .menu-choices {
-    display: grid;
-    gap: 2rem;
-  }
-  .choice-title {
-    font-family: var(--font-serif-semibold);
-    font-size: 1.15rem;
-    color: var(--color-accent);
-    margin: 0 0 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  /* ---------- Trío: Tapas / Bebidas / Vinos ---------- */
-  .trio-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-  .trio-card {
-    padding: 1.75rem;
-    border-radius: 1.5rem;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1.25rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.07);
     transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    scroll-margin-top: 9rem;
   }
-  .trio-card:hover {
+  .burger-card:hover {
     border-color: var(--color-accent-25);
     transform: translateY(-3px);
     box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.9);
   }
-  .trio-head {
+  .burger-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: 0.85rem;
+    background: var(--color-accent-25);
+    color: var(--color-accent);
+  }
+  .burger-icon :global(svg) { width: 1.35rem; height: 1.35rem; }
+  .burger-body { flex: 1; }
+  .burger-name {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.1rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+  .burger-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    margin: 0.25rem 0 0;
+  }
+  .burger-price {
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+
+  /* ---------- Bocadillos (tabla) ---------- */
+  .boc-panel {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    margin-bottom: 1.5rem;
+  }
+  .boc-panel-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+  }
+  .boc-panel-head .sub-title {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .boc-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .boc-legend b {
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    margin-right: 0.25rem;
+  }
+  .boc-note {
+    margin: 0.5rem 0 1.25rem;
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .boc-table-wrap { width: 100%; }
+  .boc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+  .boc-table thead th {
+    text-align: right;
+    padding: 0 0 0.75rem;
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .boc-table thead th:first-child { text-align: left; }
+  .boc-table tbody th {
+    text-align: left;
+    font-weight: 400;
+    color: var(--color-text);
+    padding: 0.7rem 0;
+  }
+  .boc-table tbody td {
+    text-align: right;
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    white-space: nowrap;
+    padding: 0.7rem 0 0.7rem 1rem;
+  }
+  .boc-table tbody tr:not(:last-child) th,
+  .boc-table tbody tr:not(:last-child) td {
+    border-bottom: 1px dotted rgba(225, 220, 201, 0.16);
+  }
+  /* Etiqueta E/M/MT visible solo en móvil (cabeceras ocultas) */
+  .boc-ab {
+    display: none;
+    margin-right: 0.35rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+  }
+
+  /* ---------- Duo (tostas / sándwiches) ---------- */
+  .duo-grid,
+  .wine-grid,
+  .drink-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  .duo-card,
+  .wine-card,
+  .drink-card {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  /* ---------- Vinos / Bebidas (cabeceras) ---------- */
+  .wine-head,
+  .drink-head {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 1.25rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-  .trio-icon {
+  .wine-icon,
+  .drink-icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -572,8 +906,11 @@ const trio = [
     background: var(--color-accent-25);
     color: var(--color-accent);
   }
-  .trio-icon :global(svg) { width: 1.25rem; height: 1.25rem; }
-  .trio-title {
+  .wine-icon :global(svg),
+  .drink-icon :global(svg) { width: 1.25rem; height: 1.25rem; }
+  .wine-red .wine-icon { background: rgba(120, 30, 40, 0.35); color: #d98b8b; }
+  .wine-white .wine-icon { background: rgba(201, 169, 97, 0.2); color: var(--color-accent); }
+  .wine-title {
     font-family: var(--font-serif-semibold);
     font-size: 1.25rem;
     color: var(--color-text);
@@ -602,6 +939,30 @@ const trio = [
     justify-content: center;
   }
 
+  /* Móvil: tabla de bocadillos en formato apilado */
+  @media (max-width: 560px) {
+    .boc-table thead { display: none; }
+    .boc-table,
+    .boc-table tbody,
+    .boc-table tr,
+    .boc-table th,
+    .boc-table td { display: block; width: 100%; }
+    .boc-table tbody tr {
+      padding: 0.85rem 0;
+      border-bottom: 1px dotted rgba(225, 220, 201, 0.16);
+    }
+    .boc-table tbody tr:last-child { border-bottom: none; }
+    .boc-table tbody th { padding: 0 0 0.5rem; font-family: var(--font-sans-semibold); }
+    .boc-table tbody td {
+      display: inline-block;
+      width: auto;
+      text-align: left;
+      padding: 0 1.25rem 0 0;
+      font-size: 0.85rem;
+    }
+    .boc-ab { display: inline; }
+  }
+
   /* En sm+ el navbar flotante vive arriba: bajamos la barra sticky para no solaparla. */
   @media (min-width: 640px) {
     .cat-nav { top: 4.5rem; }
@@ -610,12 +971,9 @@ const trio = [
 
   @media (min-width: 768px) {
     .menu-block { padding: 6rem 3rem; }
-    .two-col { grid-template-columns: 1fr 1fr; }
-    .menu-choices { grid-template-columns: 1fr 1fr; }
-    .trio-grid { grid-template-columns: repeat(3, 1fr); }
-    .menu-layout {
-      grid-template-columns: 22rem 1fr;
-      align-items: start;
-    }
+    .burger-grid { grid-template-columns: 1fr 1fr; }
+    .duo-grid,
+    .wine-grid,
+    .drink-grid { grid-template-columns: 1fr 1fr; align-items: start; }
   }
 </style>

@@ -8,25 +8,23 @@ interface Dish {
   price: string;
 }
 
-const menuDelDia = {
-  price: '13,50 €',
-  days: 'De lunes a viernes · mediodía',
-  includes: [
-    'Primero a elegir',
-    'Segundo a elegir',
-    'Postre casero o café',
-    'Pan y bebida incluidos',
-  ],
-};
-
-// Selección variada: un poco de todo, no solo recetario tradicional.
+// Selección de platos destacados extraídos de la carta real.
 const destacados: Dish[] = [
-  { tag: 'A la brasa', name: 'Entrecot de ternera', desc: 'Con guarnición a elegir', price: '15,00 €' },
-  { tag: 'Del mar', name: 'Bacalao confitado', desc: 'Sobre pisto de verduras', price: '13,50 €' },
-  { tag: 'Arroces', name: 'Arroz meloso del día', desc: 'Pregunta por el de hoy', price: '14,00 €' },
-  { tag: 'Para compartir', name: 'Tabla de ibéricos y quesos', price: '12,00 €' },
-  { tag: 'De siempre', name: 'Migas con uva y panceta', desc: 'Un clásico de la casa', price: '9,50 €' },
-  { tag: 'Dulce', name: 'Postres caseros', desc: 'Tarta del día, arroz con leche…', price: '4,50 €' },
+  { tag: 'Ibéricos', name: 'Jamón ibérico de Huelva', desc: 'Selección de bellota', price: '16,00 €' },
+  { tag: 'Del mar', name: 'Gamba blanca de Huelva', desc: 'A la plancha o cocida', price: '18,50 €' },
+  { tag: 'Para picar', name: 'Tomate raf con anchoas de Santoña', price: '18,00 €' },
+  { tag: 'A la plancha', name: 'Secreto ibérico', desc: 'Tapa de carne de la casa', price: '14,00 €' },
+  { tag: 'De siempre', name: 'Croquetas variadas', desc: 'Gamba, boletus, jamón, bacalao y toro', price: '2,50 €/ud' },
+  { tag: 'Dulce', name: 'Tiramisú casero', desc: 'Receta de la casa', price: '6,00 €' },
+];
+
+// Categorías rápidas para dar una idea del alcance de la carta.
+const familias = [
+  { icon: 'lucide:utensils', label: 'Para picar' },
+  { icon: 'lucide:beef', label: 'Tapas de carne' },
+  { icon: 'lucide:fish', label: 'Tapas de pescado' },
+  { icon: 'lucide:sandwich', label: 'Bocadillería' },
+  { icon: 'lucide:wine', label: 'Vinos' },
 ];
 ---
 
@@ -36,52 +34,39 @@ const destacados: Dish[] = [
       <p class="eyebrow">• Destacados de la carta •</p>
       <h2 class="section-title">Nuestros platos más pedidos</h2>
       <p class="section-lead">
-        Una pequeña selección de los platos que más nos piden. Cocina de mercado
-        para todos los gustos, con un poco de todo: carnes a la brasa, pescados,
-        arroces y los caseros de siempre. Pregunta por las sugerencias del día.
+        Cocina casera y de mercado, con un poco de todo: para picar, tapas de
+        carne y pescado, ibéricos de Huelva, hamburguesas, bocadillería y postres
+        caseros. Pregunta por las sugerencias del día.
       </p>
     </header>
 
-    <div class="menu-grid">
-      <!-- Menú del día destacado -->
-      <article class="dia-card reveal">
-        <div class="dia-tag">
-          <Icon name="lucide:utensils-crossed" />
-          <span>Menú del día</span>
-        </div>
-        <p class="dia-price">{menuDelDia.price}</p>
-        <p class="dia-days">{menuDelDia.days}</p>
-        <ul class="dia-list">
-          {menuDelDia.includes.map((item) => (
-            <li>
-              <Icon name="lucide:check" class="dia-check" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-        <a href="#contacto" class="primary-btn dia-btn">
-          Reservar mesa <Icon name="lucide:arrow-right" />
-        </a>
-      </article>
+    <!-- Familias de la carta -->
+    <ul class="familia-list reveal">
+      {familias.map((f) => (
+        <li class="familia-chip">
+          <Icon name={f.icon} />
+          <span>{f.label}</span>
+        </li>
+      ))}
+    </ul>
 
-      <!-- Platos destacados -->
-      <div class="dest-grid">
-        {destacados.map((dish, i) => (
-          <article class="dest-card reveal" style={`--reveal-delay:${i * 70}ms`}>
-            <span class="dest-tag">{dish.tag}</span>
-            <div class="dest-body">
-              <h3 class="dest-name">{dish.name}</h3>
-              {dish.desc && <p class="dest-desc">{dish.desc}</p>}
-            </div>
-            <span class="dest-price">{dish.price}</span>
-          </article>
-        ))}
-      </div>
+    <!-- Platos destacados -->
+    <div class="dest-grid">
+      {destacados.map((dish, i) => (
+        <article class="dest-card reveal" style={`--reveal-delay:${i * 70}ms`}>
+          <span class="dest-tag">{dish.tag}</span>
+          <div class="dest-body">
+            <h3 class="dest-name">{dish.name}</h3>
+            {dish.desc && <p class="dest-desc">{dish.desc}</p>}
+          </div>
+          <span class="dest-price">{dish.price}</span>
+        </article>
+      ))}
     </div>
 
     <!-- Enlace a la carta completa -->
     <div class="menu-cta reveal">
-      <a href="/carta" class="secondary-btn">
+      <a href="/carta" class="primary-btn">
         Ver carta completa <Icon name="lucide:arrow-right" />
       </a>
     </div>
@@ -101,90 +86,41 @@ const destacados: Dish[] = [
 
   .menu-head {
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2.5rem;
   }
 
-  .menu-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  /* ---- Menú del día ---- */
-  .dia-card {
-    position: relative;
+  /* ---- Familias de la carta ---- */
+  .familia-list {
+    list-style: none;
+    margin: 0 0 3rem;
+    padding: 0;
     display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    border-radius: 1.5rem;
-    background:
-      linear-gradient(160deg, rgba(201, 169, 97, 0.14), rgba(201, 169, 97, 0.02)),
-      var(--color-secondary);
-    border: 1px solid var(--color-accent-25);
-    box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.8);
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
   }
-
-  .dia-tag {
+  .familia-chip {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    align-self: flex-start;
-    padding: 0.4rem 0.85rem;
+    padding: 0.5rem 1rem;
     border-radius: 999px;
-    background: var(--color-accent);
-    color: #1a120a;
-    font-family: var(--font-sans-semibold);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .dia-price {
-    font-family: var(--font-serif-semibold);
-    font-size: 2.75rem;
-    line-height: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--color-text);
-    margin: 1.25rem 0 0.25rem;
+    font-size: 0.85rem;
   }
-
-  .dia-days {
-    color: var(--color-text-secondary);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .dia-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    flex: 1;
-  }
-
-  .dia-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: var(--color-text);
-    font-size: 0.95rem;
-  }
-
-  .dia-check {
+  .familia-chip :global(svg) {
+    width: 1.05rem;
+    height: 1.05rem;
     color: var(--color-accent);
-    width: 1.1rem;
-    height: 1.1rem;
-    flex-shrink: 0;
-  }
-
-  .dia-btn {
-    align-self: flex-start;
   }
 
   /* ---- Platos destacados ---- */
   .dest-grid {
     display: grid;
     gap: 1.5rem;
+    grid-template-columns: 1fr;
   }
 
   .dest-card {
@@ -263,13 +199,8 @@ const destacados: Dish[] = [
   }
 
   @media (min-width: 1024px) {
-    .menu-grid {
-      grid-template-columns: 20rem 1fr;
-      align-items: start;
-    }
-    .dia-card {
-      position: sticky;
-      top: 6.5rem;
+    .dest-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
