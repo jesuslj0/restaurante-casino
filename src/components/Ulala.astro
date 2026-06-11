@@ -133,13 +133,14 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
   }
 
   .ula-content {
-    /* Móvil: en flujo (no absolute) para que no se recorte. */
+    /* Móvil: en flujo (no absolute) para que no se recorte. Padding inferior
+       amplio para librar el navbar flotante inferior del móvil. */
     position: relative;
     z-index: 2;
     width: 100%;
     max-width: 72rem;
     margin: 0 auto;
-    padding: 2.5rem 1.5rem 3rem;
+    padding: 1.5rem 1.5rem 6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -272,6 +273,34 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
           rgba(14, 20, 17, 0.06) 40%,
           rgba(14, 20, 17, 0) 48%
         );
+    }
+
+    /* Bloque de texto más compacto en móvil: así queda holgado en la zona
+       baja y su parte superior (eyebrow + título) no sube hasta el nav fijo
+       de arriba, que lo tapaba. */
+    .ula-title {
+      font-size: clamp(1.7rem, 1.2rem + 3vw, 2.4rem);
+      margin-top: 0.4rem;
+    }
+    .ula-lead {
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .ula-flavors {
+      margin-top: 0.9rem;
+      gap: 0.4rem;
+    }
+    .ula-chip {
+      padding: 0.32rem 0.7rem;
+      font-size: 0.72rem;
+    }
+    .ula-cta {
+      margin-top: 1.1rem;
+      gap: 0.9rem;
+    }
+    .ula-price {
+      font-size: 1.5rem;
     }
   }
 

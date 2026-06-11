@@ -573,8 +573,11 @@ const cervezas: DishItem[] = [
     position: relative;
     display: flex;
     align-items: flex-end;
-    min-height: 52vh;
-    padding: 9rem 1.5rem 3rem;
+    /* Móvil: el navbar principal vive abajo, así que arriba solo hay que
+       librar la píldora de categorías → poco padding y sin 52vh forzado
+       (evita el hueco vacío). En escritorio se restaura (media query). */
+    min-height: auto;
+    padding: 4.5rem 1.5rem 1.5rem;
   }
   .carta-hero-inner {
     position: relative;
@@ -1128,6 +1131,11 @@ const cervezas: DishItem[] = [
   /* En sm+ el navbar flotante vive arriba: anclamos la píldora justo debajo. */
   @media (min-width: 640px) {
     .cat-nav { top: 5.25rem; }
+    /* Aquí el navbar sí está arriba: restauramos el aire del hero. */
+    .carta-hero {
+      min-height: 52vh;
+      padding: 9rem 3rem 3rem;
+    }
   }
 
   @media (min-width: 768px) {
