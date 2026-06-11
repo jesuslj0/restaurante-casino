@@ -12,11 +12,9 @@ interface Props {
   restaurantName: string;
   location: string;
   schedule: string;
-  ratingAvg?: string;
-  ratingCount?: string;
 }
 
-const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, location, schedule, ratingAvg = '4,0', ratingCount = '81' } = Astro.props;
+const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, location, schedule } = Astro.props;
 ---
 
 <div id="inicio" class="hero-background" style={`background-image: url(${bgImage.src})`}>
@@ -49,10 +47,6 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
             <a href="/carta" class="secondary-btn">
               {buttonSecondaryText} <Icon name="lucide:book-open"/>
             </a>
-          </div>
-          <div class="hero-rating">
-            <Icon name="lucide:star" class="hero-rating-star" aria-hidden="true" />
-            <span>{ratingAvg} de media · {ratingCount} reseñas en Google</span>
           </div>
         </div>
       </div>
@@ -174,24 +168,6 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
   .info-chip:hover {
     border-color: var(--color-accent);
     box-shadow: 0 0 14px var(--color-accent-25);
-  }
-
-  .hero-rating {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    margin-top: 1rem;
-    color: var(--color-text-secondary);
-    font-family: var(--font-sans-semibold);
-    font-size: 0.85rem;
-  }
-
-  .hero-rating-star {
-    width: 0.9rem;
-    height: 0.9rem;
-    color: var(--color-accent);
-    fill: var(--color-accent);
-    flex-shrink: 0;
   }
 
   @media (min-width: 768px) {
