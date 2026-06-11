@@ -1,18 +1,46 @@
 ---
 import entrada from '../assets/img/casino-entrada.png';
+import gente from '../assets/img/local-gente.png';
 
-const images = [
-  { src: entrada.src, alt: 'Fachada de El Casino en la Plaza Mayor' },
-  { src: '/images/20260609_123711.jpg', alt: 'El salón' },
-  { src: '/images/20260609_123728.jpg', alt: 'Mesas preparadas' },
-  { src: '/images/20260609_123750.jpg', alt: 'Interior del Casino' },
-  { src: '/images/20260609_123803.jpg', alt: 'Ambiente de pueblo' },
-  { src: '/images/20260609_123844.jpg', alt: 'Barra e iluminación únicas' },
-  { src: '/images/WhatsApp Image 2026-06-10 at 7.13.00 PM.jpeg', alt: 'Momentos en El Casino' },
+// Galería editorial: cada fila alterna imagen y texto. La primera es la fachada.
+const slides = [
+  {
+    src: entrada.src,
+    alt: 'Fachada de El Casino en la Plaza Mayor',
+    title: 'La fachada de siempre',
+    desc: 'En plena Plaza Mayor, un lugar con mucha historia.',
+  },
+  {
+    src: '/images/20260609_123711.jpg',
+    alt: 'El salón de El Casino',
+    title: 'El salón',
+    desc: 'Amplio y acogedor, para comer agusto y sin prisas.',
+  },
+  {
+    src: '/images/20260609_123728.jpg',
+    alt: 'Mesas preparadas en El Casino',
+    title: 'Mesa puesta',
+    desc: 'Lista para celebraciones, comidas familiares o el menú del día.',
+  },
+  {
+    src: '/images/20260609_123750.jpg',
+    alt: 'Interior de El Casino',
+    title: 'Nuestro interior',
+    desc: 'Detalles de toda la vida con un aire actual.',
+  },
+  {
+    src: '/images/20260609_123844.jpg',
+    alt: 'Barra e iluminación de El Casino',
+    title: 'La barra',
+    desc: 'Para un café, una caña o una buena charla.',
+  },
+  {
+    src: gente.src,
+    alt: 'Gente disfrutando en El Casino',
+    title: 'Momentos',
+    desc: 'Lo que de verdad se queda: la gente.',
+  },
 ];
-
-// Duplicamos las imágenes para un bucle continuo y sin saltos.
-const loop = [...images, ...images];
 ---
 
 <section id="galeria" class="gal-section">
@@ -20,42 +48,29 @@ const loop = [...images, ...images];
     <header class="gal-head reveal">
       <p class="eyebrow">• Galería •</p>
       <h2 class="section-title">Un paseo por <span class="title-highlight">El Casino</span></h2>
-      <p class="section-lead">Desliza para ver más rincones de El Casino.</p>
+      <p class="section-lead">Un vistazo a los rincones donde pasa todo.</p>
     </header>
-  </div>
 
-  <div class="gal-rail reveal" style="--reveal-delay:120ms">
-    <div class="gal-track" id="gal-track">
-      {loop.map((img, i) => {
-        const real = i % images.length;
-        const dup = i >= images.length;
-        return (
-          <button
-            type="button"
-            class="gal-tile"
-            data-index={real}
-            aria-hidden={dup ? 'true' : undefined}
-            tabindex={dup ? -1 : undefined}
-            aria-label={dup ? undefined : `Ampliar foto: ${img.alt}`}
-          >
-            <img src={img.src} alt={dup ? '' : img.alt} class="gal-img" loading="lazy" decoding="async" />
-            <span class="gal-cap">{img.alt}</span>
-          </button>
-        );
-      })}
+    <div class="gal-rows">
+      {slides.map((s, i) => (
+        <article class="gal-row reveal" style={`--reveal-delay:${(i % 2) * 120}ms`}>
+          <figure class="gal-figure">
+            <img
+              src={s.src}
+              alt={s.alt}
+              class="gal-img"
+              loading={i === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+            />
+          </figure>
+          <div class="gal-copy">
+            <span class="gal-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="gal-title">{s.title}</h3>
+            <p class="gal-desc">{s.desc}</p>
+          </div>
+        </article>
+      ))}
     </div>
-  </div>
-
-  <!-- Lightbox -->
-  <div class="lb" id="gal-lb" role="dialog" aria-modal="true" aria-label="Galería ampliada" hidden>
-    <button type="button" class="lb-close" id="lb-close" aria-label="Cerrar">&times;</button>
-    <button type="button" class="lb-nav lb-prev" id="lb-prev" aria-label="Anterior">&#8249;</button>
-    <figure class="lb-stage">
-      <img src="" alt="" class="lb-img" id="lb-img" />
-      <figcaption class="lb-cap" id="lb-cap"></figcaption>
-    </figure>
-    <button type="button" class="lb-nav lb-next" id="lb-next" aria-label="Siguiente">&#8250;</button>
-    <span class="lb-count" id="lb-count"></span>
   </div>
 </section>
 
@@ -66,51 +81,46 @@ const loop = [...images, ...images];
   }
 
   .gal-inner {
-    max-width: 72rem;
+    max-width: 76rem;
     margin: 0 auto;
     padding: 0 1.5rem;
   }
 
   .gal-head {
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3.5rem;
   }
 
-  /* ---------- Carril horizontal ---------- */
-  .gal-rail { position: relative; }
-
-  .gal-track {
+  .gal-rows {
     display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding: 0.5rem 1.5rem;
-    /* Difumina los extremos para indicar que hay más */
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
-    /* Oculta la barra de scroll */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    flex-direction: column;
+    gap: 4rem;
   }
 
-  .gal-track::-webkit-scrollbar { display: none; }
-  .gal-track.is-dragging { cursor: grabbing; }
+  .gal-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
 
-  .gal-tile {
-    position: relative;
-    flex: 0 0 auto;
-    width: 80vw;
-    max-width: 22rem;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: 1.1rem;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    padding: 0;
+  /* ---------- Imagen cinematográfica ---------- */
+  .gal-figure {
     margin: 0;
-    cursor: pointer;
-    background: var(--color-secondary);
-    appearance: none;
-    font: inherit;
-    color: inherit;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    aspect-ratio: 16 / 10;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.95);
+  }
+
+  .gal-figure::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.5) 0%, transparent 50%);
+    pointer-events: none;
   }
 
   .gal-img {
@@ -118,308 +128,61 @@ const loop = [...images, ...images];
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .gal-tile::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, transparent 55%);
-    opacity: 0.55;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
+  .gal-row:hover .gal-img {
+    transform: scale(1.05);
   }
 
-  .gal-cap {
-    position: absolute;
-    left: 1rem;
-    right: 1rem;
-    bottom: 0.9rem;
-    z-index: 1;
-    text-align: left;
-    color: var(--color-text);
+  /* ---------- Texto ---------- */
+  .gal-copy {
+    padding: 0 0.25rem;
+  }
+
+  .gal-num {
+    display: block;
     font-family: var(--font-serif);
     font-size: 1rem;
-    line-height: 1.3;
-    transform: translateY(0.5rem);
-    opacity: 0;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    pointer-events: none;
+    letter-spacing: 0.1em;
+    color: var(--color-accent-2);
+    margin-bottom: 0.6rem;
   }
 
-  .gal-tile:hover .gal-img,
-  .gal-tile:focus-visible .gal-img { transform: scale(1.07); }
-
-  .gal-tile:hover::after,
-  .gal-tile:focus-visible::after { opacity: 1; }
-
-  .gal-tile:hover .gal-cap,
-  .gal-tile:focus-visible .gal-cap { transform: translateY(0); opacity: 1; }
-
-  .gal-tile:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
+  .gal-title {
+    font-family: var(--font-serif-semibold);
+    font-weight: 500;
+    font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem);
+    line-height: 1.1;
+    color: var(--color-text);
+    margin: 0 0 0.7rem;
   }
 
-  @media (hover: none) {
-    .gal-cap { opacity: 1; transform: none; }
-    .gal-tile::after { opacity: 0.9; }
+  .gal-desc {
+    color: var(--color-text-secondary);
+    font-size: 1.02rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 32rem;
   }
 
   @media (min-width: 768px) {
     .gal-section { padding: 7rem 0; }
     .gal-inner { padding: 0 3rem; }
-    .gal-track { padding: 0.5rem 3rem; }
-    .gal-tile { width: 24rem; aspect-ratio: 16 / 10; }
-  }
 
-  /* ---------- Lightbox ---------- */
-  .lb {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    background: rgba(8, 6, 4, 0.92);
-    backdrop-filter: blur(6px);
-    opacity: 0;
-    transition: opacity 0.25s ease;
-  }
+    .gal-rows { gap: 6rem; }
 
-  .lb[hidden] { display: none; }
-  .lb.is-open { opacity: 1; }
+    .gal-row {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+    }
 
-  .lb-stage {
-    margin: 0;
-    max-width: min(92vw, 64rem);
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.85rem;
-  }
+    .gal-figure { aspect-ratio: 3 / 2; }
 
-  .lb-img {
-    max-width: 100%;
-    max-height: 78vh;
-    object-fit: contain;
-    border-radius: 0.75rem;
-    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
-  }
-
-  .lb-cap {
-    color: var(--color-text-secondary);
-    font-family: var(--font-serif);
-    font-size: 0.95rem;
-    text-align: center;
-  }
-
-  .lb-close,
-  .lb-nav {
-    position: absolute;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.05);
-    color: var(--color-text);
-    cursor: pointer;
-    border-radius: 999px;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-  }
-
-  .lb-close:hover,
-  .lb-nav:hover {
-    background: var(--color-accent-25);
-    border-color: var(--color-accent);
-  }
-
-  .lb-close { top: 1.1rem; right: 1.1rem; width: 2.75rem; height: 2.75rem; font-size: 1.6rem; line-height: 1; }
-  .lb-nav { top: 50%; transform: translateY(-50%); width: 3rem; height: 3rem; font-size: 1.8rem; line-height: 1; }
-  .lb-nav:hover { transform: translateY(-50%) scale(1.08); }
-  .lb-prev { left: 1rem; }
-  .lb-next { right: 1rem; }
-
-  .lb-count {
-    position: absolute;
-    bottom: 1.1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--color-text-secondary);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-  }
-
-  @media (max-width: 600px) {
-    .lb-nav { width: 2.5rem; height: 2.5rem; font-size: 1.5rem; }
-    .lb-prev { left: 0.5rem; }
-    .lb-next { right: 0.5rem; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .gal-img, .lb { transition: none; }
+    /* Filas pares: imagen a la derecha, texto a la izquierda */
+    .gal-row:nth-child(even) .gal-figure { order: 2; }
+    .gal-row:nth-child(even) .gal-copy { order: 1; }
+    .gal-row:nth-child(even) .gal-desc { margin-left: auto; }
+    .gal-row:nth-child(even) .gal-copy { text-align: right; }
   }
 </style>
-
-<script>
-  type Item = { src: string; alt: string };
-
-  const track = document.getElementById('gal-track');
-  const lb = document.getElementById('gal-lb');
-
-  if (track && lb) {
-    const tiles = Array.from(track.querySelectorAll<HTMLButtonElement>('.gal-tile'));
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* ---------- Auto-scroll continuo y suave ---------- */
-    const SPEED = 0.5;           // px por frame (~30px/s)
-    let half = 0;                // mitad del ancho = un juego completo de imágenes
-    let paused = false;
-    let resumeTimer = 0;
-
-    const measure = () => { half = track.scrollWidth / 2; };
-    measure();
-    window.addEventListener('resize', measure);
-    window.addEventListener('load', measure);
-
-    const tick = () => {
-      if (!paused && !reduceMotion && half > 0) {
-        track.scrollLeft += SPEED;
-        // Salto invisible al completar un juego: la 2ª mitad es idéntica
-        if (track.scrollLeft >= half) track.scrollLeft -= half;
-      }
-      requestAnimationFrame(tick);
-    };
-    if (!reduceMotion) requestAnimationFrame(tick);
-
-    // Mantiene el scroll dentro del rango del bucle también al moverlo a mano
-    track.addEventListener('scroll', () => {
-      if (half <= 0) return;
-      if (track.scrollLeft >= half) track.scrollLeft -= half;
-      else if (track.scrollLeft < 0) track.scrollLeft += half;
-    }, { passive: true });
-
-    const pause = () => { paused = true; clearTimeout(resumeTimer); };
-    const resumeSoon = (delay = 1400) => {
-      clearTimeout(resumeTimer);
-      resumeTimer = window.setTimeout(() => { paused = false; }, delay);
-    };
-
-    // Pausa con el ratón encima; al salir, reanuda enseguida
-    track.addEventListener('mouseenter', pause);
-    track.addEventListener('mouseleave', () => resumeSoon(200));
-    track.addEventListener('focusin', pause);
-    track.addEventListener('focusout', () => resumeSoon(200));
-    // Interacción táctil / rueda: pausa y reanuda tras un rato quieto
-    track.addEventListener('touchstart', pause, { passive: true });
-    track.addEventListener('touchend', () => resumeSoon(), { passive: true });
-    track.addEventListener('wheel', () => { pause(); resumeSoon(); }, { passive: true });
-
-    /* ---------- Arrastre con ratón ---------- */
-    let down = false, startX = 0, startScroll = 0, moved = 0;
-    track.addEventListener('pointerdown', (e) => {
-      if (e.pointerType !== 'mouse') return;
-      down = true; moved = 0;
-      startX = e.clientX;
-      startScroll = track.scrollLeft;
-      pause();
-      track.classList.add('is-dragging');
-    });
-    track.addEventListener('pointermove', (e) => {
-      if (!down) return;
-      const dx = e.clientX - startX;
-      moved = Math.max(moved, Math.abs(dx));
-      track.scrollLeft = startScroll - dx;
-    });
-    const endDrag = () => {
-      if (!down) return;
-      down = false;
-      track.classList.remove('is-dragging');
-      resumeSoon();
-    };
-    track.addEventListener('pointerup', endDrag);
-    track.addEventListener('pointerleave', endDrag);
-
-    /* ---------- Lightbox ---------- */
-    const lbImg   = document.getElementById('lb-img')   as HTMLImageElement;
-    const lbCap   = document.getElementById('lb-cap')   as HTMLElement;
-    const lbCount = document.getElementById('lb-count') as HTMLElement;
-
-    // Solo el primer juego de imágenes (sin duplicados)
-    const half2 = tiles.length / 2;
-    const items: Item[] = tiles.slice(0, half2).map((t) => {
-      const img = t.querySelector('img') as HTMLImageElement;
-      return { src: img.src, alt: t.getAttribute('aria-label')?.replace('Ampliar foto: ', '') ?? img.alt };
-    });
-
-    let current = 0;
-    let lastFocused: HTMLElement | null = null;
-
-    const render = () => {
-      const it = items[current];
-      lbImg.src = it.src;
-      lbImg.alt = it.alt;
-      lbCap.textContent = it.alt;
-      lbCount.textContent = `${current + 1} / ${items.length}`;
-    };
-
-    const open = (i: number) => {
-      current = i;
-      lastFocused = document.activeElement as HTMLElement;
-      render();
-      lb.hidden = false;
-      requestAnimationFrame(() => lb.classList.add('is-open'));
-      document.body.style.overflow = 'hidden';
-      pause();
-    };
-
-    const close = () => {
-      lb.classList.remove('is-open');
-      document.body.style.overflow = '';
-      const done = () => { lb.hidden = true; lb.removeEventListener('transitionend', done); };
-      lb.addEventListener('transitionend', done);
-      lastFocused?.focus();
-      resumeSoon(200);
-    };
-
-    const go = (dir: number) => {
-      current = (current + dir + items.length) % items.length;
-      render();
-    };
-
-    // Si se ha arrastrado, no abrir (fue un gesto de scroll)
-    tiles.forEach((t) =>
-      t.addEventListener('click', () => {
-        if (moved >= 6) return;
-        open(Number(t.dataset.index ?? 0));
-      })
-    );
-
-    document.getElementById('lb-close')?.addEventListener('click', close);
-    document.getElementById('lb-prev')?.addEventListener('click', () => go(-1));
-    document.getElementById('lb-next')?.addEventListener('click', () => go(1));
-
-    lb.addEventListener('click', (e) => {
-      if (e.target === lb || (e.target as HTMLElement).classList.contains('lb-stage')) close();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (lb.hidden) return;
-      if (e.key === 'Escape') close();
-      else if (e.key === 'ArrowRight') go(1);
-      else if (e.key === 'ArrowLeft') go(-1);
-    });
-
-    let touchX = 0;
-    lb.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', (e) => {
-      const dx = e.changedTouches[0].clientX - touchX;
-      if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1);
-    }, { passive: true });
-  }
-</script>
