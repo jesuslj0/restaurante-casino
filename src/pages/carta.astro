@@ -779,6 +779,15 @@ const cervezas: DishItem[] = [
   @media (prefers-reduced-motion: reduce) {
     .cb-img { transform: none !important; }
   }
+  /* Móvil: sin zoom (no se anima transform), así que evitamos mantener la
+     capa de transform que el navegador re-rasteriza al escalar y provoca los
+     tirones al scrollear rápido. Solo se compone la opacidad (crossfade). */
+  @media (max-width: 767px) {
+    .cb-img {
+      transform: none;
+      will-change: opacity;
+    }
+  }
   /* Móvil: al recortar los lados (cover), reencuadramos para que se vean los
      elementos clave (jamón en comida; cerveza y uvas en bebida). */
   @media (max-width: 639px) {
@@ -1132,16 +1141,22 @@ const cervezas: DishItem[] = [
 
   if (bg && drink) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // En móvil quitamos el zoom lento (Ken Burns): reescalar el fondo fijo a
+    // pantalla completa en cada frame provoca tirones al scrollear rápido. El
+    // crossfade (opacidad) sí se mantiene porque es barato (compositing GPU).
+    const zoom = !reduce && !window.matchMedia('(max-width: 767px)').matches;
     let ticking = false;
 
     const update = () => {
       ticking = false;
       const vh = window.innerHeight;
-      const docH = document.documentElement.scrollHeight;
-      const sp = Math.min(1, Math.max(0, window.scrollY / Math.max(1, docH - vh)));
 
-      // Zoom lento (Ken Burns) ligado al avance total
-      if (!reduce) bg.style.setProperty('--cb-scale', (1 + sp * 0.07).toFixed(4));
+      // Zoom lento (Ken Burns) ligado al avance total — solo en escritorio
+      if (zoom) {
+        const docH = document.documentElement.scrollHeight;
+        const sp = Math.min(1, Math.max(0, window.scrollY / Math.max(1, docH - vh)));
+        bg.style.setProperty('--cb-scale', (1 + sp * 0.07).toFixed(4));
+      }
 
       // Crossfade comida → bebida según se acerca la sección de vinos
       if (vinos) {
