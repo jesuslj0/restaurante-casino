@@ -11,6 +11,7 @@ const flavors = [
   'Fresa con Nutella',
   'Café bombón',
   'Maracuyá',
+  'y muchos más',
 ];
 
 const price = '3,50 €';
@@ -44,7 +45,7 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
 
       <p class="ula-lead reveal" style="--reveal-delay:160ms">
         Helados artesanales de fruta 100% natural, sin aditivos ni conservantes.
-        De fruta, cremosas, rellenas o con un toque de alcohol: frescura y sabor
+        De fruta, cremosos, rellenos o con un toque de alcohol: frescura y sabor
         auténtico en cada bocado.
       </p>
 
@@ -208,6 +209,13 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     /* Fondo semisólido en vez de backdrop-filter: el blur sobre el vídeo
        fuerza un re-muestreo en cada frame de scroll y provoca parpadeos. */
     background: rgba(8, 14, 22, 0.55);
+  }
+
+  /* "y muchos más": se distingue de los sabores reales (dorado + cursiva). */
+  .ula-chip:last-child {
+    color: var(--color-accent);
+    border-color: var(--color-accent-25);
+    font-style: italic;
   }
 
   .ula-cta {
