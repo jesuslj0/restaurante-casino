@@ -42,7 +42,7 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
       </h2>
 
       <p class="ula-lead reveal" style="--reveal-delay:160ms">
-        Paletas artesanales de fruta 100% natural, sin aditivos ni conservantes.
+        Helados artesanales de fruta 100% natural, sin aditivos ni conservantes.
         De fruta, cremosas, rellenas o con un toque de alcohol: frescura y sabor
         auténtico en cada bocado.
       </p>
@@ -55,10 +55,10 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
 
       <div class="ula-cta reveal" style="--reveal-delay:320ms">
         <span class="ula-price">
-          {price}<small>/ paleta</small>
+          {price}<small>/ helado</small>
         </span>
         <a href="/#contacto" class="primary-btn ula-btn">
-          Pruébalas este verano <Icon name="lucide:arrow-right" />
+          Pruébalos este verano <Icon name="lucide:arrow-right" />
         </a>
       </div>
     </div>
@@ -103,22 +103,24 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     inset: 0;
     pointer-events: none;
     background:
-      /* Borde inferior: funde al teal de la escena de la carta (bloque de
+      /* Borde inferior: funde largo y suave al teal de la carta (bloque de
          vinos) y oscurece la franja para que el texto sea legible. */
       linear-gradient(
         to top,
         #0e1411 0%,
-        rgba(14, 20, 17, 0.9) 9%,
-        rgba(5, 12, 20, 0.7) 26%,
-        rgba(5, 12, 20, 0) 56%
+        rgba(14, 20, 17, 0.92) 8%,
+        rgba(10, 16, 20, 0.78) 20%,
+        rgba(8, 14, 20, 0.5) 38%,
+        rgba(5, 12, 20, 0) 62%
       ),
-      /* Borde superior: funde al teal de la carta (bloque de postres), más gradual. */
+      /* Borde superior: funde largo y suave al teal de la carta (postres). */
       linear-gradient(
         to bottom,
         #0e1411 0%,
-        rgba(14, 20, 17, 0.7) 9%,
-        rgba(14, 20, 17, 0.3) 18%,
-        rgba(14, 20, 17, 0) 28%
+        rgba(14, 20, 17, 0.85) 6%,
+        rgba(14, 20, 17, 0.5) 16%,
+        rgba(14, 20, 17, 0.2) 26%,
+        rgba(14, 20, 17, 0) 38%
       );
   }
 
@@ -140,10 +142,11 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
   .ula-eyebrow {
     color: var(--color-accent);
     font-family: var(--font-sans-semibold);
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     margin: 0;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.95), 0 0 2px rgba(0, 0, 0, 0.8);
   }
 
   .ula-title {
@@ -152,16 +155,19 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     font-size: clamp(2rem, 1.3rem + 3.4vw, 3.5rem);
     line-height: 1.08;
     margin: 0.75rem 0 0;
-    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.75), 0 1px 3px rgba(0, 0, 0, 0.6);
   }
 
-  /* Guiño a los colores de marca ULALÁ (rojo, amarillo, turquesa) */
+  /* Guiño a los colores de marca ULALÁ (rojo, amarillo, turquesa). El
+     drop-shadow le da un halo oscuro para que se lea aunque caiga sobre un
+     polo de color similar (p. ej. la sandía). */
   .ula-brand {
-    background: linear-gradient(95deg, #e63946 0%, #f4a300 45%, #2ec4b6 100%);
+    background: linear-gradient(95deg, #ef5566 0%, #f4a300 45%, #36d6c6 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     font-style: normal;
+    filter: drop-shadow(0 2px 7px rgba(0, 0, 0, 0.7));
   }
 
   .ula-lead {
