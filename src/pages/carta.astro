@@ -22,17 +22,17 @@ const socialProps = {
 
 // Navegación rápida entre secciones de la carta.
 const categories = [
-  { id: 'picar', label: 'Para picar' },
-  { id: 'carne', label: 'Carne' },
-  { id: 'pescado', label: 'Pescado' },
-  { id: 'ibericos', label: 'Ibéricos' },
-  { id: 'hamburguesas', label: 'Hamburguesas' },
-  { id: 'bocadilleria', label: 'Bocadillería' },
-  { id: 'combinados', label: 'Combinados' },
-  { id: 'postres', label: 'Postres' },
-  { id: 'helados', label: 'Ulalá' },
-  { id: 'vinos', label: 'Vinos' },
-  { id: 'bebidas', label: 'Bebidas' },
+  { id: 'picar', label: 'Para picar', icon: 'lucide:utensils' },
+  { id: 'carne', label: 'Carne', icon: 'lucide:beef' },
+  { id: 'pescado', label: 'Pescado', icon: 'lucide:fish' },
+  { id: 'ibericos', label: 'Ibéricos', icon: 'lucide:ham' },
+  { id: 'hamburguesas', label: 'Hamburguesas', icon: 'lucide:sandwich' },
+  { id: 'bocadilleria', label: 'Bocadillería', icon: 'lucide:croissant' },
+  { id: 'combinados', label: 'Combinados', icon: 'lucide:egg-fried' },
+  { id: 'postres', label: 'Postres', icon: 'lucide:cake-slice' },
+  { id: 'helados', label: 'Ulalá', icon: 'lucide:ice-cream-cone' },
+  { id: 'vinos', label: 'Vinos', icon: 'lucide:wine' },
+  { id: 'bebidas', label: 'Bebidas', icon: 'lucide:beer' },
 ];
 
 /* ---------- PARA PICAR ---------- */
@@ -273,9 +273,24 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- Navegación de categorías (sticky) -->
+  <!-- Navegación de categorías (sticky): desplegable en móvil, píldora en escritorio -->
   <nav class="cat-nav" aria-label="Secciones de la carta">
-    <ul>
+    <!-- Botón desplegable (móvil) -->
+    <div class="cat-dd">
+      <button type="button" class="cat-dd-btn" aria-expanded="false" aria-controls="cat-dd-menu">
+        <span class="cat-dd-ico" aria-hidden="true"><Icon name="lucide:utensils-crossed" /></span>
+        <span class="cat-dd-label">Ver secciones</span>
+        <Icon name="lucide:chevron-down" class="cat-dd-caret" />
+      </button>
+      <ul id="cat-dd-menu" class="cat-dd-menu" hidden>
+        {categories.map((c) => (
+          <li><a href={`#${c.id}`}><Icon name={c.icon} />{c.label}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Píldora horizontal (escritorio) -->
+    <ul class="cat-pill">
       {categories.map((c) => (
         <li><a href={`#${c.id}`}>{c.label}</a></li>
       ))}
@@ -603,9 +618,88 @@ const cervezas: DishItem[] = [
     padding: 0 1rem;
     pointer-events: none;
   }
-  .cat-nav ul {
+  /* ----- Botón desplegable (móvil) ----- */
+  .cat-dd {
     pointer-events: auto;
+    position: relative;
+    width: min(22rem, calc(100vw - 2rem));
+  }
+  .cat-dd-btn {
     display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.7rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(13, 19, 16, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 34px -16px rgba(0, 0, 0, 0.8);
+    color: var(--color-text);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .cat-dd-ico { display: inline-flex; flex-shrink: 0; }
+  .cat-dd-ico :global(svg) { width: 1.1rem; height: 1.1rem; color: var(--color-accent); }
+  .cat-dd-label { flex: 1; text-align: left; }
+  .cat-dd-caret {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+  }
+  .cat-dd-btn[aria-expanded='true'] .cat-dd-caret { transform: rotate(180deg); }
+  .cat-dd-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0.5rem;
+    list-style: none;
+    max-height: 62vh;
+    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2rem;
+    background: rgba(13, 19, 16, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 1.25rem;
+    box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
+  }
+  .cat-dd-menu[hidden] { display: none; }
+  .cat-dd-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.6rem 0.7rem;
+    border-radius: 0.7rem;
+    font-size: 0.88rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .cat-dd-menu a :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+  .cat-dd-menu a:hover,
+  .cat-dd-menu a:focus-visible {
+    color: var(--color-accent);
+    background: rgba(201, 169, 97, 0.1);
+  }
+
+  /* ----- Píldora horizontal (escritorio) ----- */
+  .cat-pill {
+    display: none; /* en móvil manda el desplegable */
+    pointer-events: auto;
     gap: 0.3rem;
     list-style: none;
     margin: 0;
@@ -621,8 +715,8 @@ const cervezas: DishItem[] = [
     border-radius: 999px;
     box-shadow: 0 12px 34px -16px rgba(0, 0, 0, 0.8);
   }
-  .cat-nav ul::-webkit-scrollbar { display: none; }
-  .cat-nav a {
+  .cat-pill::-webkit-scrollbar { display: none; }
+  .cat-pill a {
     display: inline-block;
     white-space: nowrap;
     padding: 0.4rem 0.95rem;
@@ -631,7 +725,7 @@ const cervezas: DishItem[] = [
     color: var(--color-text-secondary);
     transition: color 0.2s ease, background 0.2s ease;
   }
-  .cat-nav a:hover {
+  .cat-pill a:hover {
     color: var(--color-accent);
     background: rgba(201, 169, 97, 0.1);
   }
@@ -694,6 +788,12 @@ const cervezas: DishItem[] = [
   }
   @media (prefers-reduced-motion: reduce) {
     .cb-img { transform: none !important; }
+  }
+  /* Móvil: al recortar los lados (cover), reencuadramos para que se vean los
+     elementos clave (jamón en comida; cerveza y uvas en bebida). */
+  @media (max-width: 639px) {
+    .cb-food { background-position: 80% bottom; }
+    .cb-drink { background-position: 70% bottom; }
   }
 
   /* ---------- Bloques de carta ---------- */
@@ -1029,6 +1129,9 @@ const cervezas: DishItem[] = [
     .duo-grid,
     .wine-grid,
     .drink-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+    /* En escritorio: fuera el desplegable, vuelve la píldora horizontal. */
+    .cat-dd { display: none; }
+    .cat-pill { display: flex; }
   }
 </style>
 
@@ -1066,5 +1169,60 @@ const cervezas: DishItem[] = [
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', update);
     update();
+  }
+
+  // ---------- Desplegable de categorías (móvil) ----------
+  const dd = document.querySelector<HTMLElement>('.cat-dd');
+  if (dd) {
+    const btn = dd.querySelector<HTMLButtonElement>('.cat-dd-btn');
+    const menu = dd.querySelector<HTMLElement>('.cat-dd-menu');
+    const label = dd.querySelector<HTMLElement>('.cat-dd-label');
+    const ico = dd.querySelector<HTMLElement>('.cat-dd-ico');
+
+    if (btn && menu && label) {
+      const open = () => { menu.hidden = false; btn.setAttribute('aria-expanded', 'true'); };
+      const close = () => { menu.hidden = true; btn.setAttribute('aria-expanded', 'false'); };
+
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.hidden ? open() : close();
+      });
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+      document.addEventListener('click', (e) => {
+        if (!dd.contains(e.target as Node)) close();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+
+      // Scroll-spy: la etiqueta del botón refleja la sección visible.
+      const links = Array.from(menu.querySelectorAll<HTMLAnchorElement>('a'));
+      const targets = links
+        .map((a) => {
+          const id = (a.getAttribute('href') || '').slice(1);
+          const el = document.getElementById(id);
+          const svg = a.querySelector('svg');
+          return el ? { el, text: (a.textContent || '').trim(), iconHTML: svg ? svg.outerHTML : '' } : null;
+        })
+        .filter((t): t is { el: HTMLElement; text: string; iconHTML: string } => t !== null);
+
+      if ('IntersectionObserver' in window && targets.length) {
+        const spy = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const t = targets.find((x) => x.el === entry.target);
+                if (t) {
+                  label.textContent = t.text;
+                  if (ico && t.iconHTML) ico.innerHTML = t.iconHTML;
+                }
+              }
+            });
+          },
+          { rootMargin: '-45% 0px -50% 0px' }
+        );
+        targets.forEach((t) => spy.observe(t.el));
+      }
+    }
   }
 </script>

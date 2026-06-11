@@ -4,17 +4,17 @@ import { Icon } from 'astro-icon/components';
 // index = getDay() de JS (0 = domingo ... 6 = sábado)
 const schedule = [
   { day: 'Lunes', index: 1, hours: 'Cerrado', closed: true },
-  { day: 'Martes', index: 2, hours: '9:00 – 20:00' },
-  { day: 'Miércoles', index: 3, hours: '9:00 – 20:00' },
-  { day: 'Jueves', index: 4, hours: '9:00 – 20:00' },
-  { day: 'Viernes', index: 5, hours: '9:00 – 20:00' },
-  { day: 'Sábado', index: 6, hours: '9:00 – 00:00' },
-  { day: 'Domingo', index: 0, hours: '9:00 – 00:00' },
+  { day: 'Martes', index: 2, hours: '8:30 – 1:00' },
+  { day: 'Miércoles', index: 3, hours: '8:30 – 1:00' },
+  { day: 'Jueves', index: 4, hours: '8:30 – 1:00' },
+  { day: 'Viernes', index: 5, hours: '8:30 – 1:00' },
+  { day: 'Sábado', index: 6, hours: '8:30 – 1:00' },
+  { day: 'Domingo', index: 0, hours: '8:30 – 1:00' },
 ];
 
 const notes = [
   { icon: 'lucide:coffee', text: 'Almuerzos y barra desde primera hora de la mañana' },
-  { icon: 'lucide:moon-star', text: 'Cenas solo los fines de semana' },
+  { icon: 'lucide:moon-star', text: 'En verano, abierto hasta tarde todos los días' },
   { icon: 'lucide:armchair', text: 'Servicio de barra y mesa, dentro y en terraza' },
 ];
 ---
@@ -248,15 +248,16 @@ const notes = [
 </style>
 
 <script>
-  // Convierte "9:00 – 20:00" en minutos de apertura/cierre
+  // Horario de verano en minutos. Cierre a la 1:00 → 1500 (25:00), es decir,
+  // la sesión cruza la medianoche y termina a la 1:00 del día siguiente.
   const ranges: Record<number, [number, number] | null> = {
     1: null, // Lunes cerrado
-    2: [540, 1200],
-    3: [540, 1200],
-    4: [540, 1200],
-    5: [540, 1200],
-    6: [540, 1440], // Sábado hasta medianoche
-    0: [540, 1440], // Domingo hasta medianoche
+    2: [510, 1500],
+    3: [510, 1500],
+    4: [510, 1500],
+    5: [510, 1500],
+    6: [510, 1500],
+    0: [510, 1500],
   };
 
   const now = new Date();
@@ -271,12 +272,18 @@ const notes = [
     if (pill) pill.hidden = false;
   }
 
-  // Estado abierto / cerrado
+  // Estado abierto / cerrado (contemplando la sesión que cruza la medianoche)
   const chip = document.getElementById('open-status');
-  const range = ranges[today];
   if (chip) {
+    const range = ranges[today];
+    const yesterday = ranges[(today + 6) % 7];
+    let isOpen = false;
+    if (range && minutes >= range[0] && minutes < range[1]) {
+      isOpen = true; // sesión de hoy
+    } else if (yesterday && yesterday[1] > 1440 && minutes < yesterday[1] - 1440) {
+      isOpen = true; // madrugada: sigue abierto de la sesión de ayer
+    }
     const text = chip.querySelector('.status-text');
-    const isOpen = range !== null && minutes >= range[0] && minutes < range[1];
     chip.classList.add(isOpen ? 'open' : 'closed');
     if (text) text.textContent = isOpen ? 'Abierto ahora' : 'Cerrado ahora';
     chip.hidden = false;

@@ -9,7 +9,7 @@ const links = [
     { label: 'Inicio', spy: 'inicio', icon: 'lucide:home' },
     { label: 'Especialidades', spy: 'especialidades', icon: 'lucide:utensils-crossed' },
     { label: 'Galería', spy: 'galeria', icon: 'lucide:image' },
-    { label: 'Carta', spy: 'carta', page: '/carta', icon: 'lucide:book-open' },
+    { label: 'Carta', spy: 'carta', page: '/carta', icon: 'lucide:book-open', cta: true },
     { label: 'Reseñas', spy: 'resenas', icon: 'lucide:star' },
     { label: 'Horarios', spy: 'horarios', icon: 'lucide:clock' },
     { label: 'Ubicación', spy: 'ubicacion', icon: 'lucide:map-pin' },
@@ -42,7 +42,8 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
                 href={hrefFor(link)}
                 data-tube-link
                 data-spy={link.spy}
-                class:list={['tube-link', { 'is-active': link.spy === activeSpy }]}
+                class:list={['tube-link', { 'is-active': link.spy === activeSpy, 'tube-cta': link.cta }]}
+                aria-label={link.cta ? `${link.label} — ver el menú` : undefined}
             >
                 <span class="hidden md:inline">{link.label}</span>
                 <span class="md:hidden flex items-center justify-center">
@@ -72,6 +73,32 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
     .tube-link:hover,
     .tube-link.is-active {
         color: var(--color-accent);
+    }
+
+    /* Botón destacado de Carta: dorado de marca para que se lea como la
+       acción principal entre el resto de iconos. Texto oscuro en todos
+       los estados (si no, el color "activo" lo dejaría ilegible). */
+    .tube-link.tube-cta {
+        background: var(--color-accent);
+        color: #1a120a;
+        font-weight: 700;
+        box-shadow: 0 4px 16px -4px rgb(201 169 97 / 0.6);
+    }
+    .tube-link.tube-cta:hover,
+    .tube-link.tube-cta.is-active {
+        color: #1a120a;
+        filter: brightness(1.07);
+    }
+    /* Latido suave un par de veces al entrar, para que la vista vaya ahí. */
+    .tube-link.tube-cta {
+        animation: cta-pulse 2.2s ease-in-out 0.6s 2;
+    }
+    @keyframes cta-pulse {
+        0%, 100% { box-shadow: 0 4px 16px -4px rgb(201 169 97 / 0.6); }
+        50% { box-shadow: 0 4px 22px 0 rgb(201 169 97 / 0.85); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .tube-link.tube-cta { animation: none; }
     }
 
     /* Lámpara: pastilla + barra superior con glow */
