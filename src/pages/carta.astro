@@ -5,9 +5,7 @@ import Footer from '../components/Footer.astro';
 import DishList from '../components/DishList.astro';
 import type { DishItem } from '../components/DishList.astro';
 import Ulala from '../components/Ulala.astro';
-import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
-import logoCasino from '../assets/img/logo-casino.png';
 
 const props = {
   restaurantName: 'El Casino',
@@ -267,7 +265,6 @@ const cervezas: DishItem[] = [
   <!-- Hero de la carta (sobre el fondo fotográfico fijo) -->
   <section class="carta-hero">
     <div class="carta-hero-inner reveal">
-      <Image src={logoCasino} alt="El Casino · El Bonillo" class="carta-logo" widths={[180, 240]} sizes="180px" />
       <p class="eyebrow">• Bar · Restaurante · El Bonillo •</p>
       <h1 class="carta-title">Nuestra carta</h1>
     </div>
@@ -586,13 +583,6 @@ const cervezas: DishItem[] = [
     margin: 0 auto;
     width: 100%;
     text-align: center;
-  }
-  .carta-logo {
-    width: 9rem;
-    height: auto;
-    margin: 0 auto 1.25rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 16px 40px -22px rgba(0, 0, 0, 0.9);
   }
   .carta-title {
     font-family: var(--font-serif-semibold);

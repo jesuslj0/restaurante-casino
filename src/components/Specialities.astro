@@ -9,19 +9,16 @@ import cuchara from '../assets/img/plato-cuchara.png';
 const specialities = [
   {
     src: brasa,
-    tag: 'Fritas',
     name: 'Landres fritas',
     desc: 'Crujientes por fuera y tiernas por dentro. Casquería tradicional manchega en todo su esplendor.',
   },
   {
     src: carne,
-    tag: 'A la plancha',
     name: 'Rabo de cerdo',
     desc: 'Tierno hasta el hueso, con todo el sabor de siempre. Un clásico que siempre convence.',
   },
   {
     src: cuchara,
-    tag: 'A la plancha',
     name: 'Solomillo a la pimienta',
     desc: 'Jugoso y al punto, con una salsa de pimienta que lo redondea todo. Carne como tiene que ser.',
   },
@@ -51,7 +48,6 @@ const specialities = [
               widths={[400, 800, 1000]}
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            <span class="spec-tag">{dish.tag}</span>
           </div>
           <div class="spec-body">
             <h3 class="spec-name">{dish.name}</h3>
@@ -134,21 +130,6 @@ const specialities = [
 
   .spec-card:hover .spec-img {
     transform: scale(1.06);
-  }
-
-  .spec-tag {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 1;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-    background: var(--color-accent);
-    color: #1a120a;
-    font-family: var(--font-sans-semibold);
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
   }
 
   .spec-body {

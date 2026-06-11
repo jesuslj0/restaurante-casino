@@ -17,9 +17,10 @@ const price = '3,50 €';
 const videoSrc = '/videoscrub/helados-scrub.mp4';
 ---
 
-<!-- La sección alta es la "pista" de scroll; el vídeo se queda fijo (sticky)
-     y avanza fotograma a fotograma según el avance del scroll. El sticky
-     cuelga directo de <main>, sin ancestros con filter/transform que lo rompan. -->
+<!-- Escritorio: la sección alta es la "pista" de scroll y el vídeo (sticky)
+     avanza fotograma a fotograma con el scroll. Móvil: bloque normal con el
+     vídeo en bucle (autoplay loop). El sticky cuelga directo de <main>, sin
+     ancestros con filter/transform que lo rompan. -->
 <section id="helados" class="ula-section" aria-label="Helados ULALÁ">
   <div class="ula-sticky">
     <video
@@ -66,16 +67,15 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
 </section>
 
 <style>
+  /* Móvil (base): bloque normal a pantalla; el vídeo se reproduce en bucle.
+     En escritorio (media query) pasa a ser la "pista" de scroll del scrub. */
   .ula-section {
     position: relative;
-    /* Pista de scroll: 100vh fijos + ~100vh de recorrido para el scrub */
-    height: 220vh;
   }
 
   .ula-sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+    position: relative;
+    height: 100svh;
     overflow: hidden;
     /* Teal de la escena de la carta: cualquier carga del vídeo se funde con
        el fondo fotográfico de la página. */
@@ -103,24 +103,26 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     inset: 0;
     pointer-events: none;
     background:
-      /* Borde inferior: funde largo y suave al teal de la carta (bloque de
-         vinos) y oscurece la franja para que el texto sea legible. */
+      /* Borde inferior: funde largo y muy gradual al teal de la carta (bloque
+         de vinos) y oscurece la franja para que el texto sea legible. */
       linear-gradient(
         to top,
         #0e1411 0%,
-        rgba(14, 20, 17, 0.92) 8%,
-        rgba(10, 16, 20, 0.78) 20%,
-        rgba(8, 14, 20, 0.5) 38%,
-        rgba(5, 12, 20, 0) 62%
+        rgba(14, 20, 17, 0.96) 6%,
+        rgba(12, 17, 18, 0.82) 18%,
+        rgba(8, 14, 20, 0.55) 34%,
+        rgba(5, 12, 20, 0.22) 52%,
+        rgba(5, 12, 20, 0) 72%
       ),
-      /* Borde superior: funde largo y suave al teal de la carta (postres). */
+      /* Borde superior: funde largo y muy gradual al teal de la carta (postres). */
       linear-gradient(
         to bottom,
         #0e1411 0%,
-        rgba(14, 20, 17, 0.85) 6%,
-        rgba(14, 20, 17, 0.5) 16%,
-        rgba(14, 20, 17, 0.2) 26%,
-        rgba(14, 20, 17, 0) 38%
+        rgba(14, 20, 17, 0.9) 5%,
+        rgba(14, 20, 17, 0.6) 14%,
+        rgba(14, 20, 17, 0.32) 26%,
+        rgba(14, 20, 17, 0.12) 38%,
+        rgba(14, 20, 17, 0) 50%
       );
   }
 
@@ -233,7 +235,52 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     transform: translateX(3px);
   }
 
+  /* Móvil: el vídeo vertical ocupa toda la pantalla, así que los cortes con
+     los bloques de la carta (Postres arriba, Vinos abajo) se notan más.
+     Fade mucho más largo y con muchas paradas (curva casi 'ease') para una
+     transición suave y sombreada que disimule el corte por completo. */
+  @media (max-width: 767px) {
+    .ula-veil {
+      background:
+        /* Borde inferior (texto + fusión con Vinos): muchas paradas para una
+           transición sombreada y suave, sin bandas. */
+        linear-gradient(
+          to top,
+          #0e1411 0%,
+          rgba(14, 20, 17, 0.96) 4%,
+          rgba(13, 18, 19, 0.82) 11%,
+          rgba(11, 16, 19, 0.6) 20%,
+          rgba(8, 14, 20, 0.4) 30%,
+          rgba(6, 13, 20, 0.22) 42%,
+          rgba(5, 12, 20, 0.08) 54%,
+          rgba(5, 12, 20, 0) 66%
+        ),
+        /* Borde superior (fusión con Postres): mismo fundido suave. */
+        linear-gradient(
+          to bottom,
+          #0e1411 0%,
+          rgba(14, 20, 17, 0.95) 4%,
+          rgba(14, 20, 17, 0.8) 9%,
+          rgba(14, 20, 17, 0.58) 16%,
+          rgba(14, 20, 17, 0.36) 24%,
+          rgba(14, 20, 17, 0.18) 32%,
+          rgba(14, 20, 17, 0.06) 40%,
+          rgba(14, 20, 17, 0) 48%
+        );
+    }
+  }
+
   @media (min-width: 768px) {
+    /* Escritorio: pista alta (100vh fijos + recorrido) y vídeo fijo (sticky)
+       que avanza fotograma a fotograma con el scroll. */
+    .ula-section {
+      height: 220vh;
+    }
+    .ula-sticky {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
     .ula-content {
       align-items: flex-start;
       text-align: left;
@@ -266,106 +313,143 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
   const video = section?.querySelector<HTMLVideoElement>('.ula-video');
 
   if (section && video) {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const desktopMq = window.matchMedia('(min-width: 768px)');
 
-    let duration = 0;
-    let target = 0; // segundo objetivo según el scroll
-    let current = 0; // segundo actual (interpolado para suavidad)
-    let rafId: number | null = null;
-    // En escritorio el "seek" sobre un vídeo pausado funciona sin cebar: lo
-    // damos por cebado para no llamar nunca a play() (eso reproducía frames al
-    // scrollear y provocaba parpadeos). El cebado solo se usa en táctil (iOS).
-    const isTouch = window.matchMedia('(pointer: coarse)').matches;
-    let primed = !isTouch;
-
-    const onMeta = () => {
-      duration = video.duration || 0;
-      if (reduce) {
-        // Un fotograma agradable con algo de derretido, sin scrub.
-        try {
-          video.currentTime = duration * 0.35;
-        } catch {}
-      }
-    };
+    let duration = video.duration || 0;
+    const onMeta = () => { duration = video.duration || 0; };
     if (video.readyState >= 1) onMeta();
     video.addEventListener('loadedmetadata', onMeta);
 
-    if (!reduce) {
-      // iOS no permite "seek" fino hasta que el vídeo se decodifica: lo
-      // "cebamos" con un play()/pause() en la primera interacción.
-      const prime = () => {
-        if (primed) return;
-        primed = true;
-        const p = video.play();
-        if (p && typeof p.then === 'function') {
-          p.then(() => {
-            video.pause();
-            // Devuelve el frame al punto del scroll para que no se quede
-            // en uno aleatorio tras el play().
-            try {
-              video.currentTime = current;
-            } catch {}
-          }).catch(() => {});
-        } else {
+    // El "seek" fino en táctil (iOS/iPad) necesita decodificar antes: cebamos
+    // con play()/pause(). En no-táctil se da por cebado (nunca se llama play()).
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    let primed = !isTouch;
+
+    // Dos fuentes: horizontal 16:9 para el scrub de escritorio, vertical 9:16
+    // para el bucle en móvil (así se ven todos los helados sin recortar).
+    const SRC_SCRUB = '/videoscrub/helados-scrub.mp4';
+    const SRC_LOOP = '/videoscrub/helados-loop-9x16.mp4';
+    const setSource = (url: string) => {
+      if (video.getAttribute('src') === url) return;
+      video.setAttribute('src', url);
+      duration = 0; // se recalcula en loadedmetadata del nuevo vídeo
+      video.load();
+    };
+
+    // ---------- MODO LOOP (móvil): autoplay en bucle ----------
+    const enableLoop = () => {
+      video.loop = true;
+      video.muted = true;
+      const p = video.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    };
+    const disableLoop = () => {
+      video.loop = false;
+      video.pause();
+    };
+
+    // ---------- MODO SCRUB (escritorio): avanza con el scroll ----------
+    let target = 0;
+    let current = 0;
+    let rafId: number | null = null;
+    let io: IntersectionObserver | null = null;
+    let scrollHandler: (() => void) | null = null;
+    let resizeHandler: (() => void) | null = null;
+    let touchHandler: (() => void) | null = null;
+
+    const prime = () => {
+      if (primed) return;
+      primed = true;
+      const p = video.play();
+      if (p && typeof p.then === 'function') {
+        p.then(() => {
           video.pause();
+          try { video.currentTime = current; } catch {}
+        }).catch(() => {});
+      } else {
+        video.pause();
+      }
+    };
+
+    const computeTarget = () => {
+      const rect = section.getBoundingClientRect();
+      const total = section.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-rect.top, 0), total);
+      const progress = total > 0 ? scrolled / total : 0;
+      target = progress * (duration || 0);
+    };
+
+    const loop = () => {
+      current += (target - current) * 0.25; // lerp → scrub fluido y con respuesta
+      if (Math.abs(target - current) < 0.005) current = target;
+      // Solo pedimos un nuevo "seek" si el anterior ya terminó (evita tirones).
+      if (duration && video.readyState >= 2 && !video.seeking) {
+        if (Math.abs(video.currentTime - current) > 0.01) {
+          try { video.currentTime = current; } catch {}
         }
-      };
+      }
+      rafId = requestAnimationFrame(loop);
+    };
+    const startRaf = () => { if (rafId == null) rafId = requestAnimationFrame(loop); };
+    const stopRaf = () => { if (rafId != null) { cancelAnimationFrame(rafId); rafId = null; } };
 
-      const computeTarget = () => {
-        const rect = section.getBoundingClientRect();
-        const total = section.offsetHeight - window.innerHeight;
-        const scrolled = Math.min(Math.max(-rect.top, 0), total);
-        const progress = total > 0 ? scrolled / total : 0;
-        target = progress * (duration || 0);
-      };
-
-      const loop = () => {
-        current += (target - current) * 0.25; // lerp → scrub fluido y con respuesta
-        if (Math.abs(target - current) < 0.005) current = target;
-        // Solo pedimos un nuevo "seek" si el anterior ya terminó: encadenarlos
-        // amontona peticiones y provoca micro-tirones.
-        if (duration && video.readyState >= 2 && !video.seeking) {
-          if (Math.abs(video.currentTime - current) > 0.01) {
-            try {
-              video.currentTime = current;
-            } catch {}
-          }
-        }
-        rafId = requestAnimationFrame(loop);
-      };
-
-      const start = () => {
-        if (rafId == null) rafId = requestAnimationFrame(loop);
-      };
-      const stop = () => {
-        if (rafId != null) {
-          cancelAnimationFrame(rafId);
-          rafId = null;
-        }
-      };
-
-      window.addEventListener(
-        'scroll',
-        () => {
-          prime();
-          computeTarget();
-        },
-        { passive: true }
-      );
-      window.addEventListener('resize', computeTarget, { passive: true });
-      window.addEventListener('touchstart', prime, { passive: true });
-
-      // Solo corre el rAF cuando la sección está en pantalla.
+    const enableScrub = () => {
+      video.loop = false;
+      video.pause();
+      current = 0;
+      target = 0;
+      scrollHandler = () => { prime(); computeTarget(); };
+      resizeHandler = () => computeTarget();
+      touchHandler = () => prime();
+      window.addEventListener('scroll', scrollHandler, { passive: true });
+      window.addEventListener('resize', resizeHandler, { passive: true });
+      window.addEventListener('touchstart', touchHandler, { passive: true });
       if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
+        io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => (entry.isIntersecting ? startRaf() : stopRaf()));
         });
         io.observe(section);
       } else {
-        start();
+        startRaf();
       }
-
       computeTarget();
-    }
+    };
+    const disableScrub = () => {
+      stopRaf();
+      if (io) { io.disconnect(); io = null; }
+      if (scrollHandler) { window.removeEventListener('scroll', scrollHandler); scrollHandler = null; }
+      if (resizeHandler) { window.removeEventListener('resize', resizeHandler); resizeHandler = null; }
+      if (touchHandler) { window.removeEventListener('touchstart', touchHandler); touchHandler = null; }
+    };
+
+    // ---------- MODO ESTÁTICO (reduce-motion): un fotograma quieto ----------
+    const enableStatic = () => {
+      video.loop = false;
+      video.pause();
+      const setFrame = () => { try { video.currentTime = (duration || 0) * 0.35; } catch {} };
+      if (duration) setFrame();
+      else video.addEventListener('loadedmetadata', setFrame, { once: true });
+    };
+
+    // ---------- Selección de modo (y reconfiguración al cambiar) ----------
+    const configure = () => {
+      disableScrub();
+      disableLoop();
+      if (reduceMq.matches) {
+        setSource(desktopMq.matches ? SRC_SCRUB : SRC_LOOP);
+        enableStatic();
+      } else if (desktopMq.matches) {
+        setSource(SRC_SCRUB);
+        enableScrub();
+      } else {
+        setSource(SRC_LOOP);
+        enableLoop();
+      }
+    };
+
+    configure();
+    desktopMq.addEventListener('change', configure);
+    reduceMq.addEventListener('change', configure);
   }
 </script>
