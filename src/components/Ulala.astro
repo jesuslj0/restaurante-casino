@@ -25,6 +25,7 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     <video
       class="ula-video"
       src={videoSrc}
+      poster="/videoscrub/helados-poster.jpg"
       muted
       playsinline
       preload="auto"
@@ -87,6 +88,11 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     height: 100%;
     object-fit: cover;
     display: block;
+    /* Capa GPU propia: evita que el navegador re-rasterice el vídeo en cada
+       frame de scroll (causa de los parpadeos / "cambios de luz"). */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
   }
 
   /* Velo: oscurece la franja inferior para que el texto sea legible y deja
@@ -105,8 +111,14 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
         rgba(5, 12, 20, 0.7) 26%,
         rgba(5, 12, 20, 0) 56%
       ),
-      /* Borde superior: funde al marrón del suelo de la galería. */
-      linear-gradient(to bottom, var(--color-secondary) 0%, rgba(31, 21, 12, 0) 13%);
+      /* Borde superior: funde al marrón del suelo de la galería, más gradual. */
+      linear-gradient(
+        to bottom,
+        var(--color-secondary) 0%,
+        rgba(31, 21, 12, 0.7) 9%,
+        rgba(31, 21, 12, 0.3) 18%,
+        rgba(31, 21, 12, 0) 28%
+      );
   }
 
   .ula-content {
@@ -178,9 +190,9 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     font-family: var(--font-sans-semibold);
     color: var(--color-text);
     border: 1px solid rgba(255, 255, 255, 0.18);
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    /* Fondo semisólido en vez de backdrop-filter: el blur sobre el vídeo
+       fuerza un re-muestreo en cada frame de scroll y provoca parpadeos. */
+    background: rgba(8, 14, 22, 0.55);
   }
 
   .ula-cta {
@@ -253,7 +265,11 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     let target = 0; // segundo objetivo según el scroll
     let current = 0; // segundo actual (interpolado para suavidad)
     let rafId: number | null = null;
-    let primed = false;
+    // En escritorio el "seek" sobre un vídeo pausado funciona sin cebar: lo
+    // damos por cebado para no llamar nunca a play() (eso reproducía frames al
+    // scrollear y provocaba parpadeos). El cebado solo se usa en táctil (iOS).
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    let primed = !isTouch;
 
     const onMeta = () => {
       duration = video.duration || 0;
@@ -275,7 +291,14 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
         primed = true;
         const p = video.play();
         if (p && typeof p.then === 'function') {
-          p.then(() => video.pause()).catch(() => {});
+          p.then(() => {
+            video.pause();
+            // Devuelve el frame al punto del scroll para que no se quede
+            // en uno aleatorio tras el play().
+            try {
+              video.currentTime = current;
+            } catch {}
+          }).catch(() => {});
         } else {
           video.pause();
         }
