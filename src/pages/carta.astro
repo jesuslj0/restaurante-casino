@@ -737,7 +737,15 @@ const cervezas: DishItem[] = [
   }
   .carta-bg {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* Altura estable: con 'inset: 0' el fondo seguía al viewport dinámico del
+       móvil y se reencuadraba cada vez que la barra del navegador aparecía o
+       desaparecía al alternar el scroll. 'lvh' (large viewport) lo fija al
+       tamaño máximo, así no se redimensiona ni "salta". */
+    height: 100vh;
+    height: 100lvh;
     z-index: -1;
     overflow: hidden;
     background: #0e1411;

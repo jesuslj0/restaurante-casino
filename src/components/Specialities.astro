@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import brasa from '../assets/img/plato-brasa.png';
-import carne from '../assets/img/plato-carne.png';
 import cuchara from '../assets/img/plato-cuchara.png';
 
 // Especialidades destacadas: fotos reales del local enlazadas a platos de la carta.
@@ -11,11 +10,6 @@ const specialities = [
     src: brasa,
     name: 'Landres fritas',
     desc: 'Crujientes por fuera y tiernas por dentro. Casquería tradicional manchega en todo su esplendor.',
-  },
-  {
-    src: carne,
-    name: 'Rabo de cerdo',
-    desc: 'Tierno hasta el hueso, con todo el sabor de siempre. Un clásico que siempre convence.',
   },
   {
     src: cuchara,
@@ -161,7 +155,9 @@ const specialities = [
       padding: 7rem 3rem;
     }
     .spec-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 46rem;
+      margin-inline: auto;
     }
   }
 </style>
