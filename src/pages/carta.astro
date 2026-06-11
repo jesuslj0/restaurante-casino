@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DishList from '../components/DishList.astro';
 import type { DishItem } from '../components/DishList.astro';
+import Ulala from '../components/Ulala.astro';
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import logoCasino from '../assets/img/logo-casino.png';
@@ -468,6 +469,9 @@ const cervezas: DishItem[] = [
       </div>
     </div>
   </section>
+
+  <!-- Helados ULALÁ (estacional, verano) -->
+  <Ulala />
 
   <!-- 09 · Vinos -->
   <section id="vinos" class="menu-block block-dark">

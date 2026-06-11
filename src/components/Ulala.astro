@@ -57,7 +57,7 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
         <span class="ula-price">
           {price}<small>/ paleta</small>
         </span>
-        <a href="#contacto" class="primary-btn ula-btn">
+        <a href="/#contacto" class="primary-btn ula-btn">
           Pruébalas este verano <Icon name="lucide:arrow-right" />
         </a>
       </div>
@@ -77,8 +77,9 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     top: 0;
     height: 100vh;
     overflow: hidden;
-    /* Mismo azul frío del vídeo: cualquier letterbox o carga se funde */
-    background: #050c14;
+    /* Teal de la escena de la carta: cualquier carga del vídeo se funde con
+       el fondo fotográfico de la página. */
+    background: #0e1411;
   }
 
   .ula-video {
@@ -102,22 +103,22 @@ const videoSrc = '/videoscrub/helados-scrub.mp4';
     inset: 0;
     pointer-events: none;
     background:
-      /* Borde inferior: funde al marrón del techo de "Sobre nosotros"
-         y oscurece la franja para que el texto sea legible. */
+      /* Borde inferior: funde al teal de la escena de la carta (bloque de
+         vinos) y oscurece la franja para que el texto sea legible. */
       linear-gradient(
         to top,
-        var(--color-secondary) 0%,
-        rgba(31, 21, 12, 0.9) 9%,
+        #0e1411 0%,
+        rgba(14, 20, 17, 0.9) 9%,
         rgba(5, 12, 20, 0.7) 26%,
         rgba(5, 12, 20, 0) 56%
       ),
-      /* Borde superior: funde al marrón del suelo de la galería, más gradual. */
+      /* Borde superior: funde al teal de la carta (bloque de postres), más gradual. */
       linear-gradient(
         to bottom,
-        var(--color-secondary) 0%,
-        rgba(31, 21, 12, 0.7) 9%,
-        rgba(31, 21, 12, 0.3) 18%,
-        rgba(31, 21, 12, 0) 28%
+        #0e1411 0%,
+        rgba(14, 20, 17, 0.7) 9%,
+        rgba(14, 20, 17, 0.3) 18%,
+        rgba(14, 20, 17, 0) 28%
       );
   }
 
