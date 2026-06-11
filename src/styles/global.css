@@ -30,6 +30,10 @@ html {
 body {
     @apply bg-bg text-text;
     font-family: var(--font-sans);
+    /* Evita scroll/recortes horizontales por algún elemento que se pase de
+       ancho. 'clip' (no 'hidden') no crea contenedor de scroll, así que no
+       rompe los position: sticky de la carta ni de la sección de helados. */
+    overflow-x: clip;
 }
 
 /* Offset para el header fijo al navegar por anclas */

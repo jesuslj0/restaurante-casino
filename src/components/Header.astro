@@ -25,7 +25,7 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
 
 <header
     id="tube-navbar"
-    class="fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:mb-0 sm:pt-6 pointer-events-none px-4"
+    class="fixed bottom-0 sm:top-0 left-1/2 -translate-x-1/2 z-50 mb-6 sm:mb-0 sm:pt-6 pointer-events-none px-2 sm:px-4 max-w-full"
 >
     <nav class="tube-nav relative pointer-events-auto flex items-center gap-1 sm:gap-2 bg-secondary/80 border border-white/10 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         <!-- Lámpara deslizante (efecto tubelight) -->
@@ -60,7 +60,9 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
         cursor: pointer;
         font-size: 0.875rem;
         font-weight: 600;
-        padding: 0.5rem 1rem;
+        /* Padding lateral ajustado en móvil (solo iconos) para que los 8
+           entren sin cortarse en pantallas estrechas como el S23. */
+        padding: 0.5rem 0.55rem;
         border-radius: 9999px;
         color: rgb(225 220 201 / 0.8);
         transition: color 0.2s ease;
@@ -69,6 +71,13 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
     }
     @media (min-width: 768px) {
         .tube-link { padding: 0.5rem 1.25rem; }
+    }
+
+    /* Móvil: separa la barra de la zona de gestos del teléfono. */
+    @media (max-width: 639px) {
+        #tube-navbar {
+            margin-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+        }
     }
     .tube-link:hover,
     .tube-link.is-active {

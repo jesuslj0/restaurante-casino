@@ -79,7 +79,9 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
         to bottom, rgba(0,0,0,0.75) 0%, transparent 25%,  transparent 60%,
         rgba(10,10,10,0.85) 88%, var(--color-bg) 100%)
       rgba(0, 0, 0, 0.55);
-    height: 100dvh;
+    /* min-height (no height fijo): si el contenido no cabe en pantallas
+       pequeñas, crece en vez de recortar el logo por arriba. */
+    min-height: 100dvh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -92,17 +94,19 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
+    /* Gaps compactos en móvil; se agrandan en escritorio (media query). */
+    gap: 2.5rem;
     width: 100%;
     max-width: 72rem;
-    padding: 5rem 1.5rem 2rem;
+    /* Padding inferior amplio para que los chips no queden bajo el navbar. */
+    padding: 4.5rem 1.5rem 6.5rem;
   }
 
   .hero-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
     width: 100%;
   }
 
