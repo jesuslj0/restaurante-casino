@@ -1,0 +1,341 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// Sabores destacados: comunican la variedad (fruta, cremosos, rellenos y con alcohol).
+const flavors = [
+  'Mango',
+  'Sandía',
+  'Mojito',
+  'Tinto de verano',
+  'Coco y leche condensada',
+  'Fresa con Nutella',
+  'Café bombón',
+  'Maracuyá',
+];
+
+const price = '3,50 €';
+const videoSrc = '/videoscrub/helados-scrub.mp4';
+---
+
+<!-- La sección alta es la "pista" de scroll; el vídeo se queda fijo (sticky)
+     y avanza fotograma a fotograma según el avance del scroll. El sticky
+     cuelga directo de <main>, sin ancestros con filter/transform que lo rompan. -->
+<section id="helados" class="ula-section" aria-label="Helados ULALÁ">
+  <div class="ula-sticky">
+    <video
+      class="ula-video"
+      src={videoSrc}
+      muted
+      playsinline
+      preload="auto"
+      aria-hidden="true"
+    ></video>
+
+    <div class="ula-veil" aria-hidden="true"></div>
+
+    <div class="ula-content">
+      <p class="ula-eyebrow reveal">• Novedad · Solo en verano •</p>
+
+      <h2 class="ula-title reveal" style="--reveal-delay:80ms">
+        El verano sabe a <span class="ula-brand">ULALÁ</span>
+      </h2>
+
+      <p class="ula-lead reveal" style="--reveal-delay:160ms">
+        Paletas artesanales de fruta 100% natural, sin aditivos ni conservantes.
+        De fruta, cremosas, rellenas o con un toque de alcohol: frescura y sabor
+        auténtico en cada bocado.
+      </p>
+
+      <ul class="ula-flavors reveal" style="--reveal-delay:240ms">
+        {flavors.map((f) => (
+          <li class="ula-chip">{f}</li>
+        ))}
+      </ul>
+
+      <div class="ula-cta reveal" style="--reveal-delay:320ms">
+        <span class="ula-price">
+          {price}<small>/ paleta</small>
+        </span>
+        <a href="#contacto" class="primary-btn ula-btn">
+          Pruébalas este verano <Icon name="lucide:arrow-right" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ula-section {
+    position: relative;
+    /* Pista de scroll: 100vh fijos + ~100vh de recorrido para el scrub */
+    height: 220vh;
+  }
+
+  .ula-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    /* Mismo azul frío del vídeo: cualquier letterbox o carga se funde */
+    background: #050c14;
+  }
+
+  .ula-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Velo: oscurece la franja inferior para que el texto sea legible y deja
+     ver los helados (parte superior). Funde arriba y abajo con el fondo. */
+  .ula-veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      /* Borde inferior: funde al marrón del techo de "Sobre nosotros"
+         y oscurece la franja para que el texto sea legible. */
+      linear-gradient(
+        to top,
+        var(--color-secondary) 0%,
+        rgba(31, 21, 12, 0.9) 9%,
+        rgba(5, 12, 20, 0.7) 26%,
+        rgba(5, 12, 20, 0) 56%
+      ),
+      /* Borde superior: funde al marrón del suelo de la galería. */
+      linear-gradient(to bottom, var(--color-secondary) 0%, rgba(31, 21, 12, 0) 13%);
+  }
+
+  .ula-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ula-eyebrow {
+    color: var(--color-accent);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .ula-title {
+    font-family: var(--font-serif-semibold);
+    color: var(--color-text);
+    font-size: clamp(2rem, 1.3rem + 3.4vw, 3.5rem);
+    line-height: 1.08;
+    margin: 0.75rem 0 0;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
+  }
+
+  /* Guiño a los colores de marca ULALÁ (rojo, amarillo, turquesa) */
+  .ula-brand {
+    background: linear-gradient(95deg, #e63946 0%, #f4a300 45%, #2ec4b6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-style: normal;
+  }
+
+  .ula-lead {
+    color: var(--color-text);
+    font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
+    line-height: 1.65;
+    max-width: 38rem;
+    margin: 1rem 0 0;
+    opacity: 0.92;
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.6);
+  }
+
+  .ula-flavors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+
+  .ula-chip {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-family: var(--font-sans-semibold);
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .ula-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+  }
+
+  .ula-price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    font-family: var(--font-serif-semibold);
+    font-size: 1.75rem;
+    color: var(--color-accent);
+  }
+
+  .ula-price small {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-text-secondary);
+  }
+
+  .ula-btn :global(svg) {
+    transition: transform 0.25s ease;
+  }
+  .ula-btn:hover :global(svg) {
+    transform: translateX(3px);
+  }
+
+  @media (min-width: 768px) {
+    .ula-content {
+      align-items: flex-start;
+      text-align: left;
+      padding: 0 3rem 5rem;
+    }
+    .ula-flavors {
+      justify-content: flex-start;
+    }
+    .ula-cta {
+      justify-content: flex-start;
+    }
+  }
+
+  /* Sin scrub para quien prefiere menos movimiento: vídeo quieto en un
+     fotograma con algo de derretido y contenido siempre visible. */
+  @media (prefers-reduced-motion: reduce) {
+    .ula-section {
+      height: auto;
+    }
+    .ula-sticky {
+      position: relative;
+      height: auto;
+      min-height: 100vh;
+    }
+  }
+</style>
+
+<script>
+  const section = document.getElementById('helados');
+  const video = section?.querySelector<HTMLVideoElement>('.ula-video');
+
+  if (section && video) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let duration = 0;
+    let target = 0; // segundo objetivo según el scroll
+    let current = 0; // segundo actual (interpolado para suavidad)
+    let rafId: number | null = null;
+    let primed = false;
+
+    const onMeta = () => {
+      duration = video.duration || 0;
+      if (reduce) {
+        // Un fotograma agradable con algo de derretido, sin scrub.
+        try {
+          video.currentTime = duration * 0.35;
+        } catch {}
+      }
+    };
+    if (video.readyState >= 1) onMeta();
+    video.addEventListener('loadedmetadata', onMeta);
+
+    if (!reduce) {
+      // iOS no permite "seek" fino hasta que el vídeo se decodifica: lo
+      // "cebamos" con un play()/pause() en la primera interacción.
+      const prime = () => {
+        if (primed) return;
+        primed = true;
+        const p = video.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => video.pause()).catch(() => {});
+        } else {
+          video.pause();
+        }
+      };
+
+      const computeTarget = () => {
+        const rect = section.getBoundingClientRect();
+        const total = section.offsetHeight - window.innerHeight;
+        const scrolled = Math.min(Math.max(-rect.top, 0), total);
+        const progress = total > 0 ? scrolled / total : 0;
+        target = progress * (duration || 0);
+      };
+
+      const loop = () => {
+        current += (target - current) * 0.25; // lerp → scrub fluido y con respuesta
+        if (Math.abs(target - current) < 0.005) current = target;
+        // Solo pedimos un nuevo "seek" si el anterior ya terminó: encadenarlos
+        // amontona peticiones y provoca micro-tirones.
+        if (duration && video.readyState >= 2 && !video.seeking) {
+          if (Math.abs(video.currentTime - current) > 0.01) {
+            try {
+              video.currentTime = current;
+            } catch {}
+          }
+        }
+        rafId = requestAnimationFrame(loop);
+      };
+
+      const start = () => {
+        if (rafId == null) rafId = requestAnimationFrame(loop);
+      };
+      const stop = () => {
+        if (rafId != null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      };
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          prime();
+          computeTarget();
+        },
+        { passive: true }
+      );
+      window.addEventListener('resize', computeTarget, { passive: true });
+      window.addEventListener('touchstart', prime, { passive: true });
+
+      // Solo corre el rAF cuando la sección está en pantalla.
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
+        });
+        io.observe(section);
+      } else {
+        start();
+      }
+
+      computeTarget();
+    }
+  }
+</script>
