@@ -117,12 +117,12 @@ const ibericos: DishItem[] = [
 
 /* ---------- HAMBURGUESAS ---------- */
 const hamburguesas = [
-  { name: 'Normal', desc: 'Carne de cerdo, lechuga, tomate y queso', price: '6,00 €' },
-  { name: 'Completa', desc: 'Carne de cerdo, lechuga, tomate, queso, bacon y huevo frito', price: '7,50 €' },
-  { name: 'Angus', desc: 'Carne angus, lechuga, tomate y queso', price: '9,00 €' },
-  { name: 'Angus completa', desc: 'Angus, lechuga, tomate, queso, bacon y huevo frito', price: '11,00 €' },
-  { name: 'Crispy', desc: 'Pollo crujiente, lechuga, tomate y queso', price: '7,00 €' },
-  { name: 'Crispy completa', desc: 'Pollo, lechuga, tomate, queso, bacon y huevo frito', price: '9,00 €' },
+  { name: 'Normal', desc: 'Carne de cerdo, lechuga, tomate y queso', price: '6,00 €', icon: 'lucide:ham' },
+  { name: 'Completa', desc: 'Carne de cerdo, lechuga, tomate, queso, bacon y huevo frito', price: '7,50 €', icon: 'lucide:ham' },
+  { name: 'Angus', desc: 'Carne angus, lechuga, tomate y queso', price: '9,00 €', icon: 'lucide:beef' },
+  { name: 'Angus completa', desc: 'Angus, lechuga, tomate, queso, bacon y huevo frito', price: '11,00 €', icon: 'lucide:beef' },
+  { name: 'Crispy', desc: 'Pollo crujiente, lechuga, tomate y queso', price: '7,00 €', icon: 'lucide:drumstick' },
+  { name: 'Crispy completa', desc: 'Pollo, lechuga, tomate, queso, bacon y huevo frito', price: '9,00 €', icon: 'lucide:drumstick' },
 ];
 
 /* ---------- BOCADILLOS (E / M / MT) ---------- */
@@ -361,7 +361,7 @@ const cervezas: DishItem[] = [
       <div class="burger-grid">
         {hamburguesas.map((b, i) => (
           <article class="burger-card reveal" style={`--reveal-delay:${i * 70}ms`}>
-            <div class="burger-icon"><Icon name="lucide:beef" /></div>
+            <div class="burger-icon"><Icon name={b.icon} /></div>
             <div class="burger-body">
               <h3 class="burger-name">{b.name}</h3>
               <p class="burger-desc">{b.desc}</p>
@@ -409,7 +409,7 @@ const cervezas: DishItem[] = [
               {bocadillos.map((b) => (
                 <tr>
                   <th scope="row">{b.name}</th>
-                  <td><span class="boc-ab">E</span>{b.e} €</td>
+                  <td class="boc-entero"><span class="boc-ab">E</span>{b.e} €</td>
                   <td><span class="boc-ab">M</span>{b.m} €</td>
                   <td><span class="boc-ab">MT</span>{b.mt} €</td>
                 </tr>
@@ -899,11 +899,12 @@ const cervezas: DishItem[] = [
   }
   .boc-table tbody td {
     text-align: right;
-    color: var(--color-accent);
+    color: var(--color-accent-2);
     font-family: var(--font-sans-semibold);
     white-space: nowrap;
     padding: 0.7rem 0 0.7rem 1rem;
   }
+  .boc-table tbody td.boc-entero { color: var(--color-accent); }
   .boc-table tbody tr:not(:last-child) th,
   .boc-table tbody tr:not(:last-child) td {
     border-bottom: 1px dotted rgba(225, 220, 201, 0.16);

@@ -34,11 +34,10 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
         </div>
 
         <div class="hero-text">
-          <p class="text-accent font-sans-semibold tracking-widest uppercase text-sm mb-3">
+          <p class="text-accent-2 font-sans-semibold tracking-widest uppercase text-sm mb-3">
             • {restaurantName} •
           </p>
-          <h1 class="text-text text-4xl md:text-6xl font-serif-semibold leading-tight mb-4">
-            {title}
+          <h1 class="hero-title text-text text-4xl md:text-6xl leading-tight mb-4" set:html={title.replace('Plaza Mayor', '<span class="title-highlight">Plaza Mayor</span>')}>
           </h1>
           <p class="text-text-secondary font-sans text-base opacity-80 mb-8 max-w-md">
             {subtitle}
@@ -141,6 +140,15 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
     align-items: center;
     text-align: center;
     width: 100%;
+  }
+
+  .hero-title {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+  }
+
+  .hero-text :global(.title-highlight) {
+    color: rgb(232 210 150);
   }
 
   .hero-buttons {

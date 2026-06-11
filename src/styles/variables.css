@@ -10,4 +10,8 @@
 
     --color-accent: rgb(201 169 97);
     --color-accent-25: rgb(201 169 77 / 0.25);
+
+    /* Acento secundario cobre: para etiquetas/kickers y detalles, complementa al dorado */
+    --color-accent-2: rgb(166 110 72);
+    --color-accent-2-25: rgb(166 110 72 / 0.25);
 }

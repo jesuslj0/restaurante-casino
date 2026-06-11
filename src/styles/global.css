@@ -16,10 +16,10 @@
     --color-accent-25: rgb(201 169 77 / 0.25);
 
     --font-sans: "Manrope", system-ui, sans-serif;
-    --font-serif: "Playfair", serif;
+    --font-serif: "Fraunces", serif;
 
     --font-sans-semibold: "Manrope SemiBold", system-ui, sans-serif;
-    --font-serif-semibold: "Playfair SemiBold", serif;
+    --font-serif-semibold: "Fraunces", serif;
 }
 
 html {
@@ -39,7 +39,7 @@ body {
 
 /* ---------- Utilidades de sección compartidas ---------- */
 .eyebrow {
-    color: var(--color-accent);
+    color: var(--color-accent-2);
     font-family: var(--font-sans-semibold);
     font-size: 0.75rem;
     font-weight: 600;
@@ -49,10 +49,16 @@ body {
 
 .section-title {
     font-family: var(--font-serif-semibold);
+    font-weight: 480;
     color: var(--color-text);
     font-size: clamp(2rem, 1.4rem + 2.8vw, 3.25rem);
     line-height: 1.1;
     margin: 0.75rem 0 0;
+}
+
+/* Fragmento destacado dentro de los títulos: amarillo cálido suave */
+.title-highlight {
+    color: rgb(232 210 150);
 }
 
 .section-lead {
