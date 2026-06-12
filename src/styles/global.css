@@ -42,13 +42,33 @@ body {
 }
 
 /* ---------- Utilidades de sección compartidas ---------- */
-.eyebrow {
-    color: var(--color-accent-2);
+/* Chip con borde metalizado y fondo de oro oscuro (estilo del hero).
+   Compartido por todos los eyebrow de las secciones. */
+.eyebrow,
+.metal-chip {
+    display: inline-block;
+    color: #f3e3b0;
     font-family: var(--font-sans-semibold);
-    font-size: 0.75rem;
+    font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.22em;
     text-transform: uppercase;
+    padding: 0.22rem 0.7rem;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    background:
+        linear-gradient(135deg, #4a3a14 0%, #6e561d 45%, #3a2c10 100%) padding-box,
+        linear-gradient(135deg,
+            var(--color-accent) 0%,
+            #f3e3b0 25%,
+            var(--color-accent-2) 50%,
+            #f3e3b0 75%,
+            var(--color-accent) 100%) border-box;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+    box-shadow:
+        0 1px 0 rgba(255, 240, 200, 0.15) inset,
+        0 -1px 2px rgba(0, 0, 0, 0.4) inset,
+        0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .section-title {
