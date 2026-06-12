@@ -1,0 +1,133 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import logo from '../assets/img/logo-casino.png';
+
+const props = {
+	restaurantName: 'El Casino',
+	location: 'Plaza Mayor, Nº5 - El Bonillo (AB)',
+};
+
+const socialProps = {
+	facebookUsername: 'elcasino',
+	instagramUsername: 'casinoelbonillo',
+	xUsername: 'el_casino',
+};
+---
+
+<Layout
+	title="Página no encontrada · El Casino de El Bonillo"
+	description="La página que buscas no existe o se ha movido. Vuelve al inicio del Casino de El Bonillo."
+>
+	<Header slot="header" />
+
+	<section class="error-section">
+		<div class="error-inner">
+			<div class="logo-wrapper">
+				<Image
+					src={logo}
+					alt={`Logo ${props.restaurantName}`}
+					class="error-logo"
+					loading="eager"
+				/>
+			</div>
+
+			<p class="text-accent-2 font-sans-semibold tracking-widest uppercase text-sm mb-3">
+				• Error 404 •
+			</p>
+
+			<h1 class="error-code text-text">404</h1>
+
+			<h2 class="error-title text-text text-2xl md:text-3xl leading-tight mb-4">
+				Esta mesa no existe
+			</h2>
+
+			<p class="text-text-secondary font-sans text-base opacity-80 mb-8 max-w-md">
+				La página que buscas no está disponible o se ha movido. Te invitamos a volver
+				al inicio o a echar un vistazo a nuestra carta.
+			</p>
+
+			<div class="error-buttons flex gap-2 flex-wrap justify-center">
+				<a href="/" class="primary-btn">
+					Volver al inicio <Icon name="lucide:home" />
+				</a>
+				<a href="/carta" class="secondary-btn">
+					Ver carta <Icon name="lucide:book-open" />
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<Footer
+		slot="footer"
+		restaurantName={props.restaurantName}
+		location={props.location}
+		facebookUsername={socialProps.facebookUsername}
+		instagramUsername={socialProps.instagramUsername}
+		xUsername={socialProps.xUsername}
+	/>
+</Layout>
+
+<style>
+	.error-section {
+		min-height: 100dvh;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.error-inner {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+		max-width: 40rem;
+		padding: 7rem 1.5rem 5rem;
+	}
+
+	.logo-wrapper {
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 1.5rem;
+	}
+
+	.error-logo {
+		width: 120px;
+		height: 120px;
+		object-fit: contain;
+		border-radius: 100%;
+		transition:
+			transform 0.3s ease,
+			filter 0.3s ease;
+	}
+
+	.error-logo:hover {
+		transform: translateY(-2px);
+		filter: drop-shadow(0 8px 20px var(--color-accent-25));
+	}
+
+	.error-code {
+		font-family: 'Fraunces', serif;
+		font-weight: 600;
+		font-size: clamp(5rem, 18vw, 9rem);
+		line-height: 1;
+		letter-spacing: 0.02em;
+		background: linear-gradient(135deg, rgb(232 210 150), var(--color-accent));
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		margin-bottom: 0.5rem;
+	}
+
+	.error-title {
+		font-family: 'Fraunces', serif;
+		font-weight: 600;
+	}
+</style>
