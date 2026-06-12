@@ -15,6 +15,7 @@ const waHref = `https://wa.me/${phoneIntl}?text=${waText}`;
 
 <section class="cta-section">
   <div class="cta-inner reveal">
+    <div class="cta-bg" aria-hidden="true"></div>
     <p class="eyebrow">• Plaza Mayor, 5 · El Bonillo •</p>
     <h2 class="cta-title">Un sitio al que <span class="title-highlight">se vuelve</span></h2>
 
@@ -45,6 +46,35 @@ const waHref = `https://wa.me/${phoneIntl}?text=${waText}`;
       var(--color-secondary);
     border: 1px solid var(--color-accent-25);
     box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.95);
+  }
+
+  /* Fondo: la Plaza Mayor como pintura monocromo marrón, casi fundida con el panel */
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/images/plaza-mayor-wide.png');
+    background-size: cover;
+    background-position: center 65%;
+    filter: sepia(1) brightness(0.45) contrast(0.9) saturate(0.7);
+    opacity: 0.80;
+    mix-blend-mode: luminosity;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Velo para fundir aún más la imagen con el color del panel */
+  .cta-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 150% at 50% 0%, transparent 0%, var(--color-secondary) 85%),
+      linear-gradient(180deg, transparent 60%, color-mix(in srgb, var(--color-secondary) 70%, transparent) 100%);
+  }
+
+  .cta-inner > :not(.cta-bg) {
+    position: relative;
+    z-index: 1;
   }
 
   .cta-title {

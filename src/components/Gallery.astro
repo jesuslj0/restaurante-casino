@@ -11,34 +11,39 @@ const slides = [
     desc: 'En plena Plaza Mayor, un lugar con mucha historia.',
   },
   {
-    src: '/images/20260609_123711.jpg',
+    src: '/images/casino-salon.jpg',
     alt: 'El salón de El Casino',
     title: 'El salón',
     desc: 'Amplio y acogedor, para comer agusto y sin prisas.',
+    wide: true,
+    bright: true,
   },
   {
-    src: '/images/20260609_123728.jpg',
+    src: '/images/casino-mesa-puesta.jpg',
     alt: 'Mesas preparadas en El Casino',
     title: 'Mesa puesta',
     desc: 'Lista para celebraciones, comidas familiares o el menú del día.',
   },
   {
-    src: '/images/20260609_123750.jpg',
+    src: '/images/casino-interior.jpg',
     alt: 'Interior de El Casino',
     title: 'Nuestro interior',
     desc: 'Detalles de toda la vida con un aire actual.',
   },
   {
-    src: '/images/20260609_123844.jpg',
+    src: '/images/casino-barra.jpg',
     alt: 'Barra e iluminación de El Casino',
     title: 'La barra',
     desc: 'Para un café, una caña o una buena charla.',
   },
   {
-    src: gente.src,
-    alt: 'Gente disfrutando en El Casino',
+    src: '/images/charla-barra.png',
+    alt: 'Charla en la barra de El Casino',
+    portrait: true,
     title: 'Momentos',
     desc: 'Lo que de verdad se queda: la gente.',
+    extra: gente.src,
+    extraAlt: 'Gente disfrutando en El Casino',
   },
 ];
 ---
@@ -53,20 +58,32 @@ const slides = [
 
     <div class="gal-rows">
       {slides.map((s, i) => (
-        <article class="gal-row reveal" style={`--reveal-delay:${(i % 2) * 120}ms`}>
-          <figure class="gal-figure">
+        <article class:list={['gal-row reveal', { 'gal-row--wide': s.wide }]} style={`--reveal-delay:${(i % 2) * 120}ms`}>
+          <figure class:list={['gal-figure', { 'gal-figure--portrait': s.portrait }]}>
             <img
               src={s.src}
               alt={s.alt}
               class="gal-img"
               loading={i === 0 ? 'eager' : 'lazy'}
               decoding="async"
+              style={s.bright && "filter: brightness(1.5)"}
             />
           </figure>
           <div class="gal-copy">
             <span class="gal-num">{String(i + 1).padStart(2, '0')}</span>
             <h3 class="gal-title">{s.title}</h3>
             <p class="gal-desc">{s.desc}</p>
+            {s.extra && (
+              <figure class="gal-extra">
+                <img
+                  src={s.extra}
+                  alt={s.extraAlt}
+                  class="gal-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            )}
           </div>
         </article>
       ))}
@@ -123,6 +140,8 @@ const slides = [
     pointer-events: none;
   }
 
+  .gal-figure--portrait { aspect-ratio: 4 / 5; }
+
   .gal-img {
     width: 100%;
     height: 100%;
@@ -166,6 +185,19 @@ const slides = [
     max-width: 32rem;
   }
 
+  .gal-extra {
+    margin: 1.5rem 0 0;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    aspect-ratio: 16 / 10;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.95);
+  }
+
+  .gal-extra .gal-img {
+    aspect-ratio: 16 / 10;
+  }
+
   @media (min-width: 768px) {
     .gal-section { padding: 7rem 0; }
     .gal-inner { padding: 0 3rem; }
@@ -177,7 +209,17 @@ const slides = [
       gap: 3.5rem;
     }
 
+    .gal-row--wide {
+      grid-template-columns: 1.45fr 0.85fr;
+    }
+
+    /* Si la imagen va a la derecha (fila par), la columna ancha es la segunda */
+    .gal-row--wide:nth-child(even) {
+      grid-template-columns: 0.85fr 1.45fr;
+    }
+
     .gal-figure { aspect-ratio: 3 / 2; }
+    .gal-figure--portrait { aspect-ratio: 4 / 5; }
 
     /* Filas pares: imagen a la derecha, texto a la izquierda */
     .gal-row:nth-child(even) .gal-figure { order: 2; }
