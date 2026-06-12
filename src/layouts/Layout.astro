@@ -25,6 +25,8 @@ const restaurantSchema = {
 		'Bar y restaurante en la Plaza Mayor de El Bonillo. Cocina casera y de mercado: almuerzos, menú del día y cenas de fin de semana.',
 	servesCuisine: ['Española', 'Mediterránea', 'Casera'],
 	priceRange: '€€',
+	image: 'https://casinoelbonillo.com/og-logo.png',
+	telephone: '+34 621 68 51 32',
 	address: {
 		'@type': 'PostalAddress',
 		streetAddress: 'Plaza Mayor, 5',
@@ -33,7 +35,16 @@ const restaurantSchema = {
 		postalCode: '02610',
 		addressCountry: 'ES',
 	},
+	geo: {
+		'@type': 'GeoCoordinates',
+		latitude: 38.95044600105579,
+		longitude: -2.540146940310413,
+	},
 	url: 'https://casinoelbonillo.com',
+	hasMenu: 'https://casinoelbonillo.com/carta',
+	acceptsReservations: true,
+	areaServed: 'El Bonillo, Albacete',
+	sameAs: ['https://instagram.com/casinoelbonillo'],
 	openingHoursSpecification: [
 		{
 			'@type': 'OpeningHoursSpecification',
