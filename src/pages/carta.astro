@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import DishList from '../components/DishList.astro';
 import type { DishItem } from '../components/DishList.astro';
@@ -234,7 +233,7 @@ const refrescos: DishItem[] = [
   { name: 'Royal Bliss Tónica', price: '2,50 €' },
   { name: 'Royal Bliss Berries', price: '2,50 €' },
   { name: 'Monster Energy', price: '2,50 €' },
-  { name: 'Agua pequeña', price: '1,00 €' },
+  { name: 'Agua pequeña', price: '1,20 €' },
   { name: 'Agua grande', price: '2,00 €' },
 ];
 
@@ -252,8 +251,6 @@ const cervezas: DishItem[] = [
 ---
 
 <Layout title="Carta · El Casino · Bar y restaurante en El Bonillo" description="La carta de El Casino: para picar, tapas de carne y pescado, ibéricos de Huelva, hamburguesas, bocadillería, platos combinados, postres caseros, vinos y bebidas.">
-  <Header slot="header" />
-
   <!-- Fondo fotográfico fijo: comida → (crossfade) → bebida + zoom lento -->
   <div class="carta-bg" aria-hidden="true">
     <div class="cb-img cb-food"></div>
@@ -264,6 +261,10 @@ const cervezas: DishItem[] = [
 
   <!-- Hero de la carta (sobre el fondo fotográfico fijo) -->
   <section class="carta-hero">
+    <a href="/" class="carta-back" aria-label="Volver al inicio">
+      <Icon name="lucide:arrow-left" />
+      <span class="carta-back-label">Volver</span>
+    </a>
     <div class="carta-hero-inner reveal">
       <p class="eyebrow">• Bar · Restaurante · El Bonillo •</p>
       <h1 class="carta-title">Nuestra <span class="title-highlight">carta</span></h1>
@@ -573,11 +574,45 @@ const cervezas: DishItem[] = [
     position: relative;
     display: flex;
     align-items: flex-end;
-    /* Móvil: el navbar principal vive abajo, así que arriba solo hay que
-       librar la píldora de categorías → poco padding y sin 52vh forzado
-       (evita el hueco vacío). En escritorio se restaura (media query). */
+    /* En la carta no hay navbar principal (solo el botón "Volver" + la píldora
+       de categorías), así que arriba basta con dejar hueco para el botón.
+       En escritorio se restaura el aire del hero (media query). */
     min-height: auto;
     padding: 4.5rem 1.5rem 1.5rem;
+  }
+
+  /* ---------- Botón "Volver" (sustituye al navbar en la carta) ---------- */
+  .carta-back {
+    position: absolute;
+    top: calc(1rem + env(safe-area-inset-top, 0px));
+    left: 1rem;
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.95rem 0.5rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(13, 19, 16, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 34px -16px rgba(0, 0, 0, 0.8);
+    color: var(--color-text);
+    font-family: var(--font-sans-semibold);
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  }
+  .carta-back:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent-25);
+    transform: translateY(-1px);
+  }
+  .carta-back :global(svg) {
+    width: 1.05rem;
+    height: 1.05rem;
+    color: var(--color-accent);
+    flex-shrink: 0;
   }
   .carta-hero-inner {
     position: relative;
@@ -721,12 +756,6 @@ const cervezas: DishItem[] = [
   .cat-pill a:hover {
     color: var(--color-accent);
     background: rgba(201, 169, 97, 0.1);
-  }
-
-  /* El navbar principal (definido en Header) se tiñe de teal solo en la carta */
-  :global(body.is-carta .tube-nav) {
-    background: rgba(13, 19, 16, 0.72);
-    border-color: rgba(255, 255, 255, 0.08);
   }
 
   /* ---------- Fondo fotográfico con scroll ----------
@@ -1128,13 +1157,18 @@ const cervezas: DishItem[] = [
     .boc-ab { display: inline; }
   }
 
-  /* En sm+ el navbar flotante vive arriba: anclamos la píldora justo debajo. */
+  /* En sm+ recuperamos el aire del hero. Sin navbar, la píldora se ancla
+     cerca del borde superior. */
   @media (min-width: 640px) {
-    .cat-nav { top: 5.25rem; }
-    /* Aquí el navbar sí está arriba: restauramos el aire del hero. */
+    .cat-nav { top: 1.25rem; }
     .carta-hero {
       min-height: 52vh;
-      padding: 9rem 3rem 3rem;
+      padding: 5.5rem 3rem 3rem;
+    }
+    .carta-back {
+      top: 1.5rem;
+      left: 1.75rem;
+      font-size: 0.9rem;
     }
   }
 

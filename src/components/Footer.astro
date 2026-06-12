@@ -69,6 +69,17 @@ const social = [
                 </a>
               </li>
             ))}
+            <li>
+              <button
+                type="button"
+                class="ft-share"
+                data-share-title="El Casino · Bar y restaurante en El Bonillo"
+                data-share-text="Cocina casera en la Plaza Mayor de El Bonillo. ¡Échale un vistazo!"
+              >
+                <Icon name="lucide:share-2" class="ft-ico" />
+                <span class="ft-share-label">Compartir la web</span>
+              </button>
+            </li>
           </ul>
         </div>
       </div>
@@ -176,6 +187,27 @@ const social = [
     height: 1rem;
   }
 
+  /* Botón "Compartir": mismo aspecto que los enlaces de la lista */
+  .ft-share {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    font: inherit;
+    font-size: 0.9rem;
+    transition: color 0.25s ease;
+  }
+  .ft-share:hover {
+    color: var(--color-accent);
+  }
+  .ft-share.is-copied {
+    color: var(--color-accent);
+  }
+
   /* Aparición progresiva. Solo se oculta si hay JS (.js); sin JS o con
      reduce-motion el contenido se ve siempre. El observer propio del footer
      no usa margen inferior negativo, así que dispara con fiabilidad. */
@@ -242,4 +274,42 @@ const social = [
       io.observe(ft);
     }
   }
+
+  // Botón de compartir del footer: menú nativo o copiar enlace
+  document.querySelectorAll<HTMLButtonElement>('.ft-share').forEach((btn) => {
+    const label = btn.querySelector<HTMLElement>('.ft-share-label');
+    const original = label?.textContent ?? 'Compartir la web';
+
+    const flash = (msg: string) => {
+      if (!label) return;
+      label.textContent = msg;
+      btn.classList.add('is-copied');
+      window.setTimeout(() => {
+        label.textContent = original;
+        btn.classList.remove('is-copied');
+      }, 1800);
+    };
+
+    btn.addEventListener('click', async () => {
+      const url = window.location.origin + '/';
+      const title = btn.dataset.shareTitle ?? document.title;
+      const text = btn.dataset.shareText ?? '';
+
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, text, url });
+        } catch {
+          /* cancelado */
+        }
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(url);
+        flash('¡Enlace copiado!');
+      } catch {
+        window.prompt('Copia el enlace para compartir:', url);
+      }
+    });
+  });
 </script>

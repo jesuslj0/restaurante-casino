@@ -23,6 +23,15 @@ const waHref = `https://wa.me/${phoneIntl}?text=${waText}`;
       <a href={waHref} target="_blank" rel="noopener noreferrer" class="primary-btn cta-wa">
         Escríbenos <Icon name="simple-icons:whatsapp" />
       </a>
+      <button
+        type="button"
+        class="secondary-btn cta-share"
+        data-share-title="El Casino · Bar y restaurante en El Bonillo"
+        data-share-text="Cocina casera en la Plaza Mayor de El Bonillo. ¡Échale un vistazo!"
+      >
+        <span class="cta-share-label">Compartir</span>
+        <Icon name="lucide:share-2" />
+      </button>
     </div>
   </div>
 </section>
@@ -101,6 +110,17 @@ const waHref = `https://wa.me/${phoneIntl}?text=${waText}`;
     margin-top: 2.25rem;
   }
 
+  .cta-share :global(svg) {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+  /* Estado breve tras copiar el enlace en escritorio */
+  .cta-share.is-copied {
+    border-color: var(--color-accent);
+    background: rgba(201, 169, 97, 0.14);
+    color: var(--color-text);
+  }
+
   @media (min-width: 768px) {
     .cta-section {
       padding: 2rem 3rem 8rem;
@@ -110,3 +130,45 @@ const waHref = `https://wa.me/${phoneIntl}?text=${waText}`;
     }
   }
 </style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.cta-share').forEach((btn) => {
+    const label = btn.querySelector<HTMLElement>('.cta-share-label');
+    const original = label?.textContent ?? 'Compartir';
+
+    const flash = (msg: string) => {
+      if (!label) return;
+      label.textContent = msg;
+      btn.classList.add('is-copied');
+      window.setTimeout(() => {
+        label.textContent = original;
+        btn.classList.remove('is-copied');
+      }, 1800);
+    };
+
+    btn.addEventListener('click', async () => {
+      const url = window.location.href;
+      const title = btn.dataset.shareTitle ?? document.title;
+      const text = btn.dataset.shareText ?? '';
+
+      // Menú nativo de compartir (móviles y algunos navegadores de escritorio)
+      if (navigator.share) {
+        try {
+          await navigator.share({ title, text, url });
+          return;
+        } catch {
+          // El usuario canceló: no hacemos nada
+          return;
+        }
+      }
+
+      // Respaldo: copiar el enlace al portapapeles
+      try {
+        await navigator.clipboard.writeText(url);
+        flash('¡Enlace copiado!');
+      } catch {
+        window.prompt('Copia el enlace para compartir:', url);
+      }
+    });
+  });
+</script>
