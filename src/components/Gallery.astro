@@ -9,6 +9,7 @@ const slides = [
     alt: 'Fachada de El Casino en la Plaza Mayor',
     title: 'La fachada de siempre',
     desc: 'En plena Plaza Mayor, un lugar con mucha historia.',
+    filter: 'brightness(0.92) contrast(1.20) saturate(1.12) sepia(0.12)',
   },
   {
     src: '/images/casino-salon.jpg',
@@ -66,7 +67,7 @@ const slides = [
               class="gal-img"
               loading={i === 0 ? 'eager' : 'lazy'}
               decoding="async"
-              style={s.bright && "filter: brightness(1.5)"}
+              style={s.filter ? `filter: ${s.filter}` : (s.bright && "filter: brightness(1.5)")}
             />
           </figure>
           <div class="gal-copy">
