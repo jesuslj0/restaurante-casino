@@ -1,0 +1,229 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// Novedad: neveras Wondercool que enfrían la cerveza a una velocidad increíble.
+// La imagen vive en /public y se usa como fondo completo de la sección.
+const bgImg = '/wondercool/imgswondercool/wondercoolgback.jpeg';
+
+const feats = [
+  {
+    icon: 'lucide:snowflake',
+    title: 'Frío extremo',
+    desc: 'Tu cerveza a su punto exacto, helada de verdad.',
+  },
+  {
+    icon: 'lucide:zap',
+    title: 'Enfría en minutos',
+    desc: 'Tecnología Wondercool: del estante a la mesa, fría al instante.',
+  },
+  {
+    icon: 'lucide:beer',
+    title: 'Siempre a punto',
+    desc: 'Tercios y botellines listos en cualquier momento del servicio.',
+  },
+];
+---
+
+<section id="wondercool" class="wc-section" style={`--wc-bg:url('${bgImg}')`}>
+  <div class="wc-inner">
+    <header class="wc-head reveal">
+      <p class="eyebrow">• Novedad en El Casino •</p>
+      <h2 class="section-title">Cerveza <span class="title-highlight">siempre helada</span></h2>
+      <p class="section-lead">
+        Hemos traído las nuevas neveras <strong class="wc-brand">Wondercool</strong>: enfrían la cerveza a
+        una velocidad increíble para que cada tercio y cada botellín te lleguen a su punto
+        justo de frío. Frescor de verdad, en cada trago.
+      </p>
+    </header>
+
+    <ul class="wc-feats reveal" style="--reveal-delay:160ms">
+      {feats.map((f) => (
+        <li class="wc-feat">
+          <span class="wc-feat-ico"><Icon name={f.icon} /></span>
+          <div>
+            <h3 class="wc-feat-title">{f.title}</h3>
+            <p class="wc-feat-desc">{f.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .wc-section {
+    position: relative;
+    isolation: isolate;
+    background-image: var(--wc-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 5rem 1.5rem 6rem;
+    overflow: hidden;
+  }
+
+  /* Funde el borde superior e inferior con el negro de la página + velo translúcido
+     ligeramente oscuro para que el texto resalte sin tapar la imagen. */
+  .wc-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(
+        180deg,
+        var(--color-bg) 0%,
+        rgba(10, 10, 10, 0.6) 14%,
+        transparent 32%,
+        transparent 68%,
+        rgba(10, 10, 10, 0.6) 86%,
+        var(--color-bg) 100%
+      ),
+      rgba(10, 10, 10, 0.5);
+  }
+
+  .wc-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+
+  .wc-brand {
+    color: var(--color-accent);
+    font-family: var(--font-serif-semibold);
+    font-weight: 700;
+    font-size: 1.15em;
+    letter-spacing: 0.01em;
+  }
+
+  .wc-head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    /* Sombra heredada por todo el texto del encabezado para resaltar sobre la imagen. */
+    text-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.95),
+      0 4px 20px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Píldora alrededor del "Novedad en El Casino" para que destaque sobre la imagen. */
+  .wc-head :global(.eyebrow) {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid var(--color-accent-25);
+    backdrop-filter: blur(6px);
+    text-shadow: none;
+  }
+
+  /* --- Mini características --- */
+  .wc-feats {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 60rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .wc-feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.1rem 1.25rem;
+    border-radius: 1rem;
+    /* Borde con gradiente dorado giratorio (técnica conic-gradient + padding/border-box).
+       Tonos dorados de la marca/logos. */
+    border: 2px solid transparent;
+    background:
+      linear-gradient(var(--card-fill, rgba(10, 10, 10, 0.72)), var(--card-fill, rgba(10, 10, 10, 0.72))) padding-box,
+      conic-gradient(
+        from var(--gradient-angle, 0deg),
+        #584827 0%,
+        #c7a03c 37%,
+        #f9de90 30%,
+        #c7a03c 33%,
+        #584827 40%,
+        #584827 50%,
+        #c7a03c 77%,
+        #f9de90 80%,
+        #c7a03c 83%,
+        #584827 90%
+      ) border-box;
+    backdrop-filter: blur(6px);
+    animation: gradient-rotate 5s linear infinite;
+    transition: transform 0.3s ease;
+  }
+
+  .wc-feat:hover {
+    transform: translateY(-3px) scale(1.03);
+  }
+
+  /* En móvil: relleno opaco para que el gradiente dorado solo se vea en el borde
+     (sin transparentarse por el interior de la card). El borde sigue animándose. */
+  @media (max-width: 767px) {
+    .wc-feat {
+      --card-fill: rgb(14, 13, 11);
+      backdrop-filter: none;
+    }
+  }
+
+  .wc-feat-ico {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 0.75rem;
+    background: var(--color-accent-25);
+  }
+
+  .wc-feat-ico :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-accent);
+  }
+
+  .wc-feat-title {
+    font-family: var(--font-serif-semibold);
+    font-size: 1.05rem;
+    color: var(--color-text);
+    margin: 0 0 0.2rem;
+  }
+
+  .wc-feat-desc {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  @media (min-width: 768px) {
+    .wc-section {
+      padding: 7rem 3rem 8rem;
+    }
+    .wc-head {
+      margin-bottom: 3rem;
+    }
+    .wc-feats {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Registro de la variable de ángulo para poder animar el conic-gradient del borde. */
+  @property --gradient-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  @keyframes gradient-rotate {
+    to {
+      --gradient-angle: 360deg;
+    }
+  }
+</style>
