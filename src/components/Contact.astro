@@ -4,19 +4,16 @@ import { Icon } from 'astro-icon/components';
 interface Props {
   phone?: string;       // formato visible
   phoneIntl?: string;   // formato internacional para WhatsApp / tel:
-  email?: string;
 }
 
 const {
   phone = '621 68 51 32',
   phoneIntl = '34621685132',
-  email = 'hola@casinoelbonillo.com',
 } = Astro.props;
 
 const channels = [
   { icon: 'lucide:phone', title: 'Llámanos', text: phone, href: `tel:+${phoneIntl}` },
   { icon: 'simple-icons:whatsapp', title: 'WhatsApp', text: 'Escríbenos directamente', href: `https://wa.me/${phoneIntl}` },
-  { icon: 'lucide:mail', title: 'Email', text: email, href: `mailto:${email}` },
 ];
 ---
 

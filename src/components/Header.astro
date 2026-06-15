@@ -74,10 +74,25 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
         .tube-link { padding: 0.5rem 1.25rem; }
     }
 
-    /* Móvil: respeta el notch / barra de estado superior. */
+    /* Móvil: respeta el notch / barra de estado superior y compacta la barra
+       para que los 9 iconos entren sin salirse en pantallas estrechas (S23). */
     @media (max-width: 639px) {
         #tube-navbar {
             padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+        }
+        .tube-nav {
+            gap: 0;
+            max-width: 100%;
+        }
+        .tube-link {
+            padding: 0.5rem 0.3rem;
+        }
+        /* Iconos un pelín más pequeños para ganar margen lateral. */
+        .tube-link :global(svg) {
+            width: 17px;
+            height: 17px;
         }
     }
     .tube-link:hover,
