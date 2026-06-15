@@ -5,13 +5,15 @@ const path = Astro.url.pathname;
 const isHome = path === '/' || path === '';
 const onCarta = path.startsWith('/carta');
 
+// `mobileHide`: secundarios que se ocultan en móvil para que la barra no se
+// comprima (siguen visibles en escritorio). Esenciales quedan siempre.
 const links = [
     { label: 'Inicio', spy: 'inicio', icon: 'lucide:home' },
     { label: 'Especialidades', spy: 'especialidades', icon: 'lucide:utensils-crossed' },
-    { label: 'Novedades', spy: 'wondercool', icon: 'lucide:sparkles' },
+    { label: 'Novedades', spy: 'wondercool', icon: 'lucide:sparkles', mobileHide: true },
     { label: 'Galería', spy: 'galeria', icon: 'lucide:image' },
     { label: 'Carta', spy: 'carta', page: '/carta', icon: 'lucide:book-open', cta: true },
-    { label: 'Reseñas', spy: 'resenas', icon: 'lucide:star' },
+    { label: 'Reseñas', spy: 'resenas', icon: 'lucide:star', mobileHide: true },
     { label: 'Horarios', spy: 'horarios', icon: 'lucide:clock' },
     { label: 'Ubicación', spy: 'ubicacion', icon: 'lucide:map-pin' },
     { label: 'Contacto', spy: 'contacto', icon: 'lucide:phone' },
@@ -43,7 +45,7 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
                 href={hrefFor(link)}
                 data-tube-link
                 data-spy={link.spy}
-                class:list={['tube-link', { 'is-active': link.spy === activeSpy, 'tube-cta': link.cta }]}
+                class:list={['tube-link', { 'is-active': link.spy === activeSpy, 'tube-cta': link.cta, 'tube-mobile-hide': link.mobileHide }]}
                 aria-label={link.cta ? `${link.label} — ver el menú` : undefined}
             >
                 <span class="hidden md:inline">{link.label}</span>
@@ -74,8 +76,14 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
         .tube-link { padding: 0.5rem 1.25rem; }
     }
 
-    /* Móvil: respeta el notch / barra de estado superior y compacta la barra
-       para que los 9 iconos entren sin salirse en pantallas estrechas (S23). */
+    /* Móvil: respeta el notch / barra de estado superior. Al ocultar los ítems
+       secundarios solo quedan 5 iconos, así que la barra respira sin apreturas. */
+    @media (max-width: 767px) {
+        /* Solo los esenciales en móvil; el resto vuelve en escritorio. */
+        .tube-mobile-hide {
+            display: none;
+        }
+    }
     @media (max-width: 639px) {
         #tube-navbar {
             padding-top: calc(0.75rem + env(safe-area-inset-top, 0px));
@@ -84,15 +92,9 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
         }
         .tube-nav {
             gap: 0;
-            max-width: 100%;
         }
         .tube-link {
-            padding: 0.5rem 0.3rem;
-        }
-        /* Iconos un pelín más pequeños para ganar margen lateral. */
-        .tube-link :global(svg) {
-            width: 17px;
-            height: 17px;
+            padding: 0.5rem 0.4rem;
         }
     }
     .tube-link:hover,
@@ -175,6 +177,8 @@ const activeSpy = onCarta ? 'carta' : 'inicio';
 
     const moveLamp = (el: HTMLElement) => {
         if (!lamp) return;
+        // Si el enlace está oculto (secundario en móvil) no movemos la lámpara.
+        if (el.offsetParent === null) return;
         lamp.style.width = `${el.offsetWidth}px`;
         lamp.style.transform = `translateX(${el.offsetLeft}px)`;
         lamp.classList.add('ready');

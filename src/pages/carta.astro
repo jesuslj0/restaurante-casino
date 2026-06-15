@@ -833,6 +833,16 @@ const cervezas: DishItem[] = [
   @media (max-width: 639px) {
     .cb-food { background-position: 80% bottom; }
     .cb-drink { background-position: 70% bottom; }
+    /* Botón "Volver" un poco más compacto en móvil. */
+    .carta-back {
+      gap: 0.3rem;
+      padding: 0.4rem 0.8rem 0.4rem 0.6rem;
+      font-size: 0.78rem;
+    }
+    .carta-back :global(svg) {
+      width: 0.9rem;
+      height: 0.9rem;
+    }
   }
 
   /* ---------- Bloques de carta ---------- */
@@ -1162,8 +1172,8 @@ const cervezas: DishItem[] = [
   @media (min-width: 640px) {
     .cat-nav { top: 1.25rem; }
     .carta-hero {
-      min-height: 52vh;
-      padding: 5.5rem 3rem 3rem;
+      min-height: 30vh;
+      padding: 5rem 3rem 2.5rem;
     }
     .carta-back {
       top: 1.5rem;

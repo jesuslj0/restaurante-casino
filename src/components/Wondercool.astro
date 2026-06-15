@@ -137,7 +137,7 @@ const feats = [
        Tonos dorados de la marca/logos. */
     border: 2px solid transparent;
     background:
-      linear-gradient(var(--card-fill, rgba(10, 10, 10, 0.72)), var(--card-fill, rgba(10, 10, 10, 0.72))) padding-box,
+      linear-gradient(rgb(14, 13, 11), rgb(14, 13, 11)) padding-box,
       conic-gradient(
         from var(--gradient-angle, 0deg),
         #584827 0%,
@@ -151,22 +151,14 @@ const feats = [
         #c7a03c 83%,
         #584827 90%
       ) border-box;
-    backdrop-filter: blur(6px);
+    /* Relleno opaco para que el gradiente dorado giratorio solo se vea en el borde
+       (sin transparentarse por el interior de la card), igual en móvil y escritorio. */
     animation: gradient-rotate 5s linear infinite;
     transition: transform 0.3s ease;
   }
 
   .wc-feat:hover {
     transform: translateY(-3px) scale(1.03);
-  }
-
-  /* En móvil: relleno opaco para que el gradiente dorado solo se vea en el borde
-     (sin transparentarse por el interior de la card). El borde sigue animándose. */
-  @media (max-width: 767px) {
-    .wc-feat {
-      --card-fill: rgb(14, 13, 11);
-      backdrop-filter: none;
-    }
   }
 
   .wc-feat-ico {
