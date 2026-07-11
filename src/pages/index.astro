@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
+import EspecialMundial from '../components/EspecialMundial.astro'; // TEMPORAL · Mundial 2026
 import Specialities from '../components/Specialities.astro';
 import Wondercool from '../components/Wondercool.astro';
 import About from '../components/About.astro';
@@ -47,6 +48,8 @@ const socialProps = {
 		location={heroProps.location}
 		schedule={heroProps.schedule}
 	/>
+
+	<EspecialMundial />   <!-- TEMPORAL · quitar tras el Mundial 2026 -->
 
 	<Specialities />
 
