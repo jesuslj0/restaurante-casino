@@ -48,6 +48,15 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
               {buttonSecondaryText} <Icon name="lucide:book-open"/>
             </a>
           </div>
+
+          <!-- CTA TEMPORAL · Menú Feria 2026 (quitar cuando acabe la feria) -->
+          <a class="feria-cta" href="/carta#menu-feria">
+            <span class="feria-cta-face">
+              <Icon name="lucide:party-popper" class="feria-cta-ico" />
+              <span class="feria-cta-label">Ver Menú Especial Feria 2026</span>
+              <Icon name="lucide:arrow-right" class="feria-cta-arrow" />
+            </span>
+          </a>
         </div>
       </div>
 
@@ -176,7 +185,123 @@ const { title, subtitle, buttonText, buttonSecondaryText, restaurantName, locati
   .hero-buttons {
     justify-content: center;
     flex-wrap: wrap;
+    /* Más juntos: el CTA de feria va justo debajo y aporta su propio margen. */
+    margin-bottom: 1.25rem;
+  }
+
+  /* ---------- CTA TEMPORAL · Menú Feria 2026 ----------
+     Botón 3D "pulsable": el canto oscuro es un box-shadow sólido y la cara se
+     hunde al pulsar. El padding-bottom del enlace reserva el hueco del canto,
+     así el movimiento no desplaza el resto del hero.
+     Fondo festivo: rayas diagonales tipo toldo de caseta sobre degradado de
+     oro, con un destello que recorre el botón. */
+  .feria-cta {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
     margin-bottom: 2rem;
+    max-width: 100%;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Halo cálido que late para llamar la atención */
+  .feria-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0 -6px 6px;
+    z-index: 0;
+    border-radius: 999px;
+    background: radial-gradient(closest-side, rgba(255, 206, 110, 0.55), transparent 78%);
+    filter: blur(12px);
+    animation: feria-cta-pulse 2.8s ease-in-out infinite;
+  }
+  .feria-cta-face {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    max-width: 100%;
+    padding: 0.85rem 1.5rem;
+    border-radius: 999px;
+    background:
+      repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.16) 0 10px, rgba(255, 255, 255, 0) 10px 20px),
+      linear-gradient(180deg, #ffeeb8 0%, #dcb567 42%, #b98c33 100%);
+    color: #2d1c05;
+    font-family: var(--font-sans-semibold);
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+    text-align: center;
+    box-shadow:
+      0 7px 0 #6f4f16,
+      0 16px 26px -8px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 250, 225, 0.8),
+      inset 0 -2px 6px rgba(120, 80, 10, 0.35);
+    transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.18s ease;
+  }
+  /* Destello que recorre la cara del botón */
+  .feria-cta-face::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 32%, rgba(255, 255, 255, 0.55) 48%, transparent 64%);
+    transform: translateX(-120%);
+    animation: feria-cta-shine 3.8s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .feria-cta-ico,
+  .feria-cta-label,
+  .feria-cta-arrow {
+    position: relative;
+    z-index: 1;
+  }
+  .feria-cta :global(.feria-cta-ico) {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex-shrink: 0;
+  }
+  .feria-cta :global(.feria-cta-arrow) {
+    width: 1.05rem;
+    height: 1.05rem;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .feria-cta:hover .feria-cta-face {
+    transform: translateY(-3px);
+    box-shadow:
+      0 10px 0 #6f4f16,
+      0 22px 32px -10px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 rgba(255, 250, 225, 0.9),
+      inset 0 -2px 6px rgba(120, 80, 10, 0.35);
+  }
+  .feria-cta:hover :global(.feria-cta-arrow) { transform: translateX(4px); }
+  /* Al pulsar, la cara baja hasta apoyar en el canto */
+  .feria-cta:active .feria-cta-face {
+    transform: translateY(6px);
+    box-shadow:
+      0 1px 0 #6f4f16,
+      0 6px 12px -6px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 250, 225, 0.6),
+      inset 0 -1px 4px rgba(120, 80, 10, 0.4);
+  }
+  .feria-cta:focus-visible .feria-cta-face {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+  @keyframes feria-cta-shine {
+    0%, 62% { transform: translateX(-120%); }
+    100% { transform: translateX(120%); }
+  }
+  @keyframes feria-cta-pulse {
+    0%, 100% { opacity: 0.45; transform: scale(0.97); }
+    50% { opacity: 0.85; transform: scale(1.03); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .feria-cta::before,
+    .feria-cta-face::after { animation: none; }
   }
 
   .hero-info {
