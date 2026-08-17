@@ -1,6 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+// IMPORTANTE · No filtrar reseñas por sentimiento.
+// Este aviso ofrece SIEMPRE las dos vías (reseña pública en Google y canal
+// privado por WhatsApp) a todos los clientes, sin preguntar antes si la
+// experiencia ha sido buena o mala. Encaminar solo a los contentos hacia
+// Google ("review gating") incumple las políticas de Google y la normativa
+// europea de consumo sobre opiniones (Directiva Ómnibus, Ley 4/2022).
+// No reintroducir un paso previo que separe opiniones positivas y negativas.
+
 interface Props {
   /** Enlace "Escribir reseña" de tu ficha de Google. Sustituir el placeholder. */
   reviewUrl?: string;
@@ -16,56 +24,44 @@ const {
   delay = 30,
 } = Astro.props;
 
+// Texto neutro: vale igual para una felicitación que para una queja.
 const waText = encodeURIComponent(
-  '¡Hola! He visitado El Casino y me gustaría comentaros algo para que podáis mejorar:'
+  '¡Hola! He visitado El Casino y me gustaría comentaros algo:'
 );
 const whatsappUrl = `https://wa.me/${phoneIntl}?text=${waText}`;
 ---
 
-<aside
-  id="review-prompt"
-  class="rp"
-  data-delay={delay}
-  data-review-url={reviewUrl}
-  hidden
->
+<aside id="review-prompt" class="rp" data-delay={delay} hidden>
   <div class="rp-panel" role="dialog" aria-labelledby="rp-title" tabindex="-1">
     <button type="button" class="rp-close" aria-label="Cerrar">
       <Icon name="lucide:x" />
     </button>
 
-    <!-- Paso 1: pregunta -->
-    <div class="rp-step" data-step="ask">
-      <span class="rp-emoji" aria-hidden="true">🍽️</span>
-      <h3 id="rp-title" class="rp-title">¿Qué te ha parecido El Casino?</h3>
-      <p class="rp-text">Tu opinión nos ayuda muchísimo a seguir mejorando.</p>
-      <div class="rp-actions">
-        <button type="button" class="rp-btn rp-btn-good" data-sentiment="good">
-          <span aria-hidden="true">👍</span> Me encantó
-        </button>
-        <button type="button" class="rp-btn rp-btn-bad" data-sentiment="bad">
-          <span aria-hidden="true">👎</span> Mejorable
-        </button>
-      </div>
-    </div>
+    <span class="rp-emoji" aria-hidden="true">🍽️</span>
+    <h3 id="rp-title" class="rp-title">¿Qué te ha parecido El Casino?</h3>
+    <p class="rp-text">
+      Tu opinión nos ayuda muchísimo a seguir mejorando. Puedes dejarnos una
+      reseña pública o contarnos lo que quieras en privado, como prefieras.
+    </p>
 
-    <!-- Paso 2a: positivo -> Google -->
-    <div class="rp-step" data-step="good" hidden>
-      <span class="rp-emoji" aria-hidden="true">⭐</span>
-      <h3 class="rp-title">¡Cuánto nos alegra!</h3>
-      <p class="rp-text">¿Nos dejas una reseña en Google? Es solo un momento y nos ayuda un montón.</p>
-      <a class="primary-btn rp-cta" data-dismiss href={reviewUrl} target="_blank" rel="noopener noreferrer">
-        Dejar reseña <Icon name="lucide:star" />
+    <div class="rp-actions">
+      <a
+        class="primary-btn rp-cta"
+        data-dismiss
+        href={reviewUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Dejar reseña en Google <Icon name="lucide:star" />
       </a>
-    </div>
-
-    <!-- Paso 2b: negativo -> WhatsApp privado -->
-    <div class="rp-step" data-step="bad" hidden>
-      <span class="rp-emoji" aria-hidden="true">🙏</span>
-      <h3 class="rp-title">Gracias por avisar</h3>
-      <p class="rp-text">Cuéntanos qué podemos mejorar y lo solucionamos. Te leemos en privado por WhatsApp.</p>
-      <a class="primary-btn rp-cta" data-dismiss href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-        Escribir por WhatsApp <Icon name="simple-icons:whatsapp" />
+      <a
+        class="secondary-btn rp-cta"
+        data-dismiss
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Escribirnos en privado <Icon name="simple-icons:whatsapp" />
       </a>
     </div>
   </div>
@@ -148,38 +144,17 @@ const whatsappUrl = `https://wa.me/${phoneIntl}?text=${waText}`;
     margin: 0 0 1.25rem;
   }
 
+  /* Las dos vías, apiladas y con el mismo peso visual de bloque. */
   .rp-actions {
     display: flex;
+    flex-direction: column;
     gap: 0.6rem;
   }
 
-  .rp-btn {
-    flex: 1;
-    display: inline-flex;
-    align-items: center;
+  .rp-cta {
+    width: 100%;
     justify-content: center;
-    gap: 0.4rem;
-    padding: 0.6rem 0.5rem;
-    border-radius: 0.85rem;
-    font-size: 0.9rem;
-    font-family: var(--font-sans-semibold);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--color-text);
-    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
   }
-  .rp-btn:hover {
-    border-color: var(--color-accent);
-    background: rgba(201, 169, 97, 0.12);
-    transform: translateY(-1px);
-  }
-  .rp-btn:active { transform: scale(0.97); }
-  .rp-btn:focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-  }
-
-  .rp-cta { width: 100%; }
 
   @media (max-width: 639px) {
     .rp {
@@ -202,15 +177,9 @@ const whatsappUrl = `https://wa.me/${phoneIntl}?text=${waText}`;
     const alreadyDismissed = stored > 0 && Date.now() - stored < MAX_AGE;
 
     if (!alreadyDismissed) {
-      const panel = root.querySelector<HTMLElement>('.rp-panel');
       const closeBtn = root.querySelector<HTMLButtonElement>('.rp-close');
-      const steps = root.querySelectorAll<HTMLElement>('.rp-step');
       let engaged = false; // si ya llegó a Contacto, no molestamos
       let timer: number;
-
-      const showStep = (name: string) => {
-        steps.forEach((s) => (s.hidden = s.dataset.step !== name));
-      };
 
       const open = () => {
         if (engaged) return;
@@ -239,14 +208,7 @@ const whatsappUrl = `https://wa.me/${phoneIntl}?text=${waText}`;
 
       closeBtn?.addEventListener('click', dismiss);
 
-      // Elegir sentimiento -> mostrar paso correspondiente
-      root.querySelectorAll<HTMLButtonElement>('[data-sentiment]').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          showStep(btn.dataset.sentiment === 'good' ? 'good' : 'bad');
-        });
-      });
-
-      // Al pulsar un CTA (Google / WhatsApp), no volver a mostrarlo
+      // Al pulsar cualquiera de las dos vías, no volver a mostrarlo
       root.querySelectorAll<HTMLElement>('[data-dismiss]').forEach((el) => {
         el.addEventListener('click', () => {
           localStorage.setItem(KEY, String(Date.now()));

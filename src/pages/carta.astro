@@ -19,7 +19,6 @@ const socialProps = {
 
 // Navegación rápida entre secciones de la carta.
 const categories = [
-  { id: 'menu-feria', label: 'Menú Feria', icon: 'lucide:party-popper' },
   { id: 'picar', label: 'Para picar', icon: 'lucide:utensils' },
   { id: 'carne', label: 'Carne', icon: 'lucide:beef' },
   { id: 'pescado', label: 'Pescado', icon: 'lucide:fish' },
@@ -31,64 +30,6 @@ const categories = [
   { id: 'helados', label: 'Ulalá', icon: 'lucide:ice-cream-cone' },
   { id: 'vinos', label: 'Vinos', icon: 'lucide:wine' },
   { id: 'bebidas', label: 'Bebidas', icon: 'lucide:beer' },
-];
-
-/* ---------- MENÚ FERIA 2026 (temporal · solo durante la feria) ---------- */
-const feriaPrecio = '39 €';
-const feriaEntrantes = [
-  'Tomate con "antxoas" del Cantábrico',
-  'Gamba blanca a la plancha de Huelva',
-  'Solomillo a la pimienta',
-];
-const feriaPrincipales = [
-  'Chuletas de cordero manchego',
-  'Entrecot de ternera con 6 meses de maduración',
-  'Dorada a la espalda',
-];
-
-/* Guirnalda de banderines (decorado de feria).
-   Cada banderín cuelga entre dos puntos de la cuerda; la cuerda dibuja tres
-   arcos de caída, así que calculamos la Y con un seno y compartimos vértices
-   para que triángulos y cuerda encajen sin escalones. */
-const FERIA_FLAG_N = 26;
-const FERIA_FLAG_W = 46;
-const feriaCuerdaY = (i: number) =>
-  Math.round((9 + Math.abs(Math.sin((i / FERIA_FLAG_N) * 3 * Math.PI)) * 15) * 100) / 100;
-
-const feriaBanderines = Array.from({ length: FERIA_FLAG_N }, (_, i) => {
-  const x = i * FERIA_FLAG_W;
-  const y1 = feriaCuerdaY(i);
-  const y2 = feriaCuerdaY(i + 1);
-  return {
-    d: `M${x},${y1} L${x + FERIA_FLAG_W},${y2} L${x + FERIA_FLAG_W / 2},${(y1 + y2) / 2 + 33} Z`,
-    tone: i % 3,
-    delay: `${(i % 7) * 0.18}s`,
-  };
-});
-const feriaCuerda = Array.from({ length: FERIA_FLAG_N + 1 }, (_, i) =>
-  `${i * FERIA_FLAG_W},${feriaCuerdaY(i)}`
-).join(' ');
-// Bombillas entre banderines (se encienden al activar la tarjeta)
-const feriaBombillas = Array.from({ length: FERIA_FLAG_N }, (_, i) => ({
-  cx: i * FERIA_FLAG_W + FERIA_FLAG_W / 2,
-  cy: (feriaCuerdaY(i) + feriaCuerdaY(i + 1)) / 2 + 2.5,
-  delay: `${(i % 5) * 0.22}s`,
-}));
-
-/* Confeti: valores fijos (no aleatorios) para que el HTML estático sea estable */
-const feriaConfeti = [
-  { l: 4, dur: 3.6, delay: 0.0, w: 5, h: 9, rot: 18, tone: 0 },
-  { l: 12, dur: 4.8, delay: 0.9, w: 4, h: 4, rot: 0, tone: 1 },
-  { l: 21, dur: 4.1, delay: 1.8, w: 6, h: 6, rot: 45, tone: 2 },
-  { l: 29, dur: 5.4, delay: 0.4, w: 4, h: 10, rot: 32, tone: 1 },
-  { l: 37, dur: 3.9, delay: 2.3, w: 5, h: 5, rot: 12, tone: 0 },
-  { l: 45, dur: 4.6, delay: 1.2, w: 4, h: 8, rot: 55, tone: 2 },
-  { l: 53, dur: 5.1, delay: 0.2, w: 6, h: 6, rot: 25, tone: 1 },
-  { l: 61, dur: 4.3, delay: 2.7, w: 4, h: 9, rot: 8, tone: 0 },
-  { l: 69, dur: 3.7, delay: 1.5, w: 5, h: 5, rot: 40, tone: 2 },
-  { l: 77, dur: 5.2, delay: 0.7, w: 4, h: 8, rot: 22, tone: 1 },
-  { l: 85, dur: 4.4, delay: 2.1, w: 6, h: 6, rot: 60, tone: 0 },
-  { l: 93, dur: 4.0, delay: 1.0, w: 4, h: 10, rot: 15, tone: 2 },
 ];
 
 /* ---------- PARA PICAR ---------- */
@@ -354,95 +295,11 @@ const cervezas: DishItem[] = [
     </ul>
   </nav>
 
-  <!-- 01 · Menú Feria 2026 (TEMPORAL · quitar cuando acabe la feria) -->
-  <section id="menu-feria" class="menu-block block-warm">
-    <div class="block-inner">
-      <header class="block-head reveal">
-        <span class="block-num">01</span>
-        <div>
-          <p class="eyebrow">Solo durante la feria</p>
-          <h2 class="section-title">Menú <span class="title-highlight">Feria 2026</span></h2>
-        </div>
-      </header>
-
-      <div class="feria-stage reveal">
-        <article class="feria-card" tabindex="0">
-          <!-- Capa 1 · fondo con desenfoque (plana, no participa del 3D) -->
-          <span class="feria-bg" aria-hidden="true"></span>
-
-          <!-- Capa 2 · decorado de feria: guirnalda, bombillas y confeti -->
-          <span class="feria-deco" aria-hidden="true">
-            <span class="feria-glow"></span>
-            <svg class="feria-bunting" viewBox="0 0 1196 60" preserveAspectRatio="xMidYMin slice">
-              <polyline class="feria-cuerda" points={feriaCuerda} />
-              {feriaBanderines.map((f) => (
-                <path class={`feria-flag feria-flag--t${f.tone}`} d={f.d} style={`--sway-delay:${f.delay}`} />
-              ))}
-              {feriaBombillas.map((b) => (
-                <circle class="feria-bulb" cx={b.cx} cy={b.cy} r="2.4" style={`--bulb-delay:${b.delay}`} />
-              ))}
-            </svg>
-            <span class="feria-confetti">
-              {feriaConfeti.map((c) => (
-                <i
-                  class={`feria-conf feria-conf--t${c.tone}`}
-                  style={`left:${c.l}%;width:${c.w}px;height:${c.h}px;--dur:${c.dur}s;--delay:${c.delay}s;--rot:${c.rot}deg`}
-                />
-              ))}
-            </span>
-            <span class="feria-sheen"></span>
-          </span>
-
-          <!-- Capa 3 · contenido (se despega en Z al activar) -->
-          <div class="feria-body">
-        <div class="feria-top">
-          <span class="feria-badge">
-            <Icon name="lucide:party-popper" />
-            <span>Menú completo</span>
-          </span>
-          <p class="feria-price">
-            <span class="feria-price-num">{feriaPrecio}</span>
-            <span class="feria-price-note">por persona</span>
-          </p>
-        </div>
-
-        <div class="feria-grid">
-          <section class="feria-group">
-            <h3 class="sub-title"><Icon name="lucide:utensils-crossed" /> Entrantes</h3>
-            <p class="sub-note">Para compartir en el centro de la mesa</p>
-            <ul class="feria-list">
-              {feriaEntrantes.map((item) => (
-                <li><Icon name="lucide:check" />{item}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section class="feria-group">
-            <h3 class="sub-title"><Icon name="lucide:chef-hat" /> Principal a elegir</h3>
-            <p class="sub-note">Un plato por comensal</p>
-            <ul class="feria-list feria-list--choice">
-              {feriaPrincipales.map((item) => (
-                <li><Icon name="lucide:utensils" />{item}</li>
-              ))}
-            </ul>
-          </section>
-        </div>
-
-        <p class="feria-foot">
-          <Icon name="lucide:cup-soda" />
-          Incluye <b>1 bebida</b> y <b>postre o café</b>
-        </p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- 02 · Para picar -->
+  <!-- 01 · Para picar -->
   <section id="picar" class="menu-block block-dark">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">02</span>
+        <span class="block-num">01</span>
         <div>
           <p class="eyebrow">Para compartir</p>
           <h2 class="section-title">Para picar</h2>
@@ -454,11 +311,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 03 · Tapas de carne -->
+  <!-- 02 · Tapas de carne -->
   <section id="carne" class="menu-block block-warm">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">03</span>
+        <span class="block-num">02</span>
         <div>
           <p class="eyebrow">A la plancha y al punto</p>
           <h2 class="section-title">Tapas de carne</h2>
@@ -470,11 +327,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 04 · Tapas de pescado -->
+  <!-- 03 · Tapas de pescado -->
   <section id="pescado" class="menu-block block-dark">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">04</span>
+        <span class="block-num">03</span>
         <div>
           <p class="eyebrow">Del mar a la mesa</p>
           <h2 class="section-title">Tapas de pescado</h2>
@@ -486,11 +343,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 05 · Ibéricos de Huelva (destacado) -->
+  <!-- 04 · Ibéricos de Huelva (destacado) -->
   <section id="ibericos" class="menu-block block-warm">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">05</span>
+        <span class="block-num">04</span>
         <div>
           <p class="eyebrow">Denominación de origen</p>
           <h2 class="section-title">Ibéricos de Huelva</h2>
@@ -506,11 +363,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 06 · Hamburguesas -->
+  <!-- 05 · Hamburguesas -->
   <section id="hamburguesas" class="menu-block block-dark">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">06</span>
+        <span class="block-num">05</span>
         <div>
           <p class="eyebrow">Recién hechas</p>
           <h2 class="section-title">Hamburguesas</h2>
@@ -531,11 +388,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 07 · Bocadillería: bocadillos, tostas y sándwiches -->
+  <!-- 06 · Bocadillería: bocadillos, tostas y sándwiches -->
   <section id="bocadilleria" class="menu-block block-warm">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">07</span>
+        <span class="block-num">06</span>
         <div>
           <p class="eyebrow">Pan de la casa</p>
           <h2 class="section-title">Bocadillería</h2>
@@ -592,11 +449,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 08 · Platos combinados -->
+  <!-- 07 · Platos combinados -->
   <section id="combinados" class="menu-block block-dark">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">08</span>
+        <span class="block-num">07</span>
         <div>
           <p class="eyebrow">Plato completo</p>
           <h2 class="section-title">Platos combinados</h2>
@@ -611,11 +468,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 09 · Postres -->
+  <!-- 08 · Postres -->
   <section id="postres" class="menu-block block-warm">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">09</span>
+        <span class="block-num">08</span>
         <div>
           <p class="eyebrow">El final dulce</p>
           <h2 class="section-title">Postres</h2>
@@ -630,11 +487,11 @@ const cervezas: DishItem[] = [
   <!-- Helados ULALÁ (estacional, verano) -->
   <Ulala />
 
-  <!-- 10 · Vinos -->
+  <!-- 09 · Vinos -->
   <section id="vinos" class="menu-block block-dark">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">10</span>
+        <span class="block-num">09</span>
         <div>
           <p class="eyebrow">Carta de vinos</p>
           <h2 class="section-title">Vinos</h2>
@@ -659,11 +516,11 @@ const cervezas: DishItem[] = [
     </div>
   </section>
 
-  <!-- 11 · Bebidas -->
+  <!-- 10 · Bebidas -->
   <section id="bebidas" class="menu-block block-warm">
     <div class="block-inner">
       <header class="block-head reveal">
-        <span class="block-num">11</span>
+        <span class="block-num">10</span>
         <div>
           <p class="eyebrow">Para refrescar</p>
           <h2 class="section-title">Bebidas</h2>
@@ -1050,271 +907,6 @@ const cervezas: DishItem[] = [
     font-style: italic;
   }
 
-  /* ---------- Menú Feria 2026 (temporal) ----------
-     Móvil primero: todo en una columna y el precio debajo del distintivo.
-     A partir de 768px se abre a dos columnas (entrantes / principal).
-
-     Estado activo: se controla con UNA sola variable, --on (0 → 1). Así el
-     hover de escritorio, el foco de teclado y el toque en móvil (.is-active,
-     que pone el JS) comparten exactamente el mismo diseño sin duplicar reglas.
-     El tilt 3D lo alimenta el JS con --rx/--ry, y el brillo sigue al puntero
-     con --mx/--my. */
-  .feria-stage {
-    perspective: 1100px;
-  }
-  .feria-card {
-    --on: 0;
-    --rx: 0deg;
-    --ry: 0deg;
-    --mx: 50%;
-    --my: 0%;
-    position: relative;
-    display: block;
-    border-radius: 1.5rem;
-    border: 1px solid var(--color-accent-25);
-    outline: none;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    transform:
-      translateY(calc(var(--on) * -10px))
-      rotateX(var(--rx))
-      rotateY(var(--ry))
-      scale(calc(1 + var(--on) * 0.012));
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
-    box-shadow:
-      0 20px 50px -25px rgba(0, 0, 0, 0.8),
-      0 calc(var(--on) * 30px) calc(var(--on) * 65px) calc(var(--on) * -32px) rgba(201, 169, 97, 0.5),
-      0 0 0 1px rgba(201, 169, 97, calc(0.1 + var(--on) * 0.35));
-  }
-  /* Mientras el puntero recorre la tarjeta acortamos la transición para que
-     el giro siga a la mano sin retardo. */
-  .feria-card.is-tilting { transition: transform 0.1s linear, box-shadow 0.45s ease; }
-
-  .feria-card:hover,
-  .feria-card:focus-visible,
-  .feria-card.is-active { --on: 1; }
-  .feria-card:focus-visible { border-color: var(--color-accent); }
-
-  /* Capa 1 · fondo (plana: lleva backdrop-filter, que anularía el 3D) */
-  .feria-bg {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background:
-      linear-gradient(160deg, rgba(201, 169, 97, 0.16), rgba(201, 169, 97, 0.03)),
-      rgba(12, 18, 15, 0.62);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  }
-
-  /* Capa 2 · decorado de feria */
-  .feria-deco {
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    overflow: hidden;
-    pointer-events: none;
-  }
-  .feria-glow {
-    position: absolute;
-    inset: -30% -10% auto;
-    height: 90%;
-    background: radial-gradient(60% 70% at 50% 0%, rgba(255, 214, 140, 0.3), transparent 70%);
-    opacity: calc(var(--on) * 1);
-    transition: opacity 0.5s ease;
-  }
-  /* Guirnalda de banderines */
-  .feria-bunting {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    opacity: 0.55;
-    transition: opacity 0.5s ease;
-  }
-  .feria-card:hover .feria-bunting,
-  .feria-card:focus-visible .feria-bunting,
-  .feria-card.is-active .feria-bunting { opacity: 1; }
-  .feria-cuerda {
-    fill: none;
-    stroke: rgba(225, 220, 201, 0.45);
-    stroke-width: 1.2;
-  }
-  .feria-flag {
-    transform-box: fill-box;
-    transform-origin: top center;
-    animation: feria-sway 2.8s ease-in-out infinite;
-    animation-delay: var(--sway-delay, 0s);
-    animation-play-state: paused;
-  }
-  .feria-flag--t0 { fill: rgba(201, 169, 97, 0.85); }
-  .feria-flag--t1 { fill: rgba(225, 220, 201, 0.5); }
-  .feria-flag--t2 { fill: rgba(176, 125, 58, 0.8); }
-  .feria-bulb {
-    fill: rgba(255, 232, 176, 0.5);
-    animation: feria-twinkle 1.9s ease-in-out infinite;
-    animation-delay: var(--bulb-delay, 0s);
-    animation-play-state: paused;
-  }
-  .feria-card:hover .feria-flag,
-  .feria-card:focus-visible .feria-flag,
-  .feria-card.is-active .feria-flag,
-  .feria-card:hover .feria-bulb,
-  .feria-card:focus-visible .feria-bulb,
-  .feria-card.is-active .feria-bulb { animation-play-state: running; }
-  @keyframes feria-sway {
-    0%, 100% { transform: rotate(-3.5deg); }
-    50% { transform: rotate(3.5deg); }
-  }
-  @keyframes feria-twinkle {
-    0%, 100% { fill: rgba(255, 232, 176, 0.45); }
-    50% { fill: rgba(255, 244, 214, 1); }
-  }
-
-  /* Confeti (solo cae con la tarjeta activa) */
-  .feria-confetti { position: absolute; inset: 0; }
-  .feria-conf {
-    position: absolute;
-    top: -24px;
-    border-radius: 1px;
-    opacity: 0;
-    animation: feria-fall var(--dur, 4s) linear infinite;
-    animation-delay: var(--delay, 0s);
-    animation-play-state: paused;
-  }
-  .feria-conf--t0 { background: var(--color-accent); }
-  .feria-conf--t1 { background: #e1dcc9; }
-  .feria-conf--t2 { background: #b07d3a; }
-  .feria-card:hover .feria-conf,
-  .feria-card:focus-visible .feria-conf,
-  .feria-card.is-active .feria-conf { animation-play-state: running; }
-  @keyframes feria-fall {
-    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-    12% { opacity: 0.9; }
-    88% { opacity: 0.7; }
-    100% { transform: translateY(420px) rotate(calc(var(--rot, 20deg) * 14)); opacity: 0; }
-  }
-
-  /* Brillo especular que sigue al puntero */
-  .feria-sheen {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(240px circle at var(--mx) var(--my), rgba(255, 236, 190, 0.22), transparent 68%);
-    opacity: calc(var(--on) * 1);
-    transition: opacity 0.4s ease;
-  }
-
-  /* Capa 3 · contenido, despegado en Z para dar profundidad real */
-  .feria-body {
-    position: relative;
-    z-index: 2;
-    padding: 1.5rem 1.25rem;
-    transform-style: preserve-3d;
-    transform: translateZ(calc(var(--on) * 34px));
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .feria-top {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.85rem 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .feria-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
-    background: var(--color-accent);
-    color: #1a120a;
-    font-family: var(--font-sans-semibold);
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .feria-badge :global(svg) { width: 1rem; height: 1rem; flex-shrink: 0; }
-  .feria-price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin: 0;
-    /* Un punto más de profundidad que el resto del contenido */
-    transform: translateZ(calc(var(--on) * 22px));
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .feria-price-num {
-    font-family: var(--font-serif-semibold);
-    font-size: clamp(2.1rem, 1.5rem + 2.6vw, 3rem);
-    line-height: 1;
-    color: var(--color-accent);
-    text-shadow: 0 calc(var(--on) * 10px) calc(var(--on) * 26px) rgba(0, 0, 0, 0.55);
-    transition: text-shadow 0.45s ease;
-  }
-  .feria-price-note {
-    color: var(--color-text-secondary);
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
-
-  .feria-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.75rem;
-  }
-  .feria-group { min-width: 0; }
-  .feria-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-  }
-  .feria-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.6rem;
-    color: var(--color-text);
-    font-size: 1rem;
-    line-height: 1.4;
-    /* Evita desbordes con nombres largos en pantallas estrechas */
-    overflow-wrap: anywhere;
-  }
-  .feria-list :global(svg) {
-    width: 1.05rem;
-    height: 1.05rem;
-    flex-shrink: 0;
-    margin-top: 0.18rem;
-    color: var(--color-accent);
-  }
-  /* "A elegir": marcamos que son opciones alternativas, no acumulables */
-  .feria-list--choice li :global(svg) { color: var(--color-accent-2); }
-
-  .feria-foot {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin: 1.75rem 0 0;
-    padding: 0.85rem 1.1rem;
-    border-radius: 1rem;
-    background: var(--color-accent-25);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    color: var(--color-text);
-    font-size: 0.9rem;
-    line-height: 1.4;
-  }
-  .feria-foot :global(svg) {
-    width: 1.15rem;
-    height: 1.15rem;
-    flex-shrink: 0;
-    color: var(--color-accent);
-  }
-  .feria-foot b { font-family: var(--font-sans-semibold); color: var(--color-accent-2); }
-
   /* ---------- Ibéricos (destacado) ---------- */
   .iberico-card {
     position: relative;
@@ -1593,18 +1185,6 @@ const cervezas: DishItem[] = [
   @media (min-width: 768px) {
     .menu-block { padding: 6rem 3rem; }
     .burger-grid { grid-template-columns: 1fr 1fr; }
-    /* Menú Feria: dos columnas con separador entre entrantes y principal */
-    .feria-body { padding: 2rem; }
-    .feria-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
-      align-items: start;
-    }
-    .feria-group + .feria-group {
-      padding-left: 2.5rem;
-      margin-left: -0.5rem;
-      border-left: 1px solid rgba(255, 255, 255, 0.08);
-    }
     .duo-grid,
     .wine-grid,
     .drink-grid { grid-template-columns: 1fr 1fr; align-items: start; }
@@ -1654,61 +1234,6 @@ const cervezas: DishItem[] = [
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', update);
     update();
-  }
-
-  // ---------- Menú Feria: inclinación 3D y activación por toque ----------
-  const feriaCard = document.querySelector<HTMLElement>('.feria-card');
-  if (feriaCard) {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const MAX_TILT = 7; // grados
-
-    let raf = 0;
-    let last: { x: number; y: number } | null = null;
-
-    const applyTilt = () => {
-      raf = 0;
-      if (!last) return;
-      const r = feriaCard.getBoundingClientRect();
-      const px = (last.x - r.left) / r.width;
-      const py = (last.y - r.top) / r.height;
-      feriaCard.style.setProperty('--ry', `${(px - 0.5) * 2 * MAX_TILT}deg`);
-      feriaCard.style.setProperty('--rx', `${(0.5 - py) * 2 * MAX_TILT}deg`);
-      feriaCard.style.setProperty('--mx', `${px * 100}%`);
-      feriaCard.style.setProperty('--my', `${py * 100}%`);
-    };
-
-    const resetTilt = () => {
-      feriaCard.classList.remove('is-tilting');
-      last = null;
-      feriaCard.style.setProperty('--rx', '0deg');
-      feriaCard.style.setProperty('--ry', '0deg');
-      feriaCard.style.setProperty('--mx', '50%');
-      feriaCard.style.setProperty('--my', '0%');
-    };
-
-    if (!reduceMotion) {
-      feriaCard.addEventListener('pointerenter', (e) => {
-        if (e.pointerType === 'touch') return;
-        feriaCard.classList.add('is-tilting');
-      });
-      feriaCard.addEventListener('pointermove', (e) => {
-        if (e.pointerType === 'touch') return;
-        last = { x: e.clientX, y: e.clientY };
-        if (!raf) raf = requestAnimationFrame(applyTilt);
-      });
-      feriaCard.addEventListener('pointerleave', resetTilt);
-    }
-
-    // Táctil: al pulsar se enciende el mismo estado que el hover de escritorio.
-    feriaCard.addEventListener('click', () => {
-      if (finePointer.matches) return; // en escritorio ya manda el hover
-      feriaCard.classList.toggle('is-active');
-    });
-    // Al tocar fuera de la tarjeta, se apaga.
-    document.addEventListener('click', (e) => {
-      if (!feriaCard.contains(e.target as Node)) feriaCard.classList.remove('is-active');
-    });
   }
 
   // ---------- Desplegable de categorías (móvil) ----------
