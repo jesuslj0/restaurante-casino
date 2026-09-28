@@ -1,0 +1,175 @@
+---
+// ============================================================
+//  /blog/<slug> — una entrada
+// ------------------------------------------------------------
+//  Una página por cada .md de src/content/blog, generada en el
+//  build. El slug es el nombre del archivo.
+// ============================================================
+import '../../styles/blog.css';
+import { Image, getImage } from 'astro:assets';
+import { render } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PostCard from '../../components/blog/PostCard.astro';
+import { TELEFONO, TELEFONO_INTL } from '../../data/negocio';
+import { fechaISO, fechaLarga, tituloSEO } from '../../lib/blog';
+import { publicados, relacionados, type Post } from '../../lib/blog-posts';
+
+export async function getStaticPaths() {
+  const posts = await publicados();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+interface Props {
+  post: Post;
+  posts: Post[];
+}
+
+const { post, posts } = Astro.props;
+const { data } = post;
+const { Content } = await render(post);
+const otras = relacionados(posts, post, 2);
+
+const site = (Astro.site ?? Astro.url).origin;
+// Con barra final, igual que el canonical que genera el build (/carta/, /blog/x/).
+const url = `${site}/blog/${post.id}/`;
+
+// La portada para WhatsApp, Facebook y Google: jpg de 1200, que es lo que
+// todos aceptan sin sorpresas.
+const og = await getImage({ src: data.imagen, width: 1200, format: 'jpg' });
+const ogAbs = new URL(og.src, site).href;
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: data.titulo,
+    description: data.descripcion,
+    image: ogAbs,
+    datePublished: fechaISO(data.fecha),
+    dateModified: fechaISO(data.actualizado ?? data.fecha),
+    mainEntityOfPage: url,
+    inLanguage: 'es-ES',
+    author: { '@type': 'Organization', name: 'El Casino de El Bonillo', url: site },
+    publisher: { '@type': 'Organization', name: 'El Casino de El Bonillo', url: site },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${site}/` },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${site}/blog/` },
+      { '@type': 'ListItem', position: 3, name: data.titulo, item: url },
+    ],
+  },
+];
+
+const props = {
+  restaurantName: 'El Casino',
+  location: 'Plaza Mayor, Nº5 - El Bonillo (AB)',
+};
+const socialProps = {
+  facebookUsername: 'elcasino',
+  instagramUsername: 'casinoelbonillo',
+  xUsername: 'el_casino',
+};
+---
+
+<Layout title={tituloSEO(data.titulo)} description={data.descripcion} image={og.src} type="article">
+  <Header slot="header" />
+
+  <article>
+    <header class="bl-head bl-head--art">
+      <div class="bl-head-inner">
+        <nav class="bl-migas" aria-label="Migas de pan">
+          <a href="/">Inicio</a><span aria-hidden="true">/</span>
+          <a href="/blog">Blog</a><span aria-hidden="true">/</span>
+          <span aria-current="page">{data.categoria}</span>
+        </nav>
+        <span class="bl-cat">{data.categoria}</span>
+        <h1 class="bl-title">{data.titulo}</h1>
+        <p class="bl-lead">{data.descripcion}</p>
+        <p class="bl-meta">
+          <time datetime={fechaISO(data.fecha)}>{fechaLarga(data.fecha)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{post.lectura} min de lectura</span>
+          {
+            data.actualizado && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>Actualizado el {fechaLarga(data.actualizado)}</span>
+              </>
+            )
+          }
+        </p>
+      </div>
+    </header>
+
+    {/* La portada mide lo mismo que la columna de texto y sube sobre la
+        cabecera: presenta el artículo en vez de taparlo. */}
+    <figure class="bl-portada">
+      <Image
+        src={data.imagen}
+        alt={data.imagen_alt}
+        widths={[640, 960, 1280, 1600]}
+        sizes="(max-width: 900px) 100vw, 832px"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </figure>
+
+    <div class="bl-prose">
+      <Content />
+    </div>
+
+    {/* Sin horario a propósito: va a cambiar y su única fuente es
+        Hours.astro. Se enlaza a la sección en lugar de copiarlo. */}
+    <aside class="bl-cta">
+      <div class="bl-cta-inner">
+        <p class="eyebrow">• Reservas •</p>
+        <h2 class="bl-cta-title">Te guardamos sitio en <span class="title-highlight">la Plaza Mayor</span></h2>
+        <p class="bl-cta-text">
+          Para reservar mesa, preguntar por el menú del día o por una celebración, llámanos o escríbenos por WhatsApp.
+        </p>
+        <div class="bl-cta-actions">
+          <a href={`tel:+${TELEFONO_INTL}`} class="primary-btn">
+            Llamar al {TELEFONO} <Icon name="lucide:phone" />
+          </a>
+          <a href={`https://wa.me/${TELEFONO_INTL}`} class="secondary-btn" target="_blank" rel="noopener noreferrer">
+            WhatsApp <Icon name="simple-icons:whatsapp" />
+          </a>
+          <a href="/#horarios" class="secondary-btn">
+            Horarios <Icon name="lucide:clock" />
+          </a>
+        </div>
+      </div>
+    </aside>
+  </article>
+
+  {
+    otras.length > 0 && (
+      <section class="bl-mas">
+        <p class="eyebrow">• Sigue leyendo •</p>
+        <h2 class="bl-mas-title">Más del <span class="title-highlight">Casino</span></h2>
+        <div class="bl-grid bl-grid--2">
+          {otras.map((p) => (
+            <PostCard post={p} as="h3" />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schemas)} />
+
+  <Footer
+    slot="footer"
+    restaurantName={props.restaurantName}
+    location={props.location}
+    facebookUsername={socialProps.facebookUsername}
+    instagramUsername={socialProps.instagramUsername}
+    xUsername={socialProps.xUsername}
+  />
+</Layout>

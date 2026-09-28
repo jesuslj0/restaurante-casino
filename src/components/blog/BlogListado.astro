@@ -1,0 +1,107 @@
+---
+// ============================================================
+//  LISTADO DEL BLOG — destacada, rejilla y paginación
+// ------------------------------------------------------------
+//  Lo comparten /blog y /blog/pagina/<n>. La destacada va en
+//  TODAS las páginas (es la cabecera del índice) y por eso quien
+//  llama pasa la lista YA sin ella: no puede salir dos veces.
+// ============================================================
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import PostCard from './PostCard.astro';
+import { fechaCorta, urlPagina, type Pagina } from '../../lib/blog';
+import type { Post } from '../../lib/blog-posts';
+
+interface Props {
+  pagina: Pagina<Post>;
+  destacado?: Post;
+}
+
+const { pagina, destacado } = Astro.props;
+const { items, actual, total } = pagina;
+const numeros = Array.from({ length: total }, (_, i) => i + 1);
+---
+
+{
+  destacado && (
+    <a href={`/blog/${destacado.id}`} class="bl-dest">
+      <div class="bl-dest-media">
+        <Image
+          src={destacado.data.imagen}
+          alt={destacado.data.imagen_alt}
+          widths={[640, 960, 1280]}
+          sizes="(max-width: 768px) 100vw, 60vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </div>
+      <div class="bl-dest-body">
+        <div class="bl-card-meta">
+          <span class="bl-cat">{destacado.data.categoria}</span>
+          <span>{fechaCorta(destacado.data.fecha)} · {destacado.lectura} min</span>
+        </div>
+        <h2 class="bl-dest-title">{destacado.data.titulo}</h2>
+        <p class="bl-dest-desc">{destacado.data.descripcion}</p>
+        <span class="bl-link">
+          Leer la entrada <Icon name="lucide:arrow-right" />
+        </span>
+      </div>
+    </a>
+  )
+}
+
+{
+  items.length > 0 && (
+    <div class="bl-grid">
+      {items.map((p) => (
+        <PostCard post={p} />
+      ))}
+    </div>
+  )
+}
+
+{
+  /* Con una sola página no se pinta nada: controles que no llevan a
+     ningún sitio son ruido. Son <a> de verdad: los sigue el rastreador. */
+  total > 1 && (
+    <nav class="bl-pag" aria-label="Páginas del blog">
+      {actual > 1 ? (
+        <a class="pag-flecha" href={urlPagina(actual - 1)} rel="prev">
+          <Icon name="lucide:chevron-left" />
+          <span>Anterior</span>
+        </a>
+      ) : (
+        <span class="pag-flecha es-inerte" aria-hidden="true">
+          <Icon name="lucide:chevron-left" />
+          <span>Anterior</span>
+        </span>
+      )}
+
+      <ol class="pag-nums">
+        {numeros.map((n) =>
+          n === actual ? (
+            <li>
+              <span class="pag-num es-actual" aria-current="page">{n}</span>
+            </li>
+          ) : (
+            <li>
+              <a class="pag-num" href={urlPagina(n)} aria-label={`Página ${n}`}>{n}</a>
+            </li>
+          )
+        )}
+      </ol>
+
+      {actual < total ? (
+        <a class="pag-flecha" href={urlPagina(actual + 1)} rel="next">
+          <span>Siguiente</span>
+          <Icon name="lucide:chevron-right" />
+        </a>
+      ) : (
+        <span class="pag-flecha es-inerte" aria-hidden="true">
+          <span>Siguiente</span>
+          <Icon name="lucide:chevron-right" />
+        </span>
+      )}
+    </nav>
+  )
+}

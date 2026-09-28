@@ -1,0 +1,40 @@
+---
+// Tarjeta de una entrada. La usan el índice y el "Sigue leyendo".
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { fechaCorta } from '../../lib/blog';
+import type { Post } from '../../lib/blog-posts';
+
+interface Props {
+  post: Post;
+  /** Nivel del título: h2 en el índice, h3 dentro de un artículo. */
+  as?: 'h2' | 'h3';
+}
+
+const { post, as: Titulo = 'h2' } = Astro.props;
+const url = `/blog/${post.id}`;
+---
+
+<article class="bl-card">
+  {/* Foto y "Leer" van fuera del orden de tabulación: son tres caminos a la
+      misma entrada y el que cuenta, el que dice a dónde va, es el título. */}
+  <a href={url} class="bl-card-media" tabindex="-1" aria-hidden="true">
+    <Image
+      src={post.data.imagen}
+      alt=""
+      widths={[400, 640, 900]}
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+    />
+  </a>
+  <div class="bl-card-body">
+    <div class="bl-card-meta">
+      <span class="bl-cat">{post.data.categoria}</span>
+      <span>{fechaCorta(post.data.fecha)} · {post.lectura} min</span>
+    </div>
+    <Titulo class="bl-card-title"><a href={url}>{post.data.titulo}</a></Titulo>
+    <p class="bl-card-desc">{post.data.descripcion}</p>
+    <a href={url} class="bl-link" tabindex="-1" aria-hidden="true">
+      Leer <Icon name="lucide:arrow-right" />
+    </a>
+  </div>
+</article>

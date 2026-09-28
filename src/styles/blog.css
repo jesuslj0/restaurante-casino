@@ -1,0 +1,551 @@
+/* ============================================================
+   BLOG — estilos compartidos por /blog, /blog/pagina/<n> y
+   /blog/<slug>. Van en una hoja propia y no en cada componente
+   porque la tarjeta, la cabecera y el cuerpo del artículo se
+   reparten entre varios, y el cuerpo sale de un .md sin clases.
+   Mismo lenguaje que el resto de la web: negro, oro y cobre,
+   Fraunces para títulos y Manrope para el texto.
+   ============================================================ */
+
+/* ---------- Cabecera de página ---------- */
+.bl-head {
+  position: relative;
+  padding: 8.5rem 1.5rem 4rem;
+  background:
+    radial-gradient(60% 140% at 0% 0%, rgb(201 169 97 / 0.14), transparent 60%),
+    linear-gradient(180deg, var(--color-secondary) 0%, var(--color-bg) 100%);
+  border-bottom: 1px solid rgb(255 255 255 / 0.06);
+}
+
+.bl-head-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.bl-head--art .bl-head-inner {
+  max-width: 52rem;
+}
+
+.bl-migas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.bl-migas a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.bl-migas a:hover {
+  color: var(--color-accent);
+}
+
+.bl-title {
+  font-family: var(--font-serif-semibold);
+  font-weight: 480;
+  color: var(--color-text);
+  font-size: clamp(2.2rem, 1.5rem + 3vw, 3.6rem);
+  line-height: 1.08;
+  margin: 1rem 0 0;
+}
+
+.bl-lead {
+  color: var(--color-text-secondary);
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.15rem);
+  line-height: 1.7;
+  max-width: 42rem;
+  margin: 1.1rem 0 0;
+}
+
+.bl-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  margin-top: 1.5rem;
+}
+
+/* Píldora de categoría: cobre, el acento secundario de la marca. */
+.bl-cat {
+  display: inline-block;
+  font-family: var(--font-sans-semibold);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #e7b48f;
+  padding: 0.22rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent-2-25);
+  background: rgb(166 110 72 / 0.12);
+}
+
+/* ---------- Contenedor del listado ---------- */
+.bl-wrap {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 5rem;
+}
+
+/* ---------- Tarjetas (mismo lenguaje que las de Especialidades) ---------- */
+.bl-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.03);
+  border: 1px solid rgb(255 255 255 / 0.07);
+  transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.bl-card:hover {
+  border-color: var(--color-accent-25);
+  transform: translateY(-4px);
+  box-shadow: 0 26px 60px -32px rgb(0 0 0 / 0.95);
+}
+
+.bl-card-media {
+  display: block;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-secondary);
+}
+
+.bl-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bl-card:hover .bl-card-media img {
+  transform: scale(1.06);
+}
+
+.bl-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  flex: 1;
+  padding: 1.4rem 1.5rem 1.6rem;
+}
+
+.bl-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.bl-card-title {
+  font-family: var(--font-serif-semibold);
+  font-weight: 500;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.bl-card-title a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.bl-card-title a:hover {
+  color: var(--color-accent);
+}
+
+.bl-card-desc {
+  flex: 1;
+  color: var(--color-text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bl-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  align-self: flex-start;
+  color: var(--color-accent);
+  font-family: var(--font-sans-semibold);
+  font-size: 0.85rem;
+  text-decoration: none;
+}
+
+.bl-link svg {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.bl-card:hover .bl-link svg,
+.bl-dest:hover .bl-link svg {
+  transform: translateX(4px);
+}
+
+/* ---------- Destacada ---------- */
+.bl-dest {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: rgb(255 255 255 / 0.03);
+  border: 1px solid rgb(255 255 255 / 0.07);
+  text-decoration: none;
+  transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.bl-dest:hover {
+  border-color: var(--color-accent-25);
+  transform: translateY(-4px);
+  box-shadow: 0 30px 70px -40px rgb(0 0 0 / 0.95);
+}
+
+.bl-dest-media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-secondary);
+}
+
+.bl-dest-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.bl-dest:hover .bl-dest-media img {
+  transform: scale(1.04);
+}
+
+.bl-dest-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.75rem 1.5rem 2rem;
+}
+
+.bl-dest-title {
+  font-family: var(--font-serif-semibold);
+  font-weight: 500;
+  color: var(--color-text);
+  font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.4rem);
+  line-height: 1.12;
+  margin: 0;
+}
+
+.bl-dest-desc {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .bl-dest {
+    grid-template-columns: 1.25fr 0.75fr;
+  }
+  .bl-dest-media {
+    aspect-ratio: auto;
+    min-height: 340px;
+  }
+  .bl-dest-body {
+    padding: 2.25rem;
+  }
+}
+
+/* ---------- Rejilla ---------- */
+.bl-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+  .bl-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .bl-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.bl-grid--2 {
+  margin-top: 0;
+}
+
+@media (min-width: 1024px) {
+  .bl-grid--2 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---------- Paginación ---------- */
+.bl-pag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.pag-flecha {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-sans-semibold);
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  transition: background 0.25s ease;
+}
+
+.pag-flecha svg { width: 1rem; height: 1rem; }
+
+a.pag-flecha:hover { background: rgb(201 169 97 / 0.1); }
+
+.pag-flecha.es-inerte {
+  color: var(--color-text-secondary);
+  opacity: 0.35;
+}
+
+.pag-nums {
+  display: flex;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pag-num {
+  display: grid;
+  place-items: center;
+  min-width: 42px;
+  height: 42px;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background: rgb(255 255 255 / 0.03);
+  color: var(--color-text);
+  font-family: var(--font-sans-semibold);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+a.pag-num:hover {
+  border-color: var(--color-accent);
+  background: rgb(201 169 97 / 0.1);
+}
+
+.pag-num.es-actual {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #1a120a;
+}
+
+@media (max-width: 560px) {
+  .bl-pag { justify-content: center; }
+  .pag-nums { order: -1; flex-basis: 100%; justify-content: center; }
+  .pag-flecha { flex: 1 1 0; justify-content: center; }
+}
+
+/* ---------- Artículo ---------- */
+.bl-head--art {
+  padding-bottom: 6.5rem;
+}
+
+.bl-portada {
+  max-width: 52rem;
+  margin: -4rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.bl-portada img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  border-radius: 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  box-shadow: 0 30px 70px -40px rgb(0 0 0 / 0.95);
+}
+
+/* 52rem ≈ 70 caracteres por línea: la medida cómoda para lectura larga. */
+.bl-prose {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 0;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.bl-prose > * + * { margin-top: 1.25em; }
+
+.bl-prose h2 {
+  font-family: var(--font-serif-semibold);
+  font-weight: 500;
+  color: var(--color-text);
+  font-size: clamp(1.6rem, 1.3rem + 1vw, 2.1rem);
+  line-height: 1.15;
+  margin-top: 2em;
+}
+
+.bl-prose h3 {
+  font-family: var(--font-serif-semibold);
+  font-weight: 500;
+  color: rgb(232 210 150);
+  font-size: 1.3rem;
+  margin-top: 1.6em;
+}
+
+.bl-prose strong {
+  color: var(--color-text);
+  font-family: var(--font-sans-semibold);
+  font-weight: 700;
+}
+
+.bl-prose a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgb(201 169 97 / 0.4);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.bl-prose a:hover {
+  color: rgb(232 210 150);
+  border-bottom-color: rgb(232 210 150);
+}
+
+.bl-prose ul,
+.bl-prose ol {
+  padding-left: 1.3em;
+  display: grid;
+  gap: 0.55em;
+}
+
+.bl-prose ul { list-style: disc; }
+.bl-prose ol { list-style: decimal; }
+.bl-prose li::marker { color: var(--color-accent-2); }
+
+.bl-prose blockquote {
+  margin-left: 0;
+  border-left: 2px solid var(--color-accent);
+  padding: 0.8rem 1.1rem;
+  background: rgb(201 169 97 / 0.06);
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-style: italic;
+  color: var(--color-text);
+}
+
+.bl-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.bl-prose th,
+.bl-prose td {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.bl-prose th {
+  background: rgb(201 169 97 / 0.1);
+  color: var(--color-text);
+  font-family: var(--font-sans-semibold);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bl-prose hr {
+  border: none;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+  margin-block: 2em;
+}
+
+/* ---------- Bloque de reserva al final ---------- */
+.bl-cta {
+  max-width: 52rem;
+  margin: 4rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.bl-cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-radius: 1.5rem;
+  border: 1px solid var(--color-accent-25);
+  background:
+    radial-gradient(90% 120% at 0% 0%, rgb(201 169 97 / 0.16), transparent 60%),
+    linear-gradient(155deg, var(--color-primary) 0%, var(--color-secondary) 55%, var(--color-bg) 100%);
+}
+
+.bl-cta-title {
+  font-family: var(--font-serif-semibold);
+  font-weight: 500;
+  color: var(--color-text);
+  font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.bl-cta-text {
+  color: var(--color-text-secondary);
+  max-width: 34rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.bl-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Sigue leyendo ---------- */
+.bl-mas {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 5rem;
+}
+
+.bl-mas-title {
+  font-family: var(--font-serif-semibold);
+  font-weight: 480;
+  color: var(--color-text);
+  font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.3rem);
+  margin: 0.75rem 0 2rem;
+}
+
+@media (min-width: 768px) {
+  .bl-head { padding: 10rem 3rem 4.5rem; }
+  .bl-head--art { padding-bottom: 7rem; }
+  .bl-wrap { padding: 4.5rem 3rem 6rem; }
+}

@@ -1,6 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+// ⚠️ AL CAMBIAR EL HORARIO: el blog no lo copia (su bloque de reserva
+// enlaza a /#horarios), pero algunas entradas lo citan en el texto. Revisa
+// las que salgan con:  grep -rln "lunes\|martes a domingo\|8:30" src/content/blog
+// Y actualiza también `ranges` en el <script> de este archivo (el chip de
+// "abierto ahora"), `openingHoursSpecification` en layouts/Layout.astro y
+// el `schedule` del Hero en pages/index.astro.
+//
 // index = getDay() de JS (0 = domingo ... 6 = sábado)
 const schedule = [
   { day: 'Lunes', index: 1, hours: 'Cerrado', closed: true },

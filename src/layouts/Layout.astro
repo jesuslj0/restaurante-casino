@@ -2,7 +2,9 @@
 import '../styles/global.css';
 import '../styles/buttons.css';
 
-const { title, description } = Astro.props;
+// `image` y `type` son opcionales: los usa el blog para que cada entrada
+// se comparta con su portada. El resto de páginas siguen con el logo.
+const { title, description, image, type = 'website' } = Astro.props;
 
 // En la carta hay una píldora de categorías arriba (en ambos tamaños),
 // así que el desvanecido superior debe activarse también en móvil.
@@ -10,7 +12,7 @@ const onCarta = Astro.url.pathname.startsWith('/carta');
 
 // URL canónica absoluta de la página actual (a partir de `site` en astro.config).
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/og-logo.png', Astro.site);
+const ogImage = new URL(image ?? '/og-logo.png', Astro.site);
 const metaDescription =
 	description ??
 	'El Casino de El Bonillo — bar y restaurante en la Plaza Mayor. Almuerzos, menú del día y cenas de fin de semana con cocina casera para todos los gustos.';
@@ -72,16 +74,20 @@ const restaurantSchema = {
 		<link rel="canonical" href={canonicalURL} />
 
 		<!-- Open Graph -->
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content={type} />
 		<meta property="og:site_name" content="El Casino de El Bonillo" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={metaDescription} />
 		<meta property="og:url" content={canonicalURL} />
 		<meta property="og:locale" content="es_ES" />
 		<meta property="og:image" content={ogImage} />
-		<meta property="og:image:width" content="1200" />
-		<meta property="og:image:height" content="630" />
-		<meta property="og:image:alt" content="El Casino — Bar y restaurante en la Plaza Mayor de El Bonillo" />
+		{!image && (
+			<>
+				<meta property="og:image:width" content="1200" />
+				<meta property="og:image:height" content="630" />
+				<meta property="og:image:alt" content="El Casino — Bar y restaurante en la Plaza Mayor de El Bonillo" />
+			</>
+		)}
 
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
