@@ -46,7 +46,7 @@ const social = [
         <h2 class="ft-name">{restaurantName}</h2>
         <p class="ft-loc">{location}</p>
         <p class="ft-rights">© {year} · Todos los derechos reservados.</p>
-        <p class="ft-rights">Creada por Propus</p>
+        <p class="ft-rights">Creada por <a class="propus-link" href="https://propus.ink/" target="_blank" rel="noopener">Propus<span class="sr-only"> (se abre en una pestaña nueva)</span></a></p>
       </div>
 
       <!-- Columnas -->
@@ -253,6 +253,23 @@ const social = [
       grid-template-columns: 1fr 1.6fr;
       gap: 3rem;
     }
+  }
+
+  .propus-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s ease, opacity 0.2s ease;
+  }
+  .propus-link:hover {
+    text-decoration-color: currentColor;
+    opacity: 0.85;
+  }
+  .propus-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 </style>
 
