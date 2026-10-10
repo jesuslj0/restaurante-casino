@@ -13,7 +13,7 @@ Este es el plan.
 
 ## Por la mañana: almuerzo en la plaza
 
-Si sales de Albacete temprano, llegas a tiempo para el almuerzo, que servimos de **9:30 a 11:30**. Bocadillo de chorizo casero, de morcilla o de lomo, y un café. Te los contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo).
+Si sales de Albacete temprano, llegas a tiempo para el almuerzo, que servimos de **9:30 a 11:30**. Bocadillo de chorizo casero, de morcilla o de lomo, y un café. Te los contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo/).
 
 ## Media mañana: el pueblo
 
@@ -23,13 +23,13 @@ Todo a pie desde la Plaza Mayor:
 - **La iglesia de Santa Catalina**, Bien de Interés Cultural, con su escalera de caracol.
 - **El museo parroquial**, con el **«Cristo abrazado a la cruz» de El Greco**. Confirma el horario antes.
 
-Lo tienes detallado en [qué ver en El Bonillo](/blog/que-ver-el-bonillo).
+Lo tienes detallado en [qué ver en El Bonillo](/blog/que-ver-el-bonillo/).
 
 ## A mediodía: comer en el Casino
 
-- **Entre semana**, [menú del día](/blog/menu-del-dia-el-bonillo).
-- **Sábado y domingo**, [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo).
-- **Si quieres cocina de aquí**, [carne de boda y landres](/blog/comida-tipica-manchega-el-bonillo).
+- **Entre semana**, [menú del día](/blog/menu-del-dia-el-bonillo/).
+- **Sábado y domingo**, [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/).
+- **Si quieres cocina de aquí**, [carne de boda y landres](/blog/comida-tipica-manchega-el-bonillo/).
 
 Reserva por WhatsApp al **621 68 51 32**, sobre todo el fin de semana.
 
@@ -42,8 +42,8 @@ Reserva por WhatsApp al **621 68 51 32**, sobre todo el fin de semana.
 
 ## ¿Cuándo venir?
 
-- **Otoño y primavera**, para andar sin calor. Ideas de temporada en [otoño en El Bonillo](/blog/otono-el-bonillo-campo-de-montiel).
-- **Junio**, por la [Feria de Tradiciones y Artesanía](/blog/feria-tradiciones-artesania-el-bonillo).
-- **Semana Santa**, declarada de Interés Turístico Regional: [Semana Santa en El Bonillo](/blog/semana-santa-el-bonillo).
+- **Otoño y primavera**, para andar sin calor. Ideas de temporada en [otoño en El Bonillo](/blog/otono-el-bonillo-campo-de-montiel/).
+- **Junio**, por la [Feria de Tradiciones y Artesanía](/blog/feria-tradiciones-artesania-el-bonillo/).
+- **Semana Santa**, declarada de Interés Turístico Regional: [Semana Santa en El Bonillo](/blog/semana-santa-el-bonillo/).
 
 Plaza Mayor, 5 · El Bonillo.

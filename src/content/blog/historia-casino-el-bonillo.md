@@ -25,10 +25,10 @@ Algo de eso sigue en el nuestro: la barra de la mañana, la partida de cartas y 
 
 Un bar y restaurante en la Plaza Mayor, con un aire actual y el mismo papel de punto de encuentro:
 
-- **Almuerzos** todas las mañanas, de 9:30 a 11:30: [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo).
-- **Menú de mediodía** y **menú de fin de semana**: [menú del día](/blog/menu-del-dia-el-bonillo).
+- **Almuerzos** todas las mañanas, de 9:30 a 11:30: [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo/).
+- **Menú de mediodía** y **menú de fin de semana**: [menú del día](/blog/menu-del-dia-el-bonillo/).
 - **Tapeo y aperitivo** los fines de semana.
-- **Un salón muy amplio** para celebraciones: [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+- **Un salón muy amplio** para celebraciones: [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).
 - **Terraza en la plaza** en verano.
 - Y, pared con pared, **Lio Music Pub**, de la misma casa.
 
@@ -36,4 +36,4 @@ Un bar y restaurante en la Plaza Mayor, con un aire actual y el mismo papel de p
 
 La historia de un casino de pueblo la guardan sus vecinos. Si tienes fotos antiguas del Casino o de la Plaza Mayor, o recuerdos de cómo era, nos encantará conocerlos: pásate por la barra o escríbenos al **621 68 51 32**.
 
-Si es tu primera vez en El Bonillo, empieza por [qué ver en el pueblo](/blog/que-ver-el-bonillo).
+Si es tu primera vez en El Bonillo, empieza por [qué ver en el pueblo](/blog/que-ver-el-bonillo/).

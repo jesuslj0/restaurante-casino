@@ -48,12 +48,12 @@ Si es la comida fuerte del día, sube una. Si es un aperitivo, baja una.
 - **Gambón rebozado** · media 7 € · ración 12 €
 - **Almejas a la marinera** · 10 €
 
-Todo el pescado, con el salmonete y la bacaladilla de Santa Pola, en [pescado en plena Mancha](/blog/pescado-santa-pola-el-bonillo).
+Todo el pescado, con el salmonete y la bacaladilla de Santa Pola, en [pescado en plena Mancha](/blog/pescado-santa-pola-el-bonillo/).
 
 ### Para rematar
 
 - **Huevos rotos con jamón** · 12 €
-- Un **plato de ibéricos de Huelva**: jamón, lomo o chorizo. Te los contamos en [ibéricos y queso manchego](/blog/ibericos-queso-manchego-el-bonillo).
+- Un **plato de ibéricos de Huelva**: jamón, lomo o chorizo. Te los contamos en [ibéricos y queso manchego](/blog/ibericos-queso-manchego-el-bonillo/).
 
 ## Una propuesta para seis
 
@@ -62,10 +62,10 @@ Todo el pescado, con el salmonete y la bacaladilla de Santa Pola, en [pescado en
 3. Gamba blanca y media de chipirón a la andaluza.
 4. Huevos rotos con jamón al centro.
 
-Y de postre, [algo casero](/blog/postres-caseros-el-bonillo).
+Y de postre, [algo casero](/blog/postres-caseros-el-bonillo/).
 
 ## ¿Hay sitio para grupos?
 
-Sí. El salón es muy amplio y juntamos mesas sin problema. Para grupos grandes o celebraciones, reservad con antelación al **621 68 51 32**, y mirad [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+Sí. El salón es muy amplio y juntamos mesas sin problema. Para grupos grandes o celebraciones, reservad con antelación al **621 68 51 32**, y mirad [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).
 
-Los platos de toda la vida de la carta los tienes explicados en [comida manchega en El Bonillo](/blog/comida-tipica-manchega-el-bonillo).
+Los platos de toda la vida de la carta los tienes explicados en [comida manchega en El Bonillo](/blog/comida-tipica-manchega-el-bonillo/).

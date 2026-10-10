@@ -18,13 +18,13 @@ Cenamos los fines de semana. Por la noche tienes la carta, con mucho para compar
 - **Pescado:** gamba blanca de Huelva, chipirón, gambón al ajillo.
 - **Hamburguesas** y **platos combinados**, si alguien quiere su plato.
 
-La cuenta de raciones para un grupo, en [raciones para compartir](/blog/raciones-para-compartir-el-bonillo).
+La cuenta de raciones para un grupo, en [raciones para compartir](/blog/raciones-para-compartir-el-bonillo/).
 
 ## ¿Y después de cenar?
 
-**Lio Music Pub**, justo al lado. Es uno de los locales de fiesta con más ambiente de la zona, con su propia programación de fiestas. La agenda está en [liopub.com](https://liopub.com).
+**Lio Music Pub**, justo al lado. Es uno de los locales de fiesta con más ambiente de la zona, con su propia programación de fiestas. Su agenda de fiestas está en [Lío Music Pub, el disco pub de El Bonillo](https://www.liopub.com/).
 
-Entre medias, la previa en nuestra barra: [la previa antes de Lio](/blog/previa-lio-music-pub-el-bonillo).
+Entre medias, la previa en nuestra barra: [la previa antes de Lio](/blog/previa-lio-music-pub-el-bonillo/).
 
 ## ¿Hay que reservar la cena?
 
@@ -32,10 +32,10 @@ El sábado, sí, y más si sois grupo. Escríbenos por WhatsApp al **621 68 51 3
 
 ## ¿Es buen plan para una despedida o un cumpleaños?
 
-Es el plan perfecto: cena en grupo y fiesta sin coger el coche. Te lo contamos en [despedidas de soltero y soltera](/blog/despedidas-soltero-el-bonillo).
+Es el plan perfecto: cena en grupo y fiesta sin coger el coche. Te lo contamos en [despedidas de soltero y soltera](/blog/despedidas-soltero-el-bonillo/).
 
 ## ¿Y en verano?
 
-En verano la cena se hace en la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo), que abrimos hasta tarde. Y en la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto), la plaza entera es fiesta.
+En verano la cena se hace en la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo/), que abrimos hasta tarde. Y en la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto/), la plaza entera es fiesta.
 
 Plaza Mayor, 5 · El Bonillo.

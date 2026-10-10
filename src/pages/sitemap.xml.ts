@@ -10,10 +10,13 @@
 //  Las URLs van con barra final, igual que el canonical que
 //  genera el build: un sitemap que anuncia una URL distinta de
 //  la canónica es una señal contradictoria para Google.
+//
+//  Los listados /blog/pagina/<n> no entran: siguen existiendo y
+//  enlazados, pero no aportan nada para el posicionamiento.
 // ============================================================
 import type { APIRoute } from 'astro';
 import { publicados } from '../lib/blog-posts';
-import { POR_PAGINA, fechaISO } from '../lib/blog';
+import { fechaISO } from '../lib/blog';
 
 const xml = (v: string) =>
   v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -21,7 +24,6 @@ const xml = (v: string) =>
 export const GET: APIRoute = async ({ site }) => {
   const base = (site ?? new URL('https://www.casinoelbonillo.com')).origin;
   const posts = await publicados();
-  const paginas = Math.max(1, Math.ceil((posts.length - 1) / POR_PAGINA));
 
   const url = (loc: string, extra = '') =>
     `  <url>\n    <loc>${xml(base + loc)}</loc>${extra}\n  </url>`;
@@ -30,7 +32,6 @@ export const GET: APIRoute = async ({ site }) => {
     url('/', '\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>'),
     url('/carta/', '\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>'),
     url('/blog/', '\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>'),
-    ...Array.from({ length: paginas - 1 }, (_, i) => url(`/blog/pagina/${i + 2}/`)),
     ...posts.map((p) =>
       url(`/blog/${p.id}/`, `\n    <lastmod>${fechaISO(p.data.actualizado ?? p.data.fecha)}</lastmod>\n    <priority>0.7</priority>`)
     ),

@@ -30,11 +30,11 @@ La reserva la puedes hacer desde [la web](/#contacto), que te abre WhatsApp con 
 A mediodía tienes la carta completa. Lo que mejor funciona si vienes a comer:
 
 - **Tapas de carne:** solomillo a la pimienta, secreto a la plancha, carne de boda, magra con tomate, landres fritas.
-- **Pescado:** mero a la plancha, sepia, chipirón, gambón al ajillo, boquerón frito. Y **salmonete y bacaladilla de Santa Pola**, según mercado: te lo contamos en [pescado en plena Mancha](/blog/pescado-santa-pola-el-bonillo).
+- **Pescado:** mero a la plancha, sepia, chipirón, gambón al ajillo, boquerón frito. Y **salmonete y bacaladilla de Santa Pola**, según mercado: te lo contamos en [pescado en plena Mancha](/blog/pescado-santa-pola-el-bonillo/).
 - **Platos combinados**, para comer rápido.
 - **Ensalada Casino:** lechuga, tomate cherry, queso fresco, bacon, cebolla caramelizada, aguacate y frutos secos.
 
-Te contamos los platos manchegos de la carta en [carne de boda, landres y sesos](/blog/comida-tipica-manchega-el-bonillo).
+Te contamos los platos manchegos de la carta en [carne de boda, landres y sesos](/blog/comida-tipica-manchega-el-bonillo/).
 
 ## ¿Se puede pedir para llevar?
 
@@ -42,10 +42,10 @@ Sí. No es lo principal de la casa, pero si llamas antes te preparamos la comida
 
 ## ¿Y el fin de semana?
 
-El sábado y el domingo cambia la cosa: hay [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo), con arroces y platos que no salen entre semana.
+El sábado y el domingo cambia la cosa: hay [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/), con arroces y platos que no salen entre semana.
 
 ## ¿Quién viene a comer de menú?
 
-Gente del pueblo, trabajadores de la zona que ya han [almorzado con nosotros](/blog/almuerzos-el-bonillo) por la mañana y vuelven a comer, y quien está de paso por Campo de Montiel.
+Gente del pueblo, trabajadores de la zona que ya han [almorzado con nosotros](/blog/almuerzos-el-bonillo/) por la mañana y vuelven a comer, y quien está de paso por Campo de Montiel.
 
 Plaza Mayor, 5, El Bonillo. Horarios del local en [la web](/#horarios).

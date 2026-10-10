@@ -36,7 +36,7 @@ export function paginar<T>(todos: T[], actual: number, porPagina = POR_PAGINA): 
 }
 
 /** La primera página es /blog y no /blog/pagina/1: una sola URL por listado. */
-export const urlPagina = (n: number) => (n <= 1 ? '/blog' : `/blog/pagina/${n}`);
+export const urlPagina = (n: number) => (n <= 1 ? '/blog/' : `/blog/pagina/${n}/`);
 
 // ------------------------------------------------------------
 //  Formato

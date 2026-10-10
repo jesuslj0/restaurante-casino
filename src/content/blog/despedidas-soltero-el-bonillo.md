@@ -23,11 +23,11 @@ En despedidas funciona lo que se comparte:
 - **Carne:** secreto, solomillo a la pimienta, mini hamburguesas de vaca con sobrasada y queso curado.
 - **Pescado:** chipirón a la andaluza, gambón rebozado, boquerón frito.
 
-La cuenta de cuántas raciones pedir está en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo).
+La cuenta de cuántas raciones pedir está en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo/).
 
 ## ¿Y para beber?
 
-Cañas y jarras de barril, tercios helados de las [neveras Wondercool](/blog/cerveza-fria-wondercool-el-bonillo), tinto de verano o vino de la zona.
+Cañas y jarras de barril, tercios helados de las [neveras Wondercool](/blog/cerveza-fria-wondercool-el-bonillo/), tinto de verano o vino de la zona.
 
 ## ¿Qué necesito para reservar?
 
@@ -37,10 +37,10 @@ Cañas y jarras de barril, tercios helados de las [neveras Wondercool](/blog/cer
 
 ## ¿Cuándo?
 
-Cualquier fin de semana del año. Si coincide con la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto) o con la [Feria de Tradiciones](/blog/feria-tradiciones-artesania-el-bonillo), reservad con más margen: el pueblo se llena.
+Cualquier fin de semana del año. Si coincide con la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto/) o con la [Feria de Tradiciones](/blog/feria-tradiciones-artesania-el-bonillo/), reservad con más margen: el pueblo se llena.
 
 ## Más planes de noche
 
-El plan de sábado completo, en [cena en la Plaza Mayor y Lio Music Pub](/blog/plan-sabado-el-bonillo-lio-music-pub). La programación de Lio está en [liopub.com](https://liopub.com).
+El plan de sábado completo, en [cena en la Plaza Mayor y Lio Music Pub](/blog/plan-sabado-el-bonillo-lio-music-pub/). La programación está en la web de [Lío Music Pub, el disco pub de El Bonillo](https://www.liopub.com/).
 
 Reservas: **621 68 51 32**.

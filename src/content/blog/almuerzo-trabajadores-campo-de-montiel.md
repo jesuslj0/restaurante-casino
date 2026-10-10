@@ -20,7 +20,7 @@ Esto es lo que te conviene saber si vienes con la cuadrilla.
 
 ## ¿Qué pide la gente que viene de trabajar?
 
-- **Bocadillo entero** de lomo, bacon, chorizo casero o morcilla casera. Te los contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo).
+- **Bocadillo entero** de lomo, bacon, chorizo casero o morcilla casera. Te los contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo/).
 - **Un combinado**, para el que almuerza de plato: chorizo, güeña y lomo de orza; panceta; secreto; lomo; pechuga.
 - **Café** o una caña, según el día.
 
@@ -34,10 +34,10 @@ Sí, llamando antes. Si no os da tiempo a sentaros, pasáis a recoger y seguís.
 
 ## ¿Y a mediodía?
 
-Si la jornada sigue y toca comer en la zona, a mediodía tenemos [menú del día](/blog/menu-del-dia-el-bonillo).
+Si la jornada sigue y toca comer en la zona, a mediodía tenemos [menú del día](/blog/menu-del-dia-el-bonillo/).
 
 ## Y en Navidad
 
-En diciembre, para la comida de Navidad del equipo, mira [comidas y cenas de empresa](/blog/comidas-empresa-navidad-el-bonillo).
+En diciembre, para la comida de Navidad del equipo, mira [comidas y cenas de empresa](/blog/comidas-empresa-navidad-el-bonillo/).
 
 Horario de almuerzos: **de 9:30 a 11:30**. Plaza Mayor, 5, El Bonillo.

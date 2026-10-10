@@ -13,7 +13,7 @@ Aunque ahora llegue el otoño, esto es lo que te espera en cuanto vuelva el buen
 
 ## ¿Cuándo está la terraza?
 
-En la temporada de buen tiempo, con el verano como plato fuerte. En agosto, con la [feria y fiestas del 10 al 15](/blog/feria-fiestas-el-bonillo-agosto), es cuando más vida tiene la plaza. Y en junio, con la [Feria de Tradiciones y Artesanía](/blog/feria-tradiciones-artesania-el-bonillo), la plaza se llena de ambiente.
+En la temporada de buen tiempo, con el verano como plato fuerte. En agosto, con la [feria y fiestas del 10 al 15](/blog/feria-fiestas-el-bonillo-agosto/), es cuando más vida tiene la plaza. Y en junio, con la [Feria de Tradiciones y Artesanía](/blog/feria-tradiciones-artesania-el-bonillo/), la plaza se llena de ambiente.
 
 De otoño a primavera nos vemos dentro, en la barra y en el salón.
 
@@ -22,7 +22,7 @@ De otoño a primavera nos vemos dentro, en la barra y en el salón.
 ### Para beber
 
 - **Caña de barril** o **jarra de medio litro**.
-- **Tercios y botellines helados** de la Wondercool. Todo sobre ellas en [tercios y botellines helados](/blog/cerveza-fria-wondercool-el-bonillo).
+- **Tercios y botellines helados** de la Wondercool. Todo sobre ellas en [tercios y botellines helados](/blog/cerveza-fria-wondercool-el-bonillo/).
 - **Tinto de verano** o **kalimotxo**.
 
 ### Para picar
@@ -41,10 +41,10 @@ Sí. En verano, las noches en la plaza se alargan. Para grupos grandes, reservad
 
 ## ¿Y después?
 
-Los sábados de verano, la noche sigue en la puerta de al lado: [Lio Music Pub](/blog/plan-sabado-el-bonillo-lio-music-pub), pared con pared con el Casino.
+Los sábados de verano, la noche sigue en la puerta de al lado: [Lio Music Pub](/blog/plan-sabado-el-bonillo-lio-music-pub/), pared con pared con el Casino.
 
 ## ¿Qué hay alrededor?
 
-En la misma plaza están el Ayuntamiento renacentista y la iglesia de Santa Catalina. Si es tu primera vez en el pueblo, mira [qué ver en El Bonillo](/blog/que-ver-el-bonillo).
+En la misma plaza están el Ayuntamiento renacentista y la iglesia de Santa Catalina. Si es tu primera vez en el pueblo, mira [qué ver en El Bonillo](/blog/que-ver-el-bonillo/).
 
 Plaza Mayor, 5 · El Bonillo.

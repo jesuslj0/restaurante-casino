@@ -40,7 +40,7 @@ Para los de buen saque.
 
 ## Y el embutido de la matanza
 
-En la bocadillería tenemos **chorizo casero**, **güeña casera** y **morcilla casera**, y el plato combinado de **chorizo, güeña y lomo de orza**. La güeña es un embutido manchego especiado, hecho con carne y vísceras del cerdo. Te lo contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo).
+En la bocadillería tenemos **chorizo casero**, **güeña casera** y **morcilla casera**, y el plato combinado de **chorizo, güeña y lomo de orza**. La güeña es un embutido manchego especiado, hecho con carne y vísceras del cerdo. Te lo contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo/).
 
 ## ¿Qué más se come en la zona?
 
@@ -48,6 +48,6 @@ En la cocina tradicional de El Bonillo están también el **ajopringue**, el **a
 
 ## ¿Cómo pedirlos?
 
-A mediodía y en las cenas del fin de semana, de carta o para compartir al centro. Para una comida en grupo con varios de estos platos, mira [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo).
+A mediodía y en las cenas del fin de semana, de carta o para compartir al centro. Para una comida en grupo con varios de estos platos, mira [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo/).
 
-La carta completa, con precios actualizados, en [la carta](/carta).
+La carta completa, con precios actualizados, en [la carta](/carta/).

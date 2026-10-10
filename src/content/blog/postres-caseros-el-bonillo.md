@@ -49,12 +49,12 @@ fecha: 2026-08-30
 
 ## ¿Qué es eso de ULALÁ?
 
-En verano tenemos **helados artesanales ULALÁ**, de fruta 100 % natural, sin aditivos ni conservantes: mango, sandía, mojito, tinto de verano, coco con leche condensada, fresa con Nutella, café bombón o maracuyá, entre otros. Cuestan 3,50 € y son perfectos para la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo).
+En verano tenemos **helados artesanales ULALÁ**, de fruta 100 % natural, sin aditivos ni conservantes: mango, sandía, mojito, tinto de verano, coco con leche condensada, fresa con Nutella, café bombón o maracuyá, entre otros. Cuestan 3,50 € y son perfectos para la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo/).
 
 ## ¿Entra el postre en el menú?
 
-En el [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo) hay postre casero; las opiniones de los clientes hablan de la torrija. Para el menú de diario, pregúntanos qué hay ese día.
+En el [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/) hay postre casero; las opiniones de los clientes hablan de la torrija. Para el menú de diario, pregúntanos qué hay ese día.
 
 ## Para celebraciones
 
-Si organizas una comunión, un bautizo o un cumpleaños, cuéntanos al reservar si quieres algo especial de postre: [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+Si organizas una comunión, un bautizo o un cumpleaños, cuéntanos al reservar si quieres algo especial de postre: [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).

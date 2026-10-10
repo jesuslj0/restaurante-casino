@@ -27,14 +27,14 @@ Con eso lo organizamos contigo.
 
 ## ¿Con cuánta antelación?
 
-Cuanto antes, mejor: los fines de semana de primavera y de verano se llenan. Y si la fecha coincide con la temporada de [comuniones](/blog/comuniones-el-bonillo) o con [la feria](/blog/feria-fiestas-el-bonillo-agosto), con más margen todavía.
+Cuanto antes, mejor: los fines de semana de primavera y de verano se llenan. Y si la fecha coincide con la temporada de [comuniones](/blog/comuniones-el-bonillo/) o con [la feria](/blog/feria-fiestas-el-bonillo-agosto/), con más margen todavía.
 
 ## ¿Qué se puede comer?
 
-Algo al centro para empezar, como ibéricos de Huelva, queso manchego o croquetas, y después carne o pescado. Te dejamos ideas en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo), y el remate, en [postres caseros](/blog/postres-caseros-el-bonillo).
+Algo al centro para empezar, como ibéricos de Huelva, queso manchego o croquetas, y después carne o pescado. Te dejamos ideas en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo/), y el remate, en [postres caseros](/blog/postres-caseros-el-bonillo/).
 
 ## Otras celebraciones
 
-También organizamos comuniones, cumpleaños, aniversarios y comidas familiares: [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+También organizamos comuniones, cumpleaños, aniversarios y comidas familiares: [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).
 
 Plaza Mayor, 5 · El Bonillo · **621 68 51 32**.

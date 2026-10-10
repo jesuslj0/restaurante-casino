@@ -42,14 +42,14 @@ Para una mesa de cuatro que quiere probar el mar:
 3. **Chipirón a la andaluza** o **gambón rebozado**, en media ración.
 4. **Sepia a la plancha** o **almejas a la marinera** para terminar.
 
-Más ideas para comer al centro en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo).
+Más ideas para comer al centro en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo/).
 
 ## ¿Y como plato?
 
-El **mero a la plancha** también está como plato combinado. Para una comida rápida entre semana, junto con el [menú del día](/blog/menu-del-dia-el-bonillo).
+El **mero a la plancha** también está como plato combinado. Para una comida rápida entre semana, junto con el [menú del día](/blog/menu-del-dia-el-bonillo/).
 
 ## ¿Con qué se acompaña?
 
-Con un tercio bien frío de las neveras Wondercool, o con una caña de barril. Te lo contamos en [tercios y botellines helados](/blog/cerveza-fria-wondercool-el-bonillo).
+Con un tercio bien frío de las neveras Wondercool, o con una caña de barril. Te lo contamos en [tercios y botellines helados](/blog/cerveza-fria-wondercool-el-bonillo/).
 
-La carta de pescado completa y actualizada, en [la carta](/carta).
+La carta de pescado completa y actualizada, en [la carta](/carta/).

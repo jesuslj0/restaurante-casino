@@ -35,16 +35,16 @@ Las fechas de 2027 las publicará el Ayuntamiento. Si sigue la costumbre, será 
 
 En la Plaza Mayor, en El Casino:
 
-- **Almuerzo** de 9:30 a 11:30: [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo).
-- **Comida**, de menú o de carta: [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo).
-- **Terraza** y tercios helados cuando aprieta el calor: [la terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo).
+- **Almuerzo** de 9:30 a 11:30: [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo/).
+- **Comida**, de menú o de carta: [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/).
+- **Terraza** y tercios helados cuando aprieta el calor: [la terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo/).
 
 Esos días el pueblo se llena: **reservad** en el **621 68 51 32**.
 
 ## ¿Y por la noche?
 
-La fiesta sigue en Lio Music Pub, pared con pared: [plan de sábado en El Bonillo](/blog/plan-sabado-el-bonillo-lio-music-pub).
+La fiesta sigue en Lio Music Pub, pared con pared: [plan de sábado en El Bonillo](/blog/plan-sabado-el-bonillo-lio-music-pub/).
 
 ## Si vienes de fuera
 
-Aprovecha para ver el pueblo: [qué ver en El Bonillo](/blog/que-ver-el-bonillo). Y apunta la otra gran fiesta del año, la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto).
+Aprovecha para ver el pueblo: [qué ver en El Bonillo](/blog/que-ver-el-bonillo/). Y apunta la otra gran fiesta del año, la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto/).

@@ -12,7 +12,7 @@ fecha: 2026-09-04
 ## ¿Por qué la previa en el Casino?
 
 - **Está al lado.** Sales del Casino y entras en Lio sin cruzar la calle.
-- **Cerveza fría de verdad**: caña de barril o tercio de la Wondercool. Todo en [tercios y botellines helados](/blog/cerveza-fria-wondercool-el-bonillo).
+- **Cerveza fría de verdad**: caña de barril o tercio de la Wondercool. Todo en [tercios y botellines helados](/blog/cerveza-fria-wondercool-el-bonillo/).
 - **Algo de picar** para aguantar la noche.
 - **Sitio para el grupo**, en la barra o en el salón.
 
@@ -26,7 +26,7 @@ Lo que entra rápido y se comparte:
 - **Pincho moruno de pollo** · 2,50 €/ud
 - **Croquetas variadas** · 2,50 €/ud
 
-Y si la previa se convierte en cena, mira [el plan de sábado completo](/blog/plan-sabado-el-bonillo-lio-music-pub).
+Y si la previa se convierte en cena, mira [el plan de sábado completo](/blog/plan-sabado-el-bonillo-lio-music-pub/).
 
 ## ¿Qué se bebe?
 
@@ -37,6 +37,6 @@ Y si la previa se convierte en cena, mira [el plan de sábado completo](/blog/pl
 
 ## ¿Y la programación de Lio?
 
-La agenda de fiestas está en [liopub.com](https://liopub.com). En fechas grandes, como la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto), la noche del pueblo pasa por la Plaza Mayor.
+La agenda de fiestas está en la web de [Lío Music Pub, el disco pub de El Bonillo](https://www.liopub.com/). En fechas grandes, como la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto/), la noche del pueblo pasa por la Plaza Mayor.
 
-Si es una despedida o un cumpleaños, reserva antes: [despedidas de soltero y soltera](/blog/despedidas-soltero-el-bonillo).
+Si es una despedida o un cumpleaños, reserva antes: [despedidas de soltero y soltera](/blog/despedidas-soltero-el-bonillo/).

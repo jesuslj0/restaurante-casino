@@ -19,15 +19,15 @@ Espectáculos musicales, festejos taurinos y ambiente en la calle de mañana a n
 
 ## ¿Qué hacemos en el Casino?
 
-- **Terraza en la Plaza Mayor**, abierta hasta tarde: [la terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo).
-- **Cerveza fría**: caña de barril y tercios de las [neveras Wondercool](/blog/cerveza-fria-wondercool-el-bonillo).
+- **Terraza en la Plaza Mayor**, abierta hasta tarde: [la terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo/).
+- **Cerveza fría**: caña de barril y tercios de las [neveras Wondercool](/blog/cerveza-fria-wondercool-el-bonillo/).
 - **Almuerzos** por la mañana, de 9:30 a 11:30, para los que madrugan pese a la fiesta.
-- **Comidas de peña y de grupo** en el salón: [comidas de cuadrillas](/blog/comidas-cuadrillas-cazadores-campo-de-montiel).
+- **Comidas de peña y de grupo** en el salón: [comidas de cuadrillas](/blog/comidas-cuadrillas-cazadores-campo-de-montiel/).
 - **Helados ULALÁ** de fruta natural para el calor.
 
 ## ¿Y la noche?
 
-La noche de feria sigue en **Lio Music Pub**, pared con pared con el Casino y de la misma casa. Previa en nuestra barra y fiesta al lado: [plan de sábado en El Bonillo](/blog/plan-sabado-el-bonillo-lio-music-pub). La programación, en [liopub.com](https://liopub.com).
+La noche de feria sigue en **Lio Music Pub**, pared con pared con el Casino y de la misma casa. Previa en nuestra barra y fiesta al lado: [plan de sábado en El Bonillo](/blog/plan-sabado-el-bonillo-lio-music-pub/). La programación, en la agenda de fiestas del [Lío Music Pub](https://www.liopub.com/).
 
 ## ¿Hay que reservar?
 
@@ -35,5 +35,5 @@ Para comer en grupo durante la feria, **sí, y con mucha antelación**. Llama o 
 
 ## Otras fiestas del año
 
-- **Junio:** la [Feria de Tradiciones y Artesanía](/blog/feria-tradiciones-artesania-el-bonillo).
-- **Primavera:** la [Semana Santa](/blog/semana-santa-el-bonillo), de Interés Turístico Regional.
+- **Junio:** la [Feria de Tradiciones y Artesanía](/blog/feria-tradiciones-artesania-el-bonillo/).
+- **Primavera:** la [Semana Santa](/blog/semana-santa-el-bonillo/), de Interés Turístico Regional.

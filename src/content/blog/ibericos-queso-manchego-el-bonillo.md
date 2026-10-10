@@ -37,10 +37,10 @@ Porque están en dos secciones de la carta: el de **ibéricos de Huelva**, de se
 
 ## ¿Y en tosta o en bocadillo?
 
-También. Por la mañana, en el almuerzo, tienes **tosta de jamón**, **tosta de queso manchego** o **bocadillo de queso manchego**. Te lo contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo).
+También. Por la mañana, en el almuerzo, tienes **tosta de jamón**, **tosta de queso manchego** o **bocadillo de queso manchego**. Te lo contamos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo/).
 
 ## Para una celebración
 
-Un plato de ibéricos y otro de queso manchego al centro es la forma más sencilla de empezar una comida de celebración. Si organizas algo, mira [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+Un plato de ibéricos y otro de queso manchego al centro es la forma más sencilla de empezar una comida de celebración. Si organizas algo, mira [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).
 
-Más ideas para compartir en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo).
+Más ideas para compartir en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo/).

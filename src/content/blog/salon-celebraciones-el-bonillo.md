@@ -15,11 +15,11 @@ Aquí tienes todo lo que conviene saber antes de reservar.
 
 | Celebración | Cuándo suele ser | Más información |
 |---|---|---|
-| **Comuniones** | Primavera | [Comuniones en El Bonillo](/blog/comuniones-el-bonillo) |
-| **Bautizos** | Todo el año | [Bautizos en El Bonillo](/blog/bautizos-el-bonillo) |
-| **Despedidas** | Todo el año | [Despedidas de soltero y soltera](/blog/despedidas-soltero-el-bonillo) |
-| **Comidas de empresa** | Diciembre | [Comidas y cenas de Navidad](/blog/comidas-empresa-navidad-el-bonillo) |
-| **Cuadrillas y peñas** | Temporada de caza, fiestas | [Comidas de cuadrillas](/blog/comidas-cuadrillas-cazadores-campo-de-montiel) |
+| **Comuniones** | Primavera | [Comuniones en El Bonillo](/blog/comuniones-el-bonillo/) |
+| **Bautizos** | Todo el año | [Bautizos en El Bonillo](/blog/bautizos-el-bonillo/) |
+| **Despedidas** | Todo el año | [Despedidas de soltero y soltera](/blog/despedidas-soltero-el-bonillo/) |
+| **Comidas de empresa** | Diciembre | [Comidas y cenas de Navidad](/blog/comidas-empresa-navidad-el-bonillo/) |
+| **Cuadrillas y peñas** | Temporada de caza, fiestas | [Comidas de cuadrillas](/blog/comidas-cuadrillas-cazadores-campo-de-montiel/) |
 | **Cumpleaños y aniversarios** | Todo el año | Llámanos |
 
 ## ¿Por qué el Casino?
@@ -47,6 +47,6 @@ Con eso lo organizamos contigo.
 
 ## ¿Qué se suele comer?
 
-Algo al centro para empezar y un plato fuerte después. Ideas en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo), [ibéricos y queso manchego](/blog/ibericos-queso-manchego-el-bonillo) y [postres caseros](/blog/postres-caseros-el-bonillo).
+Algo al centro para empezar y un plato fuerte después. Ideas en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo/), [ibéricos y queso manchego](/blog/ibericos-queso-manchego-el-bonillo/) y [postres caseros](/blog/postres-caseros-el-bonillo/).
 
 Reservas: **621 68 51 32** · Plaza Mayor, 5 · El Bonillo.

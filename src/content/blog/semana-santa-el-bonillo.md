@@ -23,15 +23,15 @@ Las fechas y horarios de cada procesión los publica cada año el Ayuntamiento: 
 
 En la Plaza Mayor:
 
-- **Almuerzo** por la mañana, de 9:30 a 11:30: [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo).
-- **Comida** a mediodía, de menú o de carta: [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo).
-- **Tapeo** entre procesión y procesión: [aperitivo y tapeo](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo).
+- **Almuerzo** por la mañana, de 9:30 a 11:30: [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo/).
+- **Comida** a mediodía, de menú o de carta: [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/).
+- **Tapeo** entre procesión y procesión: [aperitivo y tapeo](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo/).
 
 En Semana Santa el pueblo se llena. Si queréis mesa para comer, **reservad con tiempo** en el **621 68 51 32**.
 
 ## ¿Qué más ver?
 
-Aprovecha la visita para entrar en la **iglesia de Santa Catalina** y su museo parroquial, con el **Cristo de El Greco**. Todo lo demás, en [qué ver en El Bonillo](/blog/que-ver-el-bonillo).
+Aprovecha la visita para entrar en la **iglesia de Santa Catalina** y su museo parroquial, con el **Cristo de El Greco**. Todo lo demás, en [qué ver en El Bonillo](/blog/que-ver-el-bonillo/).
 
 ## Otra fecha religiosa: el Cristo de los Milagros
 
@@ -39,4 +39,4 @@ La tradición más arraigada del pueblo es la del **Santísimo Cristo de los Mil
 
 ## Y en verano
 
-La otra gran fiesta del año es la [feria de agosto, del 10 al 15](/blog/feria-fiestas-el-bonillo-agosto).
+La otra gran fiesta del año es la [feria de agosto, del 10 al 15](/blog/feria-fiestas-el-bonillo-agosto/).

@@ -11,17 +11,17 @@ fecha: 2026-09-08
 
 ## ¿Qué ofrecemos a una cuadrilla?
 
-- **Almuerzos de 9:30 a 11:30**, con bocadillos en tres tamaños y combinados. Te los contamos en [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo).
+- **Almuerzos de 9:30 a 11:30**, con bocadillos en tres tamaños y combinados. Te los contamos en [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo/).
 - **Comida de grupo** a mediodía, con raciones al centro o menú.
 - **Salón muy amplio** para sentaros todos juntos.
-- **Cerveza fría**: caña de barril y tercios helados de las [neveras Wondercool](/blog/cerveza-fria-wondercool-el-bonillo).
+- **Cerveza fría**: caña de barril y tercios helados de las [neveras Wondercool](/blog/cerveza-fria-wondercool-el-bonillo/).
 
 ## ¿Qué come una cuadrilla?
 
 Lo que llena y se comparte:
 
 - **Para empezar:** plato de ibéricos de Huelva, queso manchego, oreja a la plancha, patatas bravas.
-- **Lo manchego:** carne de boda, landres fritas, magra con tomate. Todo en [comida manchega en El Bonillo](/blog/comida-tipica-manchega-el-bonillo).
+- **Lo manchego:** carne de boda, landres fritas, magra con tomate. Todo en [comida manchega en El Bonillo](/blog/comida-tipica-manchega-el-bonillo/).
 - **Carne a la plancha:** secreto, solomillo a la pimienta, codillo frito.
 - **Combinado** de chorizo, güeña y lomo de orza para los de buen saque.
 
@@ -33,6 +33,6 @@ Lo que llena y se comparte:
 
 ## ¿Y si es una peña de fiestas?
 
-En la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto) y en la [Feria de Tradiciones de junio](/blog/feria-tradiciones-artesania-el-bonillo) las peñas se juntan a comer. En esas fechas reservad con mucho margen.
+En la [feria de agosto](/blog/feria-fiestas-el-bonillo-agosto/) y en la [Feria de Tradiciones de junio](/blog/feria-tradiciones-artesania-el-bonillo/) las peñas se juntan a comer. En esas fechas reservad con mucho margen.
 
-Más información sobre grupos en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+Más información sobre grupos en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).

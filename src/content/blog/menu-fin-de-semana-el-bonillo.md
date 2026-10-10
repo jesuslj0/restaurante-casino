@@ -37,14 +37,14 @@ Dos opiniones de Google que recogemos en la web:
 
 ## ¿Se puede venir en grupo?
 
-Sí. El salón es grande y podemos juntar mesas. Si es una celebración (un cumpleaños, una comunión, una comida familiar), cuéntanoslo al reservar: te lo explicamos en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+Sí. El salón es grande y podemos juntar mesas. Si es una celebración (un cumpleaños, una comunión, una comida familiar), cuéntanoslo al reservar: te lo explicamos en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).
 
 ## ¿Y los postres?
 
-Los postres caseros salen en las dos opiniones de arriba. Si quieres saber cuáles tenemos en carta, mira [torrija, tiramisú y coulant de queso manchego](/blog/postres-caseros-el-bonillo).
+Los postres caseros salen en las dos opiniones de arriba. Si quieres saber cuáles tenemos en carta, mira [torrija, tiramisú y coulant de queso manchego](/blog/postres-caseros-el-bonillo/).
 
 ## ¿Qué hacer después?
 
-Un café en la Plaza Mayor y un paseo por el pueblo. Tienes ideas en [qué ver en El Bonillo](/blog/que-ver-el-bonillo). Y si el sábado queréis alargar, por la tarde está el [aperitivo y el tapeo](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo).
+Un café en la Plaza Mayor y un paseo por el pueblo. Tienes ideas en [qué ver en El Bonillo](/blog/que-ver-el-bonillo/). Y si el sábado queréis alargar, por la tarde está el [aperitivo y el tapeo](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo/).
 
 Plaza Mayor, 5 · El Bonillo · 621 68 51 32.

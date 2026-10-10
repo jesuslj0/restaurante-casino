@@ -18,7 +18,7 @@ Esto es lo que conviene tener claro.
 ## ¿Comida o cena?
 
 - **Comida**, si el equipo trabaja por la mañana y queréis celebrarlo al acabar la jornada del viernes. Se alarga con la sobremesa.
-- **Cena**, si queréis que la noche siga. Tenéis [Lio Music Pub](/blog/plan-sabado-el-bonillo-lio-music-pub) pared con pared, que es de la misma casa.
+- **Cena**, si queréis que la noche siga. Tenéis [Lio Music Pub](/blog/plan-sabado-el-bonillo-lio-music-pub/) pared con pared, que es de la misma casa.
 
 ## ¿Qué necesito decirte?
 
@@ -37,14 +37,14 @@ Lo que mejor funciona en grupo grande es empezar con algo al centro y seguir con
 - **Pescado:** gamba blanca de Huelva, sepia, chipirón.
 - **Postre casero:** tiramisú, flan de queso, torrija con helado.
 
-Te damos la cuenta de raciones en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo).
+Te damos la cuenta de raciones en [raciones para compartir en grupo](/blog/raciones-para-compartir-el-bonillo/).
 
 ## ¿Y si sois pocos?
 
-Para un equipo pequeño no hace falta montar nada especial: reservad mesa y pedid de carta, o venid al [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo).
+Para un equipo pequeño no hace falta montar nada especial: reservad mesa y pedid de carta, o venid al [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/).
 
 ## Otras celebraciones de grupo
 
-Cumpleaños, jubilaciones o reencuentros de amigos: todo en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo). Y para el día a día de los equipos que trabajan en la zona, [los almuerzos de 9:30 a 11:30](/blog/almuerzos-el-bonillo).
+Cumpleaños, jubilaciones o reencuentros de amigos: todo en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/). Y para el día a día de los equipos que trabajan en la zona, [los almuerzos de 9:30 a 11:30](/blog/almuerzos-el-bonillo/).
 
 Reservas: **621 68 51 32** · Plaza Mayor, 5 · El Bonillo.

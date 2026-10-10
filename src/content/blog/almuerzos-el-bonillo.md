@@ -24,7 +24,7 @@ Si vais con prisa o en grupo, avisad por teléfono y lo tenemos en marcha cuando
 
 Es lo que más se pide. Hay en tres tamaños: **entero, medio y montado**, para que cada uno elija según el hambre.
 
-Tenemos de lomo, bacon, magreta, panceta, jamón, salchichas, **chorizo casero**, **güeña casera**, **morcilla casera**, tortilla francesa, calamares, queso manchego, arenques, salmón ahumado, boquerones o pincho moruno. Te los contamos todos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo).
+Tenemos de lomo, bacon, magreta, panceta, jamón, salchichas, **chorizo casero**, **güeña casera**, **morcilla casera**, tortilla francesa, calamares, queso manchego, arenques, salmón ahumado, boquerones o pincho moruno. Te los contamos todos en [los bocadillos para almorzar](/blog/bocadillos-almuerzo-el-bonillo/).
 
 ### Tostas y sándwiches
 
@@ -36,7 +36,7 @@ Para los que almuerzan fuerte: **chorizo, güeña y lomo de orza**, secreto, pan
 
 ## ¿Quién almuerza en el Casino?
 
-Un poco de todo el pueblo, pero sobre todo gente que trabaja en El Bonillo y en los alrededores y para a media mañana a reponer fuerzas. Hablamos de ello en [dónde almuerzan los trabajadores de Campo de Montiel](/blog/almuerzo-trabajadores-campo-de-montiel).
+Un poco de todo el pueblo, pero sobre todo gente que trabaja en El Bonillo y en los alrededores y para a media mañana a reponer fuerzas. Hablamos de ello en [dónde almuerzan los trabajadores de Campo de Montiel](/blog/almuerzo-trabajadores-campo-de-montiel/).
 
 ## ¿Hay que reservar para almorzar?
 
@@ -44,6 +44,6 @@ No hace falta si sois pocos. Si venís en grupo, por ejemplo una cuadrilla de oc
 
 ## ¿Y después del almuerzo?
 
-A mediodía tenemos [menú del día](/blog/menu-del-dia-el-bonillo), y el fin de semana, aperitivo y tapeo en la Plaza Mayor: [aperitivo y tapeo de fin de semana](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo).
+A mediodía tenemos [menú del día](/blog/menu-del-dia-el-bonillo/), y el fin de semana, aperitivo y tapeo en la Plaza Mayor: [aperitivo y tapeo de fin de semana](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo/).
 
 Estamos en la **Plaza Mayor, 5**, de El Bonillo. Consulta los horarios del local en [la web](/#horarios).

@@ -38,9 +38,9 @@ Si tienes coche y te gusta el campo:
 
 En la misma Plaza Mayor:
 
-- **Por la mañana**, [almuerzo de 9:30 a 11:30](/blog/almuerzos-el-bonillo).
-- **A mediodía**, [menú del día](/blog/menu-del-dia-el-bonillo), o el [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo) si es sábado o domingo.
-- **Si quieres probar lo de aquí**, [carne de boda, landres y sesos](/blog/comida-tipica-manchega-el-bonillo).
+- **Por la mañana**, [almuerzo de 9:30 a 11:30](/blog/almuerzos-el-bonillo/).
+- **A mediodía**, [menú del día](/blog/menu-del-dia-el-bonillo/), o el [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/) si es sábado o domingo.
+- **Si quieres probar lo de aquí**, [carne de boda, landres y sesos](/blog/comida-tipica-manchega-el-bonillo/).
 
 ## Un plan de un día
 
@@ -48,4 +48,4 @@ En la misma Plaza Mayor:
 2. **A mediodía:** comida en la plaza.
 3. **Por la tarde:** el Rollo y un paseo por el Sabinar.
 
-Si vienes desde la capital, te lo organizamos en [escapada de un día desde Albacete](/blog/escapada-desde-albacete-el-bonillo). Y si quieres saber más del edificio donde estamos, lee [la historia del Casino](/blog/historia-casino-el-bonillo).
+Si vienes desde la capital, te lo organizamos en [escapada de un día desde Albacete](/blog/escapada-desde-albacete-el-bonillo/). Y si quieres saber más del edificio donde estamos, lee [la historia del Casino](/blog/historia-casino-el-bonillo/).

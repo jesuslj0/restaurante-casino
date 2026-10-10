@@ -43,10 +43,10 @@ Una cerveza fría pide algo de picar. Nuestras sugerencias:
 - **Patatas bravas**.
 - **Mini hamburguesa de vaca** con sobrasada y queso curado.
 
-Más ideas en [aperitivo y tapeo de fin de semana](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo).
+Más ideas en [aperitivo y tapeo de fin de semana](/blog/aperitivo-tapeo-fin-de-semana-el-bonillo/).
 
 ## ¿Dónde se disfruta más?
 
-En verano, en la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo). El resto del año, en la barra. Y los sábados, antes de pasar a la puerta de al lado: [la previa antes de Lio Music Pub](/blog/previa-lio-music-pub-el-bonillo).
+En verano, en la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo/). El resto del año, en la barra. Y los sábados, antes de pasar a la puerta de al lado: [la previa antes de Lio Music Pub](/blog/previa-lio-music-pub-el-bonillo/).
 
 Plaza Mayor, 5 · El Bonillo.

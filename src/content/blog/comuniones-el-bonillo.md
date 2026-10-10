@@ -32,12 +32,12 @@ Con eso te proponemos cómo organizarlo.
 
 - **Un salón muy amplio**, para que la familia coma junta en la misma sala.
 - **En la Plaza Mayor**, la misma plaza de la iglesia de Santa Catalina. Si la ceremonia es allí, sales de misa y en dos pasos estáis a la mesa.
-- **Cocina casera**: carne, pescado, ibéricos de Huelva y postres caseros. Te lo contamos en [raciones para compartir](/blog/raciones-para-compartir-el-bonillo) y en [postres caseros](/blog/postres-caseros-el-bonillo).
+- **Cocina casera**: carne, pescado, ibéricos de Huelva y postres caseros. Te lo contamos en [raciones para compartir](/blog/raciones-para-compartir-el-bonillo/) y en [postres caseros](/blog/postres-caseros-el-bonillo/).
 - **Sitio para los niños**, con la plaza delante.
 
 ## ¿Y si es otra celebración?
 
-También hacemos [bautizos](/blog/bautizos-el-bonillo), cumpleaños, aniversarios y comidas familiares. Lo tienes todo en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo).
+También hacemos [bautizos](/blog/bautizos-el-bonillo/), cumpleaños, aniversarios y comidas familiares. Lo tienes todo en [el salón para celebraciones](/blog/salon-celebraciones-el-bonillo/).
 
 ## Reserva
 

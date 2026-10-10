@@ -19,9 +19,9 @@ Las lagunas están al oeste de El Bonillo, pasado Ossa de Montiel. Vuelves hacia
 
 Depende del día:
 
-- **Entre semana:** [menú del día](/blog/menu-del-dia-el-bonillo). Pregúntanos qué hay por WhatsApp antes de salir de las lagunas.
-- **Sábado y domingo:** [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo), con arroces, pescado y carne.
-- **De carta:** platos para compartir, como [carne de boda, landres y sesos](/blog/comida-tipica-manchega-el-bonillo), ibéricos de Huelva o gamba blanca.
+- **Entre semana:** [menú del día](/blog/menu-del-dia-el-bonillo/). Pregúntanos qué hay por WhatsApp antes de salir de las lagunas.
+- **Sábado y domingo:** [menú de fin de semana](/blog/menu-fin-de-semana-el-bonillo/), con arroces, pescado y carne.
+- **De carta:** platos para compartir, como [carne de boda, landres y sesos](/blog/comida-tipica-manchega-el-bonillo/), ibéricos de Huelva o gamba blanca.
 
 ## ¿Hay que reservar?
 
@@ -29,14 +29,14 @@ El fin de semana, sí, sobre todo si sois grupo. Escríbenos al **621 68 51 32**
 
 ## ¿Y si llego muy temprano?
 
-Si haces la ruta al revés y pasas por El Bonillo por la mañana, para [almorzar de 9:30 a 11:30](/blog/almuerzos-el-bonillo) antes de ir a las lagunas.
+Si haces la ruta al revés y pasas por El Bonillo por la mañana, para [almorzar de 9:30 a 11:30](/blog/almuerzos-el-bonillo/) antes de ir a las lagunas.
 
 ## ¿Qué hago después de comer?
 
-Un café en la Plaza Mayor y un paseo por el pueblo: el Ayuntamiento renacentista, la iglesia de Santa Catalina y su Greco. Te lo contamos en [qué ver en El Bonillo](/blog/que-ver-el-bonillo).
+Un café en la Plaza Mayor y un paseo por el pueblo: el Ayuntamiento renacentista, la iglesia de Santa Catalina y su Greco. Te lo contamos en [qué ver en El Bonillo](/blog/que-ver-el-bonillo/).
 
 ## ¿Y en verano?
 
-En verano, después de un día de lagunas, la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo) abre hasta tarde. Tercios helados y un helado ULALÁ para terminar.
+En verano, después de un día de lagunas, la [terraza de la Plaza Mayor](/blog/terraza-plaza-mayor-el-bonillo/) abre hasta tarde. Tercios helados y un helado ULALÁ para terminar.
 
 Plaza Mayor, 5 · El Bonillo.

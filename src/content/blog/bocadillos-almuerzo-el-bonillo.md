@@ -59,10 +59,10 @@ Queso manchego, arenques, salmón ahumado o boquerones.
 
 Para algo más ligero, tenemos **tostas** (magreta, sobrasada, jamón, lomo, atún, anchoas, salmón) y **sándwiches** mixto, serrano o vegetal. Y para los que almuerzan de plato, los **combinados**: el de chorizo, güeña y lomo de orza es el más contundente.
 
-Todo el horario y el ambiente de la mañana, en [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo).
+Todo el horario y el ambiente de la mañana, en [almuerzos en El Bonillo](/blog/almuerzos-el-bonillo/).
 
 ## ¿Se pueden pedir para llevar?
 
-Sí. Si llamas al **621 68 51 32** o escribes por WhatsApp, te lo preparamos para recoger. Muy práctico si vas con la furgoneta y no te da tiempo a sentarte: [dónde almuerzan los trabajadores](/blog/almuerzo-trabajadores-campo-de-montiel).
+Sí. Si llamas al **621 68 51 32** o escribes por WhatsApp, te lo preparamos para recoger. Muy práctico si vas con la furgoneta y no te da tiempo a sentarte: [dónde almuerzan los trabajadores](/blog/almuerzo-trabajadores-campo-de-montiel/).
 
-La carta completa de bocadillería está en [la carta](/carta).
+La carta completa de bocadillería está en [la carta](/carta/).
