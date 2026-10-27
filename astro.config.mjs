@@ -13,6 +13,12 @@ export default defineConfig({
   // "Página con redirección" el 05/09/2026.
   site: 'https://www.casinoelbonillo.com',
 
+  // Una sola URL por página, con barra final (/blog/x/), igual que el canonical
+  // y el sitemap. Search Console descubría /blog/x sin barra y lo marcaba como
+  // "Página alternativa con etiqueta canónica adecuada". La redirección 308
+  // de la versión sin barra la hace Vercel (vercel.json).
+  trailingSlash: 'always',
+
   vite: {
     plugins: [tailwindcss()]
   },
